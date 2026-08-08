@@ -285,7 +285,7 @@ function HomePage() {
         {/* Join Us */}
         <a
           href="/get-involved"
-          className="inline-flex w-full items-center justify-center rounded-lg border-2 border-white bg-transparent px-6 py-4 text-center font-label-md text-sm uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-primary sm:w-auto sm:px-8 sm:py-4 md:px-10 md:py-5 md:text-label-md"
+          className="inline-flex w-full items-center justify-center rounded-lg border-2 border-white bg-white px-6 py-4 text-center font-label-md text-sm uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-primary sm:w-auto sm:px-8 sm:py-4 md:px-10 md:py-5 md:text-label-md"
         >
           {t('joinUs')}
         </a>
