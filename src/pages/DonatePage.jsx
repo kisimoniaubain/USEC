@@ -1,9 +1,23 @@
 ﻿import { useState } from 'react'
 import SiteNavbar from '../components/SiteNavbar'
 import useWhoWeAreReveal from '../hooks/useWhoWeAreReveal'
+import donateprotect from '../assets/images/Protection-imo/donate-protect.png'
+
 
 function DonatePage() {
   useWhoWeAreReveal()
+  const WavyBottomDivider = () => (
+  <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none z-0">
+    <svg
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+      className="relative block w-full h-16 md:h-24 text-slate-50"
+      fill="currentColor"
+    >
+      <path d="M0,0 C150,90 350,-40 500,65 C650,160 900,10 1200,45 L1200,120 L0,120 Z"></path>
+    </svg>
+  </div>
+);
 
   const [frequency, setFrequency] = useState('once')
   const [selectedAmount, setSelectedAmount] = useState(50)
@@ -13,29 +27,56 @@ function DonatePage() {
       <SiteNavbar activePage="donate" />
 
       <main className="pt-20">
-        <section className="relative h-[60vh] md:h-[80vh] w-full flex items-center overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <div
-              className="bg-cover bg-center w-full h-full transform scale-105"
-              style={{
-                backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuBO8rOh7DFrP5nYCdyiNRTvkpIoO99YtzDhuNUjlAbHSSZofZxa-LsPMVrsA26zxWwY7OW3zzjzbQExBGxHKdKlJEJ2gNOd-NM3si4p45rEK7i4tLrXzreM89W90iWVHucRaWFmJv4tI0f_2trLi9ZBemNv2pAzPuQSyRUnGoNiSjOjPMVEEB6iB_xnRqtGaXnLvo6L8KXkCWtIKzv9_1sv1NVagnUvoM4Rqs1kFsS5qAe4_CIdJLNrFrXNiPtoV74tpzbmZT9Mb08m')",
-              }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/80 via-primary/40 to-transparent" />
-          </div>
-          <div className="container mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-white max-w-4xl">
-            <span className="font-label-md text-label-md uppercase tracking-[0.3em] mb-4 block text-vibrant-orange">Urgent Humanitarian Action</span>
-            <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight">Your Generosity Creates a Safer World.</h1>
-            <p className="font-body-lg text-body-lg max-w-xl mb-10 opacity-90 leading-relaxed">
-              Join United Safe Environment Creators in our mission to provide dignity, safety, and sustainable futures for vulnerable communities globally.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a className="bg-vibrant-orange text-white px-10 py-4 font-label-md text-label-md uppercase tracking-widest hover:brightness-110 transition-all" href="#donate-form">Start My Gift</a>
-              <a className="border border-white/40 text-white px-10 py-4 font-label-md text-label-md uppercase tracking-widest hover:bg-white/10 transition-all backdrop-blur-sm" href="/our-impact">View Our Impact</a>
-            </div>
-          </div>
-        </section>
+
+
+
+      <section className="relative h-[70vh] min-h-[600px] flex items-end overflow-hidden">
+
+        {/* BACKGROUND IMAGE */}
+        <div className="absolute inset-0 bg-deep-navy">
+
+          <img
+            src={donateprotect}
+            alt="Support USEC"
+            className="w-full h-full object-cover opacity-60"
+          />
+
+          {/* DARK OVERLAY */}
+          <div className="absolute inset-0 bg-black/55"></div>
+
+        </div>
+
+
+        {/* CONTENT */}
+        <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-20 md:pb-24 text-white">
+
+          {/* MAIN TITLE */}
+          <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg max-w-4xl mb-8 border-l-[43px] border-vibrant-orange pl-[30px] leading-tight">
+            Donate
+          </h1>
+
+
+          {/* SUBTITLE */}
+          <span className="block font-display-lg font-bold text-2xl md:text-3xl lg:text-4xl text-white leading-tight mb-4 max-w-3xl">
+            Support Our Mission and Make a Difference
+          </span>
+
+
+          {/* DESCRIPTION */}
+          <p className="font-body-lg text-body-lg max-w-2xl text-white/90 leading-relaxed">
+            Join United Safe Environment Creators in our mission to provide
+            dignity, safety, and sustainable futures for vulnerable communities
+            around the world. Your support helps us create lasting opportunities
+            for children, families, and vulnerable communities.
+          </p>
+
+        </div>
+
+
+        {/* WAVY BOTTOM DIVIDER */}
+        <WavyBottomDivider />
+
+      </section>
 
         <section className="py-section-gap bg-surface-cream" id="donate-form">
           <div className="container mx-auto px-margin-mobile md:px-margin-desktop max-w-container-max">

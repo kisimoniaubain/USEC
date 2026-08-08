@@ -111,10 +111,34 @@ function SiteNavbar({ activePage = 'home' }) {
 
   return (
     <>
-      <header className="fixed top-0 w-full z-50 h-20 border-b border-surface-variant/20 bg-surface/95 backdrop-blur-sm">
+    <header className="fixed top-0 z-50 w-full h-20 sm:h-20 md:h-24 lg:h-24 border-b border-surface-variant/20 bg-surface/95 backdrop-blur-sm">
+      {/* <header className="fixed top-0 w-full z-50 h-20 border-b border-surface-variant/20 bg-surface/95 backdrop-blur-sm"> */}
         <div className="mx-auto flex h-full w-full max-w-container-max items-center px-4 md:px-8 lg:px-10">
           
+
           <a
+            href="/"
+            className="flex items-center gap-1 shrink-0 lg:mr-8 xl:mr-10"
+          >
+            <img
+              src={navlogo}
+              alt="USEC.org home"
+              className="h-16 md:h-20 w-auto object-contain"
+            />
+
+            <div className="mb-2 flex flex-col leading-none">
+              <span className="font-extrabold text-2xl md:text-3xl text-primary tracking-tight">
+                USEC<span className="text-vibrant-orange font-normal">.org</span>
+              </span>
+
+              <span className="mt-1 text-[9px] md:text-[10px] font-semibold uppercase tracking-[0.05em] text-on-surface-variant">
+                Community Based<br />Organisation
+              </span>
+            </div>
+          </a>
+
+
+          {/* <a
           href="/"
           className="flex items-center gap-2 md:gap-3 shrink-0 lg:mr-8 xl:mr-10"
          >
@@ -133,7 +157,7 @@ function SiteNavbar({ activePage = 'home' }) {
               Community Based<br />Organisation
             </span>
           </div>
-         </a>
+         </a> */}
 
           <nav ref={desktopNavRef} className="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-7">
           <a href="/" onClick={(event) => handleNavigate(event, '/')} className={activePage === 'home' ? activeClass : linkClass}>{t('home')}</a>

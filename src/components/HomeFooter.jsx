@@ -11,19 +11,20 @@ function HomeFooter({ language, setLanguage, t, languages }) {
   ]
 
   return (
-    <footer className="bg-primary text-white pt-12 pb-6">
+    // <footer className="bg-primary text-white pt-12 pb-6">
+    <footer className="border-t border-white bg-primary pt-12 pb-6 text-white">
       <div className="container mx-auto px-margin-mobile md:px-margin-desktop">
         <div className="grid grid-cols-1 md:grid-cols-6 gap-8 mb-10">
           <div className="col-span-1 md:col-span-2">
             
-            <a href="/" className="mb-8 flex items-center gap-3">
+            <a href="/" className="mb-8 flex items-center gap-1">
             <img
               src={footerlogo}
               alt="footer logo"
               className="h-14 md:h-16 w-auto object-contain brightness-0 invert"
             />
 
-            <div className="flex flex-col leading-none">
+            <div className="mb-2 flex flex-col leading-none">
               <p className="font-extrabold text-xl md:text-2xl tracking-tight">
                 USEC<span className="font-normal">.org</span>
               </p>

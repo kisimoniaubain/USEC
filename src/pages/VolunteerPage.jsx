@@ -6,6 +6,7 @@ import communityImage from '../assets/images/getinvolved/get-hero.jpg';
 import educationImage from '../assets/images/getinvolved/get-hero.jpg';
 import environmentImage from '../assets/images/getinvolved/get-hero.jpg';
 import youthImage from '../assets/images/getinvolved/get-hero.jpg';
+import voluntier from '../assets/images/getinvolved/volotier.jpg';
 
 
 // Curved organic wave SVG for hero bottom section
@@ -42,7 +43,7 @@ const Volunteer = () => {
         {/* <div className="absolute inset-0 bg-black/60"></div> */}
 
         {/* HERO CONTENT */}
-        <div className="relative z-10 mx-auto w-full max-w-container-max px-margin-mobile py-24 md:px-margin-desktop md:py-32">
+        <div className="mt-20 relative z-10 mx-auto w-full max-w-container-max px-margin-mobile py-24 md:px-margin-desktop md:py-32">
 
           <div className="max-w-4xl">
 
@@ -59,17 +60,6 @@ const Volunteer = () => {
               stronger, and more inclusive communities. Join USEC and become
               part of a movement creating meaningful change.
             </p>
-
-            <a
-              href="#volunteer-opportunities"
-              className="inline-flex items-center gap-3 rounded-md border border-vibrant-orange bg-vibrant-orange px-7 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-deep-navy"
-            >
-              Explore Opportunities
-              <span className="transition-transform duration-300 hover:translate-x-1">
-                →
-              </span>
-            </a>
-
           </div>
 
         </div>
@@ -127,15 +117,6 @@ const Volunteer = () => {
                 someone looking for a meaningful way to contribute, there is
                 an opportunity for you to get involved.
               </p>
-
-              <a
-                href="#volunteer-opportunities"
-                className="inline-flex items-center gap-3 rounded-md border border-deep-navy px-6 py-3 text-sm font-bold uppercase tracking-widest text-deep-navy transition-all duration-300 hover:border-vibrant-orange hover:bg-vibrant-orange hover:text-white"
-              >
-                Find Your Opportunity
-                <span>→</span>
-              </a>
-
             </div>
 
           </div>
@@ -151,7 +132,7 @@ const Volunteer = () => {
         id="volunteer-opportunities"
         className="relative overflow-hidden bg-cover bg-center py-24 md:py-28"
         style={{
-          backgroundImage: `url(${educationImage})`,
+          backgroundImage: `url(${voluntier})`,
         }}
       >
 
@@ -474,91 +455,60 @@ const Volunteer = () => {
 
 
       {/* =========================================================
-          SECTION 6 — CALL TO ACTION
-      ========================================================= */}
-      <section
-        className="relative overflow-hidden bg-cover bg-center py-24 md:py-28"
-        style={{
-          backgroundImage: `url(${environmentImage})`,
-        }}
-      >
-
-        {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-deep-navy/80"></div>
-
-        {/* CONTENT */}
-        <div className="relative z-10 mx-auto max-w-container-max px-margin-mobile text-center md:px-margin-desktop">
-
-          <h2 className="mb-6 font-display-lg text-4xl text-white md:text-5xl lg:text-6xl">
-            Ready to Make a Difference?
-          </h2>
-
-          <p className="mx-auto mb-10 max-w-2xl font-body-lg leading-relaxed text-white/90">
-            Join us as a volunteer and become part of the work to create safer,
-            stronger, and more inclusive communities.
-          </p>
-
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-3 rounded-md border border-vibrant-orange bg-vibrant-orange px-7 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-deep-navy"
-          >
-            Get Started
-            <span>→</span>
-          </a>
-
-        </div>
-
-      </section>
-
-
-      {/* =========================================================
           SECTION 7 — VOLUNTEER CONTACT
       ========================================================= */}
-      <section className="bg-surface-cream py-16">
+            <section
+              className="relative overflow-hidden bg-cover bg-center py-24 md:py-28"
+              style={{
+                backgroundImage: `url(${environmentImage})`,
+              }}
+            >
+              {/* DARK OVERLAY */}
+              <div className="absolute inset-0 bg-deep-navy/75"></div>
 
-        <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
+              {/* CONTENT */}
+              <div className="relative z-10 mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
 
-          <div className="rounded-xl bg-white p-8 shadow-xl md:p-12">
+                <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
 
-            <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+                  {/* LEFT CONTENT */}
+                  <div className="max-w-2xl">
 
-              <div>
+                    <span className="mb-4 inline-block text-sm font-bold uppercase tracking-[0.25em] text-vibrant-orange">
+                      Start Your Journey
+                    </span>
 
-                <span className="mb-4 inline-block text-sm font-bold uppercase tracking-[0.25em] text-vibrant-orange">
-                  Start Your Journey
-                </span>
+                    <h2 className="mb-5 font-display-lg text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+                      Interested in Volunteering?
+                    </h2>
 
-                <h2 className="mb-5 font-display-lg text-3xl font-bold text-deep-navy md:text-4xl">
-                  Interested in Volunteering?
-                </h2>
+                    <p className="max-w-xl text-base leading-7 text-white/80 md:text-lg">
+                      Contact our team to learn more about current volunteer
+                      opportunities and how you can get involved with USEC.
+                    </p>
 
-                <p className="leading-7 text-gray-600">
-                  Contact our team to learn more about current volunteer
-                  opportunities and how you can get involved with USEC.
-                </p>
+                  </div>
+
+                  {/* RIGHT BUTTON */}
+                  <div className="md:text-right">
+
+                    <a
+                      href="/contact"
+                      className="inline-flex items-center gap-3 rounded-md border-2 border-white bg-white px-7 py-4 text-sm font-bold uppercase tracking-widest text-primary transition-all duration-300 hover:border-white hover:bg-transparent hover:text-white"
+                    >
+                      Contact Us
+
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
+                    </a>
+
+                  </div>
+
+                </div>
 
               </div>
-
-
-              <div className="md:text-right">
-
-                <a
-                  href="/contact"
-                  className="inline-flex items-center gap-3 rounded-md border border-deep-navy bg-deep-navy px-7 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:border-vibrant-orange hover:bg-vibrant-orange"
-                >
-                  Contact Us
-                  <span>→</span>
-                </a>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
+            </section>
 
     </main>
     </div>
