@@ -593,6 +593,7 @@ const WavyBottomDivider = () => (
     SECTION 8 — OUR PARTNERS
 ========================================================= */}
 <section
+  id="our-partners"
   className="relative overflow-hidden bg-cover bg-center py-16 md:py-20"
   style={{
     backgroundImage: `url(${sec2card4})`,

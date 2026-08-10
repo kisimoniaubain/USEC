@@ -63,37 +63,48 @@ function HomePage() {
   const [subscribeMessage, setSubscribeMessage] = useState('')
   const partnersTrackRef = useRef(null)
 
-  const handleSubscribeSubmit = async (event) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const email = String(formData.get('subscriberEmail') || '').trim()
-    if (!email) return
+const handleSubscribeSubmit = async (event) => {
+  event.preventDefault()
 
-    try {
-      setSubscribeStatus('loading')
-      setSubscribeMessage('Sending your subscription...')
+  const formData = new FormData(event.currentTarget)
+  const email = String(formData.get('subscriberEmail') || '').trim()
 
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      })
+  if (!email) return
 
-      const payload = await response.json().catch(() => ({}))
-      if (!response.ok) {
-        throw new Error(payload?.error || 'Failed to subscribe')
-      }
+  try {
+    setSubscribeStatus('loading')
+    setSubscribeMessage('Sending your subscription...')
 
-      setSubscribeStatus('success')
-      setSubscribeMessage('Thank you. Your subscription has been sent successfully.')
-      event.currentTarget.reset()
-    } catch (error) {
-      setSubscribeStatus('error')
-      setSubscribeMessage(error instanceof Error ? error.message : 'Subscription failed. Please try again.')
+    const response = await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    })
+
+    const payload = await response.json().catch(() => ({}))
+
+    if (!response.ok) {
+      throw new Error(payload?.error || 'Failed to subscribe')
     }
+
+    setSubscribeStatus('success')
+    setSubscribeMessage(
+      'Thank you. Your subscription has been sent successfully.'
+    )
+
+    event.currentTarget.reset()
+
+  } catch (error) {
+    setSubscribeStatus('error')
+    setSubscribeMessage(
+      error instanceof Error
+        ? error.message
+        : 'Subscription failed. Please try again.'
+    )
   }
+}
 
   const scrollPartners = (direction) => {
     if (!partnersTrackRef.current) return
@@ -314,19 +325,19 @@ function HomePage() {
       <div className="lg:col-span-6">
 
         {/* Heading */}
-        <h1 className="font-display-lg text-display-lg text-primary leading-[0.95] mb-8">
+        <h1 className="font-display-lg text-4xl sm:text-5xl md:text-6xl lg:text-display-lg text-primary leading-[0.95] mb-5 sm:mb-6 md:mb-8">
           Who We Are
         </h1>
 
         {/* Intro Text */}
-        <p className="font-headline-sm text-headline-sm text-primary leading-relaxed mb-6 max-w-2xl">
+        <p className="font-headline-sm text-lg sm:text-xl md:text-2xl lg:text-headline-sm text-primary leading-relaxed mb-5 sm:mb-6 max-w-2xl">
           A grassroots, refugee-led organization advancing human dignity,
           resilience, environmental safety, and self-reliance among displaced
           and vulnerable communities.
         </p>
 
         {/* Main Description */}
-        <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-2xl mb-6">
+        <p className="font-body-lg text-sm sm:text-base md:text-lg lg:text-body-lg text-on-surface-variant leading-7 sm:leading-8 max-w-2xl mb-5 sm:mb-6">
           Established in 2015 within the Kakuma Refugee Camp in Kenya, United
           Safe Environment Creators (USEC) is a grassroots, refugee-led
           community-based organization dedicated to fostering structural
@@ -334,7 +345,7 @@ function HomePage() {
           populations.
         </p>
 
-        <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-2xl">
+        <p className="font-body-lg text-sm sm:text-base md:text-lg lg:text-body-lg text-on-surface-variant leading-7 sm:leading-8 max-w-2xl">
           We are a coalition of dynamic, highly motivated humanitarian
           practitioners operating directly on the frontlines of forced
           displacement. Registered under the Ministry of Labor, Social
@@ -342,13 +353,13 @@ function HomePage() {
         </p>
 
         {/* Button */}
-        <div className="mt-8">
+        <div className="mt-6 sm:mt-7 md:mt-8">
           <a
             href="/about-us#who-we-are"
-            className="inline-flex items-center gap-3 bg-primary text-white px-8 py-4 rounded-md font-label-md text-label-md uppercase tracking-wider hover:bg-vibrant-orange transition-all duration-300 group"
+            className="inline-flex items-center gap-2 sm:gap-3 bg-primary text-white px-6 sm:px-7 md:px-8 py-3 sm:py-3.5 md:py-4 rounded-md font-label-md text-xs sm:text-sm md:text-label-md uppercase tracking-wider hover:bg-vibrant-orange transition-all duration-300 group"
           >
             Learn More
-            <span className="material-symbols-outlined transition-transform duration-300 group-hover:translate-x-1">
+            <span className="material-symbols-outlined text-lg sm:text-xl transition-transform duration-300 group-hover:translate-x-1">
               arrow_forward
             </span>
           </a>
@@ -360,14 +371,13 @@ function HomePage() {
       <div className="lg:col-span-6 relative">
 
         {/* Image */}
-        <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl">
-          <img
-            src={whoHeroImage}
-            alt="USEC field teams collaborating with local communities"
-            className="w-full h-[500px] md:h-[600px] lg:h-[680px] object-cover transition-transform duration-700 hover:scale-105"
-          />
-        </div>
-
+    <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl">
+      <img
+        src={whoHeroImage}
+        alt="USEC field teams collaborating with local communities"
+        className="object-right w-full h-[500px] md:h-[600px] lg:h-[680px] object-cover object-[95%_center] transition-transform duration-700 hover:scale-105"
+      />
+    </div>
         {/* Orange Decorative Shape Behind Image */}
         <div className="absolute -bottom-10 -right-10 w-72 h-72 border-[55px] border-vibrant-orange/80 rounded-full"></div>
 
@@ -488,7 +498,15 @@ function HomePage() {
           </div>
         </section>
 
-        <section className="where-we-are-section relative overflow-hidden py-section-gap border-b border-surface-variant/20">
+
+
+
+       
+
+
+
+
+        <section className="where-we-are-section relative overflow-hidden py-section-gap border-b border-surface-">
           <div className="where-map-wrap absolute inset-0 pointer-events-none" aria-hidden="true">
             <div className="where-map-track">
               <div className="where-map-panel" style={{ backgroundImage: `url(${mapImage})` }} />
@@ -501,45 +519,100 @@ function HomePage() {
             <div className="mb-12 md:mb-14 max-w-4xl mx-auto text-center">
               <span className="font-label-sm text-label-sm uppercase tracking-[0.2em] text-vibrant-orange mb-3 block">Regional Presence</span>
               <h2 className="font-display-lg text-display-lg text-primary mb-5">Where We Are</h2>
-              <p className="inline-block max-w-3xl rounded-lg border border-primary/10 bg-white/88 px-4 py-3 font-body-md text-body-md text-deep-navy leading-relaxed shadow-[0_6px_18px_rgba(3,51,71,0.12)] backdrop-blur-[1px]">
-                USEC works directly with refugee-led and host-community partners across key locations in Kenya/Turkana County/Kakuma Refugee Camp and Kalobeyei Settlement,
-                supporting protection, education, and livelihood programs where they are needed most.
-              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-7">
-              {[
-                {
-                  name: 'Kakuma Refugee Camp',
-                  focus: 'Education support, Livelihood skills,child protection, and GBV prevention for girls and young women.',
-                },
-                {
-                  name: 'Kalobeyei Settlement',
-                  focus: 'Education support, Livelihood skills,child protection, and GBV prevention for girls and young women.',
-                },
-                {
-                  name: 'Host Communities (Turkana)',
-                  focus: 'Community resilience, social cohesion, and environmental restoration initiatives.',
-                },
-              ].map((location) => (
-                <article
-                  key={location.name}
-                  className="rounded-xl border border-surface-variant/30 bg-surface-cream p-7 md:p-8 shadow-[0_10px_28px_rgba(3,51,71,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(3,51,71,0.12)]"
-                >
-                  <h3 className="font-headline-sm text-headline-sm text-primary mb-4">{location.name}</h3>
-                  <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{location.focus}</p>
-                </article>
-              ))}
 
-              <article className="rounded-xl border border-primary/20 bg-white/90 p-7 md:p-8 text-center shadow-[0_10px_28px_rgba(3,51,71,0.08)] backdrop-blur-[1px]">
-                <span className="material-symbols-outlined where-location-icon text-vibrant-orange leading-none">location_on</span>
-                <div className="mt-6">
-                  <a href="/contact#global-impact-map" className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 font-label-md text-label-md text-white hover:bg-vibrant-orange transition-colors">
-                    Lacate us
-                  </a>
+
+          {/* <div className="max-w-5xl mx-auto"> */}
+            <div className="mb-12 md:mb-14 max-w-4xl mx-auto text-center">
+            
+
+            {[
+              {
+                name: 'Kakuma Refugee Camp',
+                focus: 'Education support, Livelihood skills, child protection, and GBV prevention for girls and young women. USEC works directly with refugee-led and host-community partners across key locations in Kenya/Turkana County/Kakuma Refugee Camp and Kalobeyei Settlement, supporting protection, education, and livelihood programs where they are needed most.'
+              },
+            ].map((location) => (
+              <article
+                key={location.name}
+                className="max-w-5xl mx-auto inline-block max-w-3xl rounded-lg border border-primary/10 bg-white/88 px-4 py-3 font-body-md text-body-md text-deep-navy leading-relaxed shadow-[0_6px_18px_rgba(3,51,71,0.12)] backdrop-blur-[1px]"
+              >
+
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+           
+                  {/* LEFT SIDE — LOCATION DETAILS */}
+                  <div className="flex-1 min-w-0">
+
+                    <h3 className="text-lg md:text-xl font-semibold text-primary leading-tight">
+                      {location.name}
+                    </h3>
+
+                    <p className="mt-3 max-w-3xl font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                      {location.focus}
+                    </p>
+
+                  </div>
+
+
+                  {/* RIGHT SIDE — LOCATION ACTION */}
+                  <div className="
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    gap-5
+                    md:min-w-[180px]
+                    md:border-l
+                    md:border-surface-variant/30
+                    md:pl-8
+                  ">
+
+                    <span className="
+                      material-symbols-outlined
+                      text-5xl
+                      text-vibrant-orange
+                      transition-transform
+                      duration-300
+                      group-hover:scale-110
+                    ">
+                      location_on
+                    </span>
+
+                    <a
+                      href="/contact#global-impact-map"
+                      className="
+                        inline-flex
+                        items-center
+                        justify-center
+                        gap-2
+                        rounded-lg
+                        bg-primary
+                        px-6
+                        py-3
+                        font-label-md
+                        text-label-md
+                        font-semibold
+                        text-white
+                        transition-all
+                        duration-300
+                        hover:bg-vibrant-orange
+                      "
+                    >
+                      Locate Us
+                      <span className="material-symbols-outlined text-lg">
+                        arrow_forward
+                      </span>
+                    </a>
+
+                  </div>
+
                 </div>
+
               </article>
-            </div>
+            ))}
+
+          </div>
+
           </div>
         </section>
 
@@ -903,18 +976,13 @@ function HomePage() {
           
           {/* Accent */}
           <div className="flex items-center justify-center gap-3 mb-5">
-            <span className="h-1 w-12 bg-vibrant-orange"></span>
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-vibrant-orange">
               Our Community
             </span>
-            <span className="h-1 w-12 bg-vibrant-orange"></span>
           </div>
 
           <h2 className="font-headline-md text-headline-md text-primary mb-5 leading-tight">
-            Stay informed.
-            <span className="block text-vibrant-orange">
-              Stay involved.
-            </span>
+            Stay informed and Stay involved.
           </h2>
 
           <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-8 max-w-2xl mx-auto">
@@ -947,17 +1015,17 @@ function HomePage() {
 
           {/* Subscribe status */}
           {subscribeMessage ? (
-            <p
-              className={`mb-5 text-sm font-medium ${
-                subscribeStatus === "success"
-                  ? "text-green-700"
-                  : subscribeStatus === "error"
-                  ? "text-red-700"
-                  : "text-on-surface-variant"
-              }`}
-            >
-              {subscribeMessage}
-            </p>
+          <p
+            className={`mb-5 text-sm font-medium ${
+              subscribeStatus === "success"
+                ? "text-green-700"
+                : subscribeStatus === "error"
+                ? "text-red-700"
+                : "text-on-surface-variant"
+            }`}
+          >
+            {subscribeMessage}
+          </p>
           ) : null}
 
           {/* Privacy message */}

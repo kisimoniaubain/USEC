@@ -6,7 +6,7 @@ import livehero from '../assets/images/livelihood-imo/women.png'
 import digitalLiteracyImage from '../assets/images/livelihood-imo/digital-literacy.jpeg'
 import workReadinessImage from '../assets/images/livelihood-imo/work-readiness.jpg'
 import donateprotect from '../assets/images/Protection-imo/donate-protect.png'
-import livevoice from '../assets/images/livelihood-imo/live-voice.png'
+// import livevoice from '../assets/images/livelihood-imo/live-voice.png'
 
 
 function LivelihoodActivitiesPage() {
@@ -528,7 +528,7 @@ const activeContent = learningOptions[activeTab]
               Learn how we create practical bridges.
             </p>
 
-            <div className="absolute bottom-7 right-7 flex h-10 w-10 items-center justify-center rounded-md bg-vibrant-orange text-deep-navy">
+            <div className="absolute bottom-7 right-7 flex h-10 w-10 items-center justify-center rounded-md bg-vibrant-orange text-white">
               <span className="material-symbols-outlined">
                 arrow_forward
               </span>
@@ -604,7 +604,7 @@ const activeContent = learningOptions[activeTab]
               Learn how we encourage financial resilience .
             </p>
 
-            <div className="absolute bottom-7 right-7 flex h-10 w-10 items-center justify-center rounded-md bg-vibrant-orange text-deep-navy">
+            <div className="absolute bottom-7 right-7 flex h-10 w-10 items-center justify-center rounded-md bg-vibrant-orange text-white">
               <span className="material-symbols-outlined">
                 arrow_forward
               </span>
@@ -678,7 +678,7 @@ const activeContent = learningOptions[activeTab]
               Learn how we strengthen peer learning and collaboration.
             </p>
 
-            <div className="absolute bottom-7 right-7 flex h-10 w-10 items-center justify-center rounded-md bg-vibrant-orange text-deep-navy">
+            <div className="absolute bottom-7 right-7 flex h-10 w-10 items-center justify-center rounded-md bg-vibrant-orange text-white">
               <span className="material-symbols-outlined">
                 arrow_forward
               </span>
@@ -723,52 +723,16 @@ const activeContent = learningOptions[activeTab]
               </ul>
 
             </div>
-
           </div>
         </div>
       </div>
-
     </div>
-  </div>
-</section>
-
-
-
-
-
-        <section className="py-section-gap bg-deep-navy text-white overflow-hidden relative">
-          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
-            <div className="flex flex-col lg:flex-row items-center gap-16">
-              <div className="lg:w-2/5">
-                <div className="relative group">
-                  <div className="absolute -inset-4 border-2 border-vibrant-orange/50 rounded-2xl group-hover:inset-0 transition-all duration-500" />
-                  <img className="w-full aspect-square object-cover rounded-xl shadow-2xl relative z-10" 
-                       src={livevoice}
-                       alt="Safiya" />
-                  <div className="absolute -top-6 -right-6 bg-vibrant-orange w-24 h-24 rounded-full flex items-center justify-center z-20">
-                    <span className="material-symbols-outlined text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="lg:w-3/5">
-                <h2 className="font-headline-md text-display-lg-mobile md:text-display-lg mb-6 leading-tight">"Now, I do not just dream of a future; I build it."</h2>
-                <p className="font-body-lg text-primary-fixed-dim text-xl mb-8 italic leading-relaxed">
-                  Safiya arrived with nothing but hope. Through a $500 USEC micro-grant and three months of intensive retail management training, she launched a community convenience store that now employs four other women in her camp.
-                </p>
-                <div className="space-y-4">
-                  <p className="font-headline-sm text-vibrant-orange">- Safiya, USEC Entrepreneur</p>
-                </div>
-                <div className="mt-12 flex gap-4">
-                </div>
-              </div>
-            </div>
-                                        {/* BUTTONS */}
+                                            {/* BUTTONS */}
               <div className="mt-20 flex flex-col sm:flex-row items-center gap-4 shrink-0">
 
                 <a
                   href="/programs"
-                  className="inline-flex items-center justify-center gap-3 bg-white text-deep-navy px-8 py-4 font-bold rounded-lg border-2 border-white hover:bg-primary hover:text-white hover:border-white transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-3 bg-vibrant-orange text-white px-8 py-4 font-bold rounded-lg border-2 border-white hover:bg-primary hover:text-white hover:border-white transition-all duration-300"
                 >
                   Back To Programs
                   <span className="text-xl transition-transform duration-300 group-hover:translate-x-1">
@@ -778,7 +742,7 @@ const activeContent = learningOptions[activeTab]
 
                 <a
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-3 border-2 border-white text-white px-8 py-4 bg-primary font-bold rounded-lg hover:bg-white hover:text-deep-navy transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-3 border-2 border-white text-white px-8 py-4 bg-primary font-bold rounded-lg hover:bg-white hover:text-primary hover:border-2 hover:border-primary transition-all duration-300"
                 >
                   Contact Us
                   <span className="text-xl">
@@ -787,11 +751,8 @@ const activeContent = learningOptions[activeTab]
                 </a>
 
               </div>
-          </div>
-          
-          <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-12 translate-x-1/2" />
-        </section>
-
+  </div>
+</section>
 
 
                <section

@@ -177,53 +177,6 @@ const WavyBottomDivider = () => (
          </div>
         </div>
         </article>
-             
-
-
-
-
-          </div>
-        </section>
-
-        <section className="bg-primary text-white py-section-gap overflow-hidden">
-          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
-            <div>
-              <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg mb-8">A Network of Humanity Across Communities</h2>
-              <div className="space-y-12">
-                <div className="flex gap-6">
-                  <div className="text-vibrant-orange font-display-lg">24</div>
-                  <div>
-                    <h4 className="font-label-md text-label-md uppercase tracking-widest mb-2">Communities Served</h4>
-                    <p className="text-white/60 font-body-md">From Kakuma to Kalubeyei, both Refugee and Host communities, we operate where need is most acute.</p>
-                  </div>
-                </div>
-                <div className="flex gap-6">
-                  <div className="text-vibrant-orange font-display-lg">1.2M</div>
-                  <div>
-                    <h4 className="font-label-md text-label-md uppercase tracking-widest mb-2">Lives Impacted Yearly</h4>
-                    <p className="text-white/60 font-body-md">Quantifiable change through food security, medical aid, and shelter programs.</p>
-                  </div>
-                </div>
-                <div className="flex gap-6">
-                  <div className="text-vibrant-orange font-display-lg">450+</div>
-                  <div>
-                    <h4 className="font-label-md text-label-md uppercase tracking-widest mb-2">Local Partnerships</h4>
-                    <p className="text-white/60 font-body-md">We believe in localized solutions led by community leaders who know the terrain.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="relative h-[600px] bg-primary-container rounded-lg flex items-center justify-center p-8 border border-white/10">
-              <div className="relative z-10 text-center space-y-4">
-                <div className="inline-block p-4 bg-vibrant-orange/10 border border-vibrant-orange rounded-full mb-4">
-                  <span className="material-symbols-outlined text-vibrant-orange text-5xl">public</span>
-                </div>
-                <h3 className="font-headline-sm text-headline-sm">Explore Our Impact Map</h3>
-                <p className="font-body-md text-white/70 max-w-xs mx-auto">Interactive data visualization of our humanitarian corridors.</p>
-                <a href="/our-impact" className="inline-block bg-vibrant-orange text-white px-10 py-4 font-label-md text-label-md uppercase tracking-widest mt-6">View Global Data</a>
-              </div>
-            </div>
           </div>
         </section>
 

@@ -1,13 +1,15 @@
 import SiteNavbar from '../components/SiteNavbar'
 import useWhoWeAreReveal from '../hooks/useWhoWeAreReveal'
 
-import team from "../assets/images/team-images/hero-imo.jpg";
+import team from "../assets/images/team-images/hero-imo.jpeg";
 import trustee1 from "../assets/images/team-images/trustee1.jpg";
 import trustee2 from "../assets/images/team-images/trustee2.jpg";
 import trustee3 from "../assets/images/team-images/trustee3.jpg";
 import trustee4 from "../assets/images/team-images/trustee4.jpg";
 import trustee5 from "../assets/images/team-images/trustee5.jpg";
 import trustee6 from "../assets/images/team-images/trustee6.jpg";
+import trustee7 from "../assets/images/team-images/trustee7.jpg";
+import trustee8 from "../assets/images/team-images/trustee8.jpg";
 import donateprotect from '../assets/images/Protection-imo/donate-protect.png'
 
 
@@ -15,7 +17,7 @@ import donateprotect from '../assets/images/Protection-imo/donate-protect.png'
 const leadership = [
   {
     role: 'Program coordinator',
-    name: 'Tiba Kakozi',
+    name: <>Gisma Abass<br />Kocho</>,
     bio: 'Tiba coordinates field implementation across education, protection, and livelihood activities, ensuring day-to-day program delivery stays aligned with community priorities.',
     image: '/images/Tiba.png',
     iconA: 'link',
@@ -71,6 +73,16 @@ const trustees = [
     role: "Member",
     image: trustee6,
   },
+  {
+    name: "Trustee Six",
+    role: "Member",
+    image: trustee7,
+  },
+  {
+    name: "Trustee Six",
+    role: "Member",
+    image: trustee8,
+  },
 ];
 
 function TeamPage() {
@@ -98,11 +110,10 @@ const WavyBottomDivider = () => (
           <div className="absolute inset-0 z-0">
             <div/>
             <img
-              // className="w-full h-full bg-cover bg-center opacity-40"
-              className="hero-slide is-active absolute inset-0 h-full w-full object-cover"
+              className="hero-slide is-active absolute inset-0 h-full w-full object-cover object-top"
               src={team}
               alt="Portrait"
-              />
+            />
               <div className="absolute inset-0 bg-black/70"></div>
               {/* <div className="absolute inset-0 bg-black/60"></div> */}
           </div>
@@ -123,99 +134,110 @@ const WavyBottomDivider = () => (
           <WavyBottomDivider />
         </section>
 
-        <section className="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-          <div className="mb-16 border-l-4 border-vibrant-orange pl-6">
-            <h2 className="font-headline-md text-headline-md text-deep-navy mb-2">Executive Leadership</h2>
-            <p className="font-body-md text-on-surface-variant max-w-xl">
-              Guided by decades of experience in environmental safety and humanitarian aid, our leadership team ensures operational integrity and strategic growth.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-            {leadership.map((member) => (
-              <article key={member.name} className="bg-white border border-surface-cream rounded-lg overflow-hidden group hover:shadow-[0_10px_40px_-10px_rgba(3,51,71,0.04)] transition-all duration-300">
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img alt={member.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src={member.image} />
-                </div>
-                <div className="p-8">
-                  <span className="font-label-sm text-label-sm uppercase tracking-widest text-vibrant-orange mb-2 block">{member.role}</span>
-                  <h3 className="font-headline-sm text-headline-sm text-deep-navy mb-4">{member.name}</h3>
-                  <p className="font-body-md text-on-surface-variant line-clamp-3">{member.bio}</p>
-                  <div className="mt-6 flex gap-4">
-                    <span className="material-symbols-outlined text-deep-navy/40 hover:text-vibrant-orange transition-colors">{member.iconA}</span>
-                    <span className="material-symbols-outlined text-deep-navy/40 hover:text-vibrant-orange transition-colors">{member.iconB}</span>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
 
-        <section className="bg-surface-cream py-section-gap overflow-hidden">
-          <div className="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center mb-16">
-              <div className="md:col-span-5">
-                <span className="font-label-md text-label-md uppercase tracking-[0.2em] text-deep-navy mb-4 block">The Field Expertise</span>
-                <h2 className="font-headline-md text-headline-md text-deep-navy mb-6">Our Field Staff and Specialists</h2>
-                <p className="font-body-md text-on-surface-variant">
-                  Beyond the boardrooms, our success is defined by those who live and work alongside the communities we serve. Our experts bring specialized knowledge in hydrology, agriculture, and community health.
+          <section className="py-20 md:py-28 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+
+          {/* SECTION HEADER */}
+          <div className="mb-12 md:mb-16 max-w-3xl">
+
+            <div className="flex items-start gap-4 md:gap-6">
+
+              {/* Orange accent */}
+              <div className="w-1.5 md:w-2 min-h-[90px] md:min-h-[110px] bg-vibrant-orange rounded-full shrink-0" />
+
+              <div>
+                <span className="block mb-3 md:mb-4 font-label-sm text-label-sm uppercase tracking-[0.2em] text-vibrant-orange">
+                  Our Leadership
+                </span>
+
+                <h2 className="font-display-lg text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight text-deep-navy">
+                  Executive Leadership
+                </h2>
+
+                <p className="mt-4 md:mt-5 max-w-2xl font-body-md text-base md:text-lg leading-relaxed text-on-surface-variant">
+                  Guided by decades of experience in environmental safety and
+                  humanitarian aid, our leadership team ensures operational
+                  integrity, strategic growth, and meaningful impact across
+                  the communities we serve.
                 </p>
               </div>
-              <div className="md:col-span-7 hidden md:block">
-                <div className="h-px bg-outline-variant w-full" />
-              </div>
+
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter">
-              <div className="md:col-span-2 bg-white p-8 rounded-xl flex flex-col justify-between hover:shadow-[0_10px_40px_-10px_rgba(3,51,71,0.04)] transition-all group">
-                <div>
-                  <div className="flex items-center gap-10 mb-6 sm:flex-col sm:items-start sm:gap-4">
-                  {/* <div className="flex items-center gap-4 mb-6"> */}
-                    <div className="w-40 h-40 rounded-full overflow-hidden bg-surface-variant">
-                      <img
-                        alt="Tiba kakozi"
-                        className="w-full h-full object-cover"
-                        src="/images/Tiba.png"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="font-headline-sm text-[20px] text-deep-navy">Tiba Kakozi</h4>
-                      <span className="font-label-sm text-on-surface-variant">Program coordinator</span>
-                    </div>
-                  </div>
-                  <p className="font-body-md text-on-surface-variant mb-8">
-                    "Sustainability is not just a metric; it is a relationship. We work to restore that bond between the people and their land."
-                  </p>
-                </div>
-                <a className="text-vibrant-orange font-label-md uppercase flex items-center gap-2 group-hover:gap-4 transition-all" href="/our-impact">
-                  View Research <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-                </a>
-              </div>
-              
-              <div className="md:col-span-1 bg-deep-navy p-8 rounded-xl text-white flex flex-col justify-between group hover:bg-primary transition-colors">
-                <span className="material-symbols-outlined text-[48px] text-vibrant-orange mb-6">verified</span>
-                <div>
-                  <h4 className="font-headline-sm text-[18px]">Community Liaison</h4>
-                  <p className="font-label-sm opacity-70">Building bridges across 40+ regions globally.</p>
-                </div>
-              </div>
-
-              <div className="md:col-span-3 bg-surface-variant p-8 rounded-xl flex items-center gap-8 group">
-                <div className="flex-1">
-                  <h4 className="font-headline-sm text-deep-navy mb-4">Global Volunteer Network</h4>
-                  <p className="font-body-md text-on-surface-variant">
-                    Our team is supported by a network of 500+ specialized volunteers who provide remote technical assistance and on-site support for critical missions.
-                  </p>
-                </div>
-                <div className="hidden lg:flex w-24 h-24 bg-white rounded-full items-center justify-center text-vibrant-orange group-hover:rotate-12 transition-transform">
-                  <span className="material-symbols-outlined text-[40px]">public</span>
-                </div>
-              </div>
-            </div>
           </div>
+
+
+          {/* LEADERSHIP CARDS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+            {leadership.map((member) => (
+
+              <article
+                key={member.name}
+                className="
+                  group
+                  overflow-hidden
+                  rounded-2xl
+                  bg-white
+                  border border-surface-cream
+                  shadow-[0_8px_30px_rgba(3,51,71,0.05)]
+                  transition-all
+                  duration-500
+                  hover:-translate-y-2
+                  hover:shadow-[0_20px_50px_rgba(3,51,71,0.12)]
+                "
+              >
+
+                {/* IMAGE */}
+                <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
+
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="
+                      w-full
+                      h-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-105
+                    "
+                  />
+
+                  {/* Image overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-deep-navy/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                </div>
+
+
+                {/* CONTENT */}
+                <div className="p-6 md:p-8">
+
+                  {/* ROLE */}
+                  <span className="block mb-2 font-label-sm text-label-sm uppercase tracking-[0.15em] text-vibrant-orange">
+                    {member.role}
+                  </span>
+
+                  {/* NAME */}
+                  <h3 className="font-display-lg text-2xl md:text-3xl leading-tight text-deep-navy">
+                    {member.name}
+                  </h3>
+
+                  {/* BIO */}
+                  <p className="mt-4 font-body-md text-sm md:text-base leading-relaxed text-on-surface-variant line-clamp-4">
+                    {member.bio}
+                  </p>
+
+                </div>
+
+              </article>
+
+            ))}
+
+          </div>
+
         </section>
-
-
 
         <section className="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
   <h2 className="font-headline-md text-deep-navy mb-12">

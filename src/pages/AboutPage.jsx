@@ -1,5 +1,6 @@
 import SiteNavbar from "../components/SiteNavbar";
-
+import { useRef } from "react"
+import { useEffect, useState } from "react"
 import AboutHero from "../assets/images/aboutimages/About-hero.png";
 import mission from "../assets/images/aboutimages/m,v,g.jpg";
 import tiba from "../assets/images/aboutimages/Tiba.png";
@@ -8,7 +9,48 @@ import kabulo from "../assets/images/aboutimages/Kabulo.jpg";
 import donateprotect from "../assets/images/Protection-imo/donate-protect.png";
 
 const AboutPage = () => {
+  const [currentMilestone, setCurrentMilestone] = useState(0)
 
+const [visibleCards, setVisibleCards] = useState(1)
+
+useEffect(() => {
+  const updateVisibleCards = () => {
+    if (window.innerWidth >= 1024) {
+      setVisibleCards(3)
+    } else if (window.innerWidth >= 768) {
+      setVisibleCards(2)
+    } else {
+      setVisibleCards(1)
+    }
+  }
+
+  updateVisibleCards()
+
+  window.addEventListener("resize", updateVisibleCards)
+
+  return () => {
+    window.removeEventListener("resize", updateVisibleCards)
+  }
+}, [])
+
+const totalMilestones = 12
+
+const maxIndex = Math.max(
+  0,
+  totalMilestones - visibleCards
+)
+
+const handlePrevious = () => {
+  setCurrentMilestone((previous) =>
+    Math.max(previous - 1, 0)
+  )
+}
+
+const handleNext = () => {
+  setCurrentMilestone((previous) =>
+    Math.min(previous + 1, maxIndex)
+  )
+}
   {/* =========================================================
       WAVY BOTTOM DIVIDER
   ========================================================= */}
@@ -85,7 +127,7 @@ const AboutPage = () => {
       ========================================================= */}
       <section className="relative overflow-hidden bg-surface-cream px-margin-mobile py-section-gap md:px-margin-desktop">
 
-        <div className="pointer-events-none absolute -bottom-10 -right-10 h-72 w-72 rounded-full border-[55px] border-vibrant-orange/80"></div>
+        <div className="pointer-events-none absolute -bottom-10 -right-10 h-72 w-72 rounded-full border-[55px] border-vibrant-orange/10"></div>
 
         <div className="pointer-events-none absolute -top-40 left-[22%] h-[480px] w-[480px] rounded-full border-[80px] border-primary/10"></div>
 
@@ -217,122 +259,497 @@ const AboutPage = () => {
       </section>
 
 
-      {/* =========================================================
-          OUR JOURNEY
-      ========================================================= */}
-      <section className="overflow-hidden bg-primary py-section-gap text-white">
+{/* =========================================================
+    KEY MILESTONES
+========================================================= */}
 
-        <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
-
-          <div className="mb-16">
-
-            <span className="mb-4 block font-label-md text-label-md uppercase tracking-widest text-vibrant-orange">
-              Our Journey
-            </span>
-
-            <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg">
-              Two Decades of Impact
-            </h2>
-
-          </div>
+<section className="overflow-hidden bg-[#f2efe8] py-16 md:py-20 lg:py-24">
+  <div className="pointer-events-none absolute -bottom-10 -right-10 h-72 w-72 rounded-full border-[55px] border-vibrant-orange/10"></div>
+  <div className="pointer-events-none absolute -top-40 left-[22%] h-[480px] w-[480px] rounded-full border-[80px] border-primary/10"></div>
 
 
-          <div className="relative">
+  <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
 
-            <div className="absolute left-0 top-0 h-full w-px bg-on-primary-fixed-variant opacity-30 md:left-1/2 md:-translate-x-1/2"></div>
+    {/* =====================================================
+        HEADER
+    ===================================================== */}
 
-            <div className="space-y-16">
+    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start">
 
-              {/* 2004 */}
-              <div className="relative flex flex-col md:flex-row md:items-center">
+      {/* LEFT */}
+      <div>
+        <span className="mb-3 block font-label-md text-label-md font-bold uppercase tracking-[0.2em] text-vibrant-orange">
+          Our Journey
+        </span>
 
-                <div className="text-left md:w-1/2 md:pr-12 md:text-right">
-
-                  <span className="mb-2 block font-headline-md text-headline-md text-vibrant-orange">
-                    2004
-                  </span>
-
-                  <h4 className="mb-4 font-headline-sm text-headline-sm">
-                    The Foundation
-                  </h4>
-
-                  <p className="font-body-md text-on-primary-container">
-                    USEC was founded in response to environmental displacements,
-                    beginning as a small grassroots team of environmental
-                    engineers and social workers.
-                  </p>
-
-                </div>
-
-                <div className="absolute left-[-4px] h-3 w-3 rounded-full border-4 border-primary bg-vibrant-orange md:left-1/2 md:-translate-x-1/2"></div>
-
-                <div className="md:w-1/2"></div>
-
-              </div>
+        <h2 className="mb-6 font-headline-md text-headline-md text-deep-navy">
+          Explore Our Journey
+        </h2>
+      </div>
 
 
-              {/* 2012 */}
-              <div className="relative flex flex-col md:flex-row md:items-center">
+      {/* RIGHT */}
+      <div className="md:flex md:justify-end">
 
-                <div className="order-2 md:order-1 md:w-1/2"></div>
+        <p className="max-w-md font-body-md text-on-surface-variant leading-relaxed md:text-right">
+         Explore the key achievements and defining milestones that have shaped USEC’s journey from 2015 to the present.
+        </p>
 
-                <div className="absolute left-[-4px] h-3 w-3 rounded-full border-4 border-primary bg-vibrant-orange md:left-1/2 md:-translate-x-1/2"></div>
+      </div>
 
-                <div className="order-1 md:order-2 md:w-1/2 md:pl-12">
-
-                  <span className="mb-2 block font-headline-md text-headline-md text-vibrant-orange">
-                    2012
-                  </span>
-
-                  <h4 className="mb-4 font-headline-sm text-headline-sm">
-                    Continental Expansion
-                  </h4>
-
-                  <p className="font-body-md text-on-primary-container">
-                    Our programs expanded to East Africa and Central America,
-                    focusing on sustainable water sanitation and refugee
-                    environment safety protocols.
-                  </p>
-
-                </div>
-
-              </div>
+    </div>
 
 
-              {/* 2024 */}
-              <div className="relative flex flex-col md:flex-row md:items-center">
+    {/* =====================================================
+        CONTROLS
+    ===================================================== */}
 
-                <div className="text-left md:w-1/2 md:pr-12 md:text-right">
+    <div className="mt-10 flex items-center justify-between gap-6 md:mt-14">
 
-                  <span className="mb-2 block font-headline-md text-headline-md text-vibrant-orange">
-                    2024
-                  </span>
+      {/* PROGRESS INDICATOR */}
 
-                  <h4 className="mb-4 font-headline-sm text-headline-sm">
-                    The Modern Era
-                  </h4>
+      <div className="flex flex-1 items-center">
 
-                  <p className="font-body-md text-on-primary-container">
-                    Today, USEC leverages advanced technology and local
-                    leadership to manage impactful projects serving vulnerable
-                    communities.
-                  </p>
+        <div className="relative h-[9px] w-full max-w-[220px] overflow-hidden rounded-full border border-primary bg-transparent">
 
-                </div>
-
-                <div className="absolute left-[-4px] h-3 w-3 rounded-full border-4 border-primary bg-vibrant-orange md:left-1/2 md:-translate-x-1/2"></div>
-
-                <div className="md:w-1/2"></div>
-
-              </div>
-
-            </div>
-
-          </div>
+          <div
+            className="absolute left-0 top-0 h-full rounded-full bg-primary transition-all duration-500 ease-out"
+            style={{
+              width: `${100 / (maxIndex + 1)}%`,
+              transform: `translateX(${currentMilestone * 100}%)`,
+            }}
+          />
 
         </div>
 
-      </section>
+      </div>
+
+
+      {/* NAVIGATION BUTTONS */}
+
+      <div className="flex shrink-0 gap-2 md:gap-3">
+
+        {/* PREVIOUS */}
+
+        <button
+          type="button"
+          onClick={handlePrevious}
+          disabled={currentMilestone === 0}
+          aria-label="Previous milestone"
+          className="
+            flex
+            h-12
+            w-12
+            items-center
+            justify-center
+            rounded-md
+            bg-primary
+            text-white
+            transition-all
+            duration-300
+            hover:bg-vibrant-orange
+            active:scale-95
+            disabled:cursor-not-allowed
+            disabled:opacity-30
+            md:h-14
+            md:w-14
+          "
+        >
+        <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">
+          arrow_back
+        </span>
+        </button>
+
+
+        {/* NEXT */}
+
+        <button
+          type="button"
+          onClick={handleNext}
+          disabled={currentMilestone === maxIndex}
+          aria-label="Next milestone"
+          className="
+            flex
+            h-12
+            w-12
+            items-center
+            justify-center
+            rounded-md
+            bg-primary
+            text-white
+            transition-all
+            duration-300
+            hover:bg-vibrant-orange
+            active:scale-95
+            disabled:cursor-not-allowed
+            disabled:opacity-30
+            md:h-14
+            md:w-14
+          "
+        >
+        <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">
+          arrow_forward
+        </span>
+        </button>
+
+      </div>
+
+    </div>
+
+
+    {/* =====================================================
+        MILESTONE CARDS
+    ===================================================== */}
+
+    <div className="relative mt-8 overflow-hidden md:mt-10">
+
+      <div
+        className="flex transition-transform duration-700 ease-in-out"
+        style={{
+          transform: `translateX(-${currentMilestone * (100 / visibleCards)}%)`,
+        }}
+      >
+
+        {/* =================================================
+            2015
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2015
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              The Foundation
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              USEC was founded in response to environmental
+              displacement, beginning as a small grassroots team
+              committed to environmental safety, humanitarian
+              support, and community resilience.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        {/* =================================================
+            2016
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2016
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              Building Community Resilience
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              USEC strengthened its community-based approach,
+              working directly with displaced and vulnerable
+              communities to improve protection, education,
+              livelihoods, and environmental safety.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        {/* =================================================
+            2017
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2017
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              Expanding Our Reach
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              Our programs grew through stronger partnerships
+              and community-led initiatives, creating new
+              opportunities for education, protection,
+              environmental awareness, and self-reliance.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        {/* =================================================
+            2018
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2018
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              Strengthening Partnerships
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              USEC expanded collaboration with humanitarian
+              and community partners while increasing support
+              for vulnerable families, young people, women,
+              and refugee-led initiatives.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        {/* =================================================
+            2019
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2019
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              Community-Led Action
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              We placed stronger emphasis on local leadership,
+              enabling communities to participate directly in
+              designing and implementing solutions to the
+              challenges they face.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        {/* =================================================
+            2020
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2020
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              Responding to New Challenges
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              USEC adapted its programs to respond to changing
+              humanitarian needs while continuing to support
+              vulnerable communities through protection,
+              education, and resilience initiatives.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        {/* =================================================
+            2021
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2021
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              Growing Resilience
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              Our work continued to strengthen community
+              resilience through skills development,
+              environmental awareness, livelihood opportunities,
+              and inclusive education.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        {/* =================================================
+            2022
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2022
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              Expanding Community Programs
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              USEC increased its focus on sustainable community
+              development, youth engagement, protection,
+              environmental safety, and livelihood opportunities.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        {/* =================================================
+            2023
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2023
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              A Stronger Community Network
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              We continued building partnerships and community
+              networks that connect humanitarian action with
+              long-term development and self-reliance.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        {/* =================================================
+            2024
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2024
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              The Modern Era
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              USEC strengthened its use of technology,
+              partnerships, and local leadership to deliver
+              impactful programs for vulnerable and displaced
+              communities.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        {/* =================================================
+            2025
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2025
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              Deepening Our Impact
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              USEC continued expanding community-led initiatives
+              while strengthening protection, education,
+              environmental safety, and sustainable livelihood
+              opportunities.
+            </p>
+
+          </div>
+
+        </article>
+
+
+        {/* =================================================
+            2026
+        ================================================= */}
+
+        <article className="w-full shrink-0 pr-4 md:w-1/2 md:pr-6 lg:w-1/3">
+
+          <div className="flex min-h-[380px] flex-col rounded-xl bg-white p-7 shadow-[0_8px_30px_rgba(3,51,71,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(3,51,71,0.10)] md:min-h-[410px] md:p-8">
+
+            <span className="font-display-lg text-5xl leading-none text-primary md:text-6xl">
+              2026
+            </span>
+
+            <h3 className="mb-5 font-headline-sm text-headline-sm font-bold text-primary">
+              Looking Ahead
+            </h3>
+
+            <p className="font-body-md text-on-surface-variant leading-7">
+              USEC continues building safer and more resilient
+              communities by combining humanitarian action,
+              environmental responsibility, inclusive education,
+              and sustainable development.
+            </p>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 
       {/* =========================================================
@@ -381,7 +798,7 @@ const AboutPage = () => {
                 <img
                   className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
                   src={tiba}
-                  alt="Tiba Kakozi"
+                  alt="Gisma Abass Kocho"
                 />
 
                 <div className="absolute bottom-4 left-4 right-4 translate-y-full bg-white p-4 transition-transform duration-300 group-hover:translate-y-0">
@@ -391,7 +808,7 @@ const AboutPage = () => {
                   </p>
 
                   <h4 className="font-headline-sm text-headline-sm text-deep-navy">
-                    Tiba Kakozi
+                    Gisma Abass Kocho
                   </h4>
 
                 </div>

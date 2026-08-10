@@ -550,66 +550,33 @@ const WavyBottomDivider = () => (
       </div>
 
     </div>
+                                {/* BUTTONS */}
+      <div className="mt-16 flex flex-col sm:flex-row items-center gap-4 shrink-0">
+
+        <a
+          href="/programs"
+          className="inline-flex items-center justify-center gap-3 bg-vibrant-orange text-white px-8 py-4 font-bold rounded-lg border-2 border-vibrant-orange hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+        >
+          Back To Programs
+          <span className="text-xl transition-transform duration-300 group-hover:translate-x-1">
+            →
+          </span>
+        </a>
+
+        <a
+          href="/contact"
+          className="inline-flex items-center justify-center gap-3 border-2 border-primary text-white px-8 py-4 bg-primary font-bold rounded-lg hover:bg-white hover:text-deep-navy transition-all duration-300"
+        >
+          Contact Us
+          <span className="text-xl">
+            →
+          </span>
+        </a>
+
+      </div>
 
   </div>
 </section>
-
-        <section className="bg-surface-cream py-section-gap relative overflow-hidden">
-        <div className="absolute -top-40 left-[22%] w-[480px] h-[480px] rounded-full border-[80px] border-primary/10 pointer-events-none"></div>
-
-          <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="relative group">
-                <div className="absolute -top-10 -left-10 w-40 h-40 bg-vibrant-orange/10 rounded-full blur-3xl group-hover:bg-vibrant-orange/20 transition-all duration-700" />
-                <img alt="Latifa profile" 
-                     className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700 relative z-10" 
-                     src={latifa} />
-                <div className="absolute bottom-6 right-6 bg-white p-6 shadow-xl z-20 max-w-xs border border-surface-variant">
-                  <p className="font-label-sm text-vibrant-orange mb-2">TRANSFORMED LIFE</p>
-                  <p className="font-headline-sm text-[20px] text-deep-navy">"I feel safe to dream again."</p>
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-label-md text-vibrant-orange mb-6">FEATURE STORY</span>
-                <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg text-deep-navy mb-8">Latifa's Journey to Safety</h2>
-                <div className="space-y-6">
-                  <p className="font-body-lg text-body-lg text-on-surface-variant">Latifa arrived at our transit center unaccompanied and exhausted. Through our Framework's rapid response protocol, she was immediately provided with a safe space and psychosocial care.</p>
-                  <p className="font-body-md text-on-surface-variant italic border-l-4 border-vibrant-orange pl-6 py-2">"The first night I arrived, someone sat with me and told me I was safe. For the first time in months, I believed it. Today, I am back in school and I want to be a doctor."</p>
-                  <p className="font-body-md text-on-surface-variant">Our reunification team worked tirelessly for three months to trace her family. Today, she is safely back with her siblings, supported by monthly check-ins from USEC protection officers.</p>
-                  <a className="inline-flex items-center gap-4 font-label-md text-deep-navy hover:text-vibrant-orange transition-colors group mt-4" href="#">
-                    READ THE FULL IMPACT REPORT
-                    <span className="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
-                  </a>
-                </div>
-              </div>
-                            {/* BUTTONS */}
-              <div className="flex flex-col sm:flex-row items-center gap-4 shrink-0">
-
-                <a
-                  href="/programs"
-                  className="inline-flex items-center justify-center gap-3 bg-vibrant-orange text-white px-8 py-4 font-bold rounded-lg border-2 border-vibrant-orange hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
-                >
-                  Back To Programs
-                  <span className="text-xl transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </a>
-
-                <a
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-3 border-2 border-primary text-white px-8 py-4 bg-primary font-bold rounded-lg hover:bg-white hover:text-deep-navy transition-all duration-300"
-                >
-                  Contact Us
-                  <span className="text-xl">
-                    →
-                  </span>
-                </a>
-
-              </div>
-            </div>
-          </div>
-        </section>
-
 
         <section
           className="relative min-h-[400px] md:min-h-[450px] flex items-center bg-cover bg-center overflow-hidden"          style={{

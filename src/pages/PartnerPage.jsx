@@ -1,6 +1,12 @@
 import React from "react";
 import SiteNavbar from '../components/SiteNavbar'
 // Replace these with your actual image imports
+import partnersec2 from "../assets/images/partners/partnersec2.jpg";
+import partnerhero from "../assets/images/partners/partners-hero.jpeg";
+import partnersec6 from "../assets/images/partners/partnersec6.jpg";
+import environmentImage from '../assets/images/getinvolved/get-hero.jpg';
+
+
 import partnerHeroImage from "../assets/images/getinvolved/get-hero.jpg";
 import partnershipImage from "../assets/images/getinvolved/get-hero.jpg";
 import collaborationImage from "../assets/images/getinvolved/get-hero.jpg";
@@ -30,13 +36,13 @@ const PartnerPage = () => {
           SECTION 1 — HERO
       ========================================================= */}
       <section
-        className="relative flex min-h-[75vh] items-center overflow-hidden bg-cover bg-center"
+        className="relative flex min-h-[75vh] items-center overflow-hidden bg-cover bg-[center_10%]"
         style={{
-          backgroundImage: `url(${partnerHeroImage})`,
+          backgroundImage: `url(${partnerhero})`,
         }}
       >
         {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-black/70"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
 
         {/* HERO CONTENT */}
         <div className="relative z-10 mx-auto w-full max-w-container-max px-margin-mobile py-24 md:px-margin-desktop md:py-32">
@@ -57,13 +63,13 @@ const PartnerPage = () => {
               community-led solutions and sustainable development.
             </p>
 
-            <a
-              href="#partnership-opportunities"
-              className="inline-flex items-center gap-3 rounded-md border border-vibrant-orange bg-vibrant-orange px-7 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-deep-navy"
-            >
-              Explore Partnerships
-              <span>→</span>
-            </a>
+          <a
+            href="/our-impact#our-partners"
+            className="inline-flex items-center gap-3 rounded-md border border-vibrant-orange bg-vibrant-orange px-7 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-deep-navy"
+          >
+            Explore Partnerships
+            <span>→</span>
+          </a>
 
           </div>
 
@@ -118,7 +124,7 @@ const PartnerPage = () => {
             <div className="relative overflow-hidden rounded-xl">
 
               <img
-                src={partnershipImage}
+                src={partnersec2}
                 alt="USEC community partnership"
                 className="h-[500px] w-full object-cover transition-transform duration-700 hover:scale-105"
               />
@@ -140,7 +146,7 @@ const PartnerPage = () => {
         id="partnership-opportunities"
         className="relative overflow-hidden bg-cover bg-center py-24 md:py-28"
         style={{
-          backgroundImage: `url(${collaborationImage})`,
+          backgroundImage: `url(${partnerhero})`,
         }}
       >
 
@@ -571,7 +577,7 @@ const PartnerPage = () => {
             <div className="relative overflow-hidden rounded-xl">
 
               <img
-                src={collaborationImage}
+                src={partnersec6}
                 alt="Community collaboration"
                 className="h-[550px] w-full object-cover transition-transform duration-700 hover:scale-105"
               />
@@ -656,93 +662,61 @@ const PartnerPage = () => {
 
 
       {/* =========================================================
-          SECTION 7 — FINAL CALL TO ACTION
+          SECTION 7 — VOLUNTEER CONTACT
       ========================================================= */}
-      <section
-        className="relative overflow-hidden bg-cover bg-center py-24 md:py-28"
-        style={{
-          backgroundImage: `url(${partnerHeroImage})`,
-        }}
-      >
+            <section
+              className="relative overflow-hidden bg-cover bg-center py-24 md:py-28"
+              style={{
+                backgroundImage: `url(${environmentImage})`,
+              }}
+            >
+              {/* DARK OVERLAY */}
+              <div className="absolute inset-0 bg-black/70"></div>
 
-        {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-deep-navy/85"></div>
+              {/* CONTENT */}
+              <div className="relative z-10 mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
 
-        {/* CONTENT */}
-        <div className="relative z-10 mx-auto max-w-container-max px-margin-mobile text-center md:px-margin-desktop">
+                <div className="grid grid-cols-1 items-center gap-10 md:grid-cols-2">
 
-          <h2 className="mb-6 font-display-lg text-4xl text-white md:text-5xl lg:text-6xl">
-            Let's Work Together
-          </h2>
+                  {/* LEFT CONTENT */}
+                  <div className="max-w-2xl">
 
-          <p className="mx-auto mb-10 max-w-2xl font-body-lg leading-relaxed text-white/90">
-            Whether you are an organization, institution, business, donor, or
-            individual, we invite you to explore how we can work together to
-            create lasting change.
-          </p>
+                    <span className="mb-4 inline-block text-sm font-bold uppercase tracking-[0.25em] text-vibrant-orange">
+                      Start a Partnership
+                    </span>
 
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-3 rounded-md border border-vibrant-orange bg-vibrant-orange px-7 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:border-white hover:bg-white hover:text-deep-navy"
-          >
-            Start a Conversation
-            <span>→</span>
-          </a>
+                    <h2 className="mb-5 font-display-lg text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+                      Interested in Partnering With USEC?
+                    </h2>
 
-        </div>
-
-      </section>
-
-
-      {/* =========================================================
-          SECTION 8 — CONTACT CTA
-      ========================================================= */}
-      <section className="bg-surface-cream py-16">
-
-        <div className="mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
-
-          <div className="rounded-xl bg-white p-8 shadow-xl md:p-12">
-
-            <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
-
-              <div>
-
-                <span className="mb-4 inline-block text-sm font-bold uppercase tracking-[0.25em] text-vibrant-orange">
-                  Start a Partnership
-                </span>
-
-                <h2 className="mb-5 font-display-lg text-3xl font-bold text-deep-navy md:text-4xl">
-                  Interested in Partnering With USEC?
-                </h2>
-
-                <p className="leading-7 text-gray-600">
+                    <p className="max-w-xl text-base leading-7 text-white/80 md:text-lg">
                   Contact our team to discuss partnership opportunities and
                   explore how we can work together to strengthen communities
                   and create sustainable impact.
-                </p>
+                    </p>
+
+                  </div>
+
+                  {/* RIGHT BUTTON */}
+                  <div className="md:text-right">
+
+                    <a
+                      href="/contact"
+                      className="inline-flex items-center gap-3 rounded-md border-2 border-white bg-white px-7 py-4 text-sm font-bold uppercase tracking-widest text-primary transition-all duration-300 hover:border-white hover:bg-transparent hover:text-white"
+                    >
+                      Contact Us
+
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
+                    </a>
+
+                  </div>
+
+                </div>
 
               </div>
-
-
-              <div className="md:text-right">
-
-                <a
-                  href="/contact"
-                  className="inline-flex items-center gap-3 rounded-md border border-deep-navy bg-deep-navy px-7 py-4 text-sm font-bold uppercase tracking-widest text-white transition-all duration-300 hover:border-vibrant-orange hover:bg-vibrant-orange"
-                >
-                  Contact Us
-                  <span>→</span>
-                </a>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
+            </section>
 
     </main>
     </div>

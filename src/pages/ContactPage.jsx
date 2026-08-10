@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import SiteNavbar from '../components/SiteNavbar';
-import contacthero from '../assets/images/contactimo/contacthero.jpg'
+import contacthero from '../assets/images/contactimo/contact-hero.jpg'
 
 
 // Curved organic wave SVG for hero bottom section
@@ -29,11 +29,10 @@ export default function ContactSection() {
 
   {/* BACKGROUND IMAGE */}
   <div className="absolute inset-0 bg-deep-navy">
-
     <img
       src={contacthero}
       alt="Contact USEC"
-      className="w-full h-full object-cover opacity-60"
+      className="w-full h-full object-cover object-[center_15%] opacity-60"
     />
 
     {/* DARK OVERLAY */}

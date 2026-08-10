@@ -1,6 +1,10 @@
 import React from "react";
 import SiteNavbar from '../components/SiteNavbar'
 // Replace these with your actual image imports
+import volunteerhero from '../assets/images/voluntieer/volunteer-hero.jpg';
+import volunteersec2 from '../assets/images/voluntieer/volunteersec2.jpg';
+import volunteersec5 from '../assets/images/voluntieer/volunteersec5.jpg';
+
 import volunteerHeroImage from '../assets/images/getinvolved/get-hero.jpg';
 import communityImage from '../assets/images/getinvolved/get-hero.jpg';
 import educationImage from '../assets/images/getinvolved/get-hero.jpg';
@@ -33,13 +37,13 @@ const Volunteer = () => {
           SECTION 1 — HERO
       ========================================================= */}
       <section
-        className="relative flex min-h-[75vh] items-center overflow-hidden bg-cover bg-center"
+        className="relative flex min-h-[75vh] items-center overflow-hidden bg-cover bg-top"
         style={{
-          backgroundImage: `url(${volunteerHeroImage})`,
+          backgroundImage: `url(${volunteerhero})`,
         }}
       >
         {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-black/70"></div>
         {/* <div className="absolute inset-0 bg-black/60"></div> */}
 
         {/* HERO CONTENT */}
@@ -83,7 +87,7 @@ const Volunteer = () => {
             {/* IMAGE */}
             <div className="relative overflow-hidden rounded-xl">
               <img
-                src={communityImage}
+                src={volunteersec2}
                 alt="Community volunteers working together"
                 className="h-[500px] w-full object-cover transition-transform duration-700 hover:scale-105"
               />
@@ -439,7 +443,7 @@ const Volunteer = () => {
             <div className="relative overflow-hidden rounded-xl">
 
               <img
-                src={youthImage}
+                src={volunteersec5}
                 alt="Volunteers supporting young people"
                 className="h-[550px] w-full object-cover transition-transform duration-700 hover:scale-105"
               />
@@ -464,7 +468,7 @@ const Volunteer = () => {
               }}
             >
               {/* DARK OVERLAY */}
-              <div className="absolute inset-0 bg-deep-navy/75"></div>
+              <div className="absolute inset-0 bg-black/70"></div>
 
               {/* CONTENT */}
               <div className="relative z-10 mx-auto max-w-container-max px-margin-mobile md:px-margin-desktop">
