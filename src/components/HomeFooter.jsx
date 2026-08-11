@@ -128,15 +128,21 @@ function HomeFooter({ language, setLanguage, t, languages }) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={item.name}
-                className="text-white group-hover:text-primary hover:bg-white hover:text-primary inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/20 bg-white/10 shadow-xl shadow-white/5 hover:border-primary transition-all duration-300"              >
-                <img src={item.icon} alt={item.name} className="h-5 w-5 invert" />
+                className="group inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white shadow-xl shadow-white/5 transition-all duration-300 hover:border-primary hover:bg-white"
+              >
+                <img
+                  src={item.icon}
+                  alt={item.name}
+                  className="h-5 w-5 invert transition-all duration-300 group-hover:invert-0"
+                />
               </a>
             ))}
           </div>
         </div>
         <div className="pt-8 border-t border-white/10 flex justify-center">
           <div className="text-center font-label-sm text-label-sm text-white/40">
-            {t('copyright')}
+            {/* {t('copyright')} */}
+            © 2026 United Safe Environment Creators (USEC). All Rights Reserved.
           </div>
         </div>
       </div>

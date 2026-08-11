@@ -1076,8 +1076,8 @@ const handleSubscribeSubmit = async (event) => {
                 className="inline-flex items-center justify-center gap-3 bg-vibrant-orange text-white px-9 py-4 font-bold text-lg rounded-lg shadow-lg hover:bg-white hover:text-deep-navy hover:-translate-y-1 transition-all duration-300"
               >
                 Donate
-                <span className="text-xl">
-                  →
+                <span className="material-symbols-outlined text-lg transition-transform duration-300 group-hover:translate-x-1">
+                  arrow_forward
                 </span>
               </a>
 
@@ -1167,7 +1167,7 @@ const handleSubscribeSubmit = async (event) => {
             </div>
           </div>
           <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="font-label-sm text-label-sm text-white/40">© 2026 United Sustainable Empowerment Council (USEC). All Rights Reserved.</div>
+            <div className="font-label-sm text-label-sm text-white/40">© 2026 United safe environment creators (USEC). All Rights Reserved.</div>
             <div className="flex gap-8 font-label-sm text-label-sm text-white/40">
               {[
                 { label: 'Privacy Policy', href: '/privacy-policy' },
@@ -1180,21 +1180,6 @@ const handleSubscribeSubmit = async (event) => {
           </div>
         </div>
       </footer>
-
-      {/* <nav className="md:hidden fixed bottom-0 w-full z-50 bg-surface flex justify-around items-center h-20 pb-safe px-4 shadow-[0_-1px_0_0_rgba(0,0,0,0.05)]">
-        {[
-          ['home', 'HOME', true],
-          ['info', 'ABOUT'],
-          ['public', 'PROGRAMS'],
-          ['group_add', 'JOIN'],
-          ['analytics', 'IMPACT'],
-        ].map(([icon, label, active]) => (
-          <div key={label} className={`flex flex-col items-center justify-center ${active ? 'text-vibrant-orange font-bold' : 'text-on-surface-variant opacity-70'} font-label-sm text-label-sm uppercase tracking-wider`}>
-            <span className="material-symbols-outlined">{icon}</span>
-            <span>{label}</span>
-          </div>
-        ))}
-      </nav> */}
     </div>
   )
 }

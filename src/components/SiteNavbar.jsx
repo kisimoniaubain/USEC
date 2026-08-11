@@ -9,6 +9,7 @@ const aboutDropdownItems = [
   // { label: 'Who We Are', href: '/who-we-are' },
   { label: 'Who We Serve', href: '/who-we-serve' },
   { label: 'Our team', href: '/our-team' },
+  { label: 'Reports & Publications', href: '/reports' },
   { label: 'FAQs', href: '/faqs' },
 ]
 const programDropdownItems = [
@@ -137,27 +138,7 @@ function SiteNavbar({ activePage = 'home' }) {
             </div>
           </a>
 
-
-          {/* <a
-          href="/"
-          className="flex items-center gap-2 md:gap-3 shrink-0 lg:mr-8 xl:mr-10"
-         >
-          <img
-            src={navlogo}
-            alt="USEC.org home"
-            className="h-14 md:h-16 w-auto object-contain"
-          />
-
-          <div className="flex flex-col leading-none">
-            <span className="font-extrabold text-xl md:text-2xl text-primary tracking-tight">
-              USEC<span className="text-vibrant-orange font-normal">.org</span>
-            </span>
-
-            <span className="mt-1 text-[8px] md:text-[9px] font-semibold uppercase tracking-[0.05em] text-on-surface-variant">
-              Community Based<br />Organisation
-            </span>
-          </div>
-         </a> */}
+          <div className="hidden md:block w-px md:w-px min-h-[70px] md:min-h-[70px] bg-on-surface-variant shrink-0 rounded-full" />
 
           <nav ref={desktopNavRef} className="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-7">
           <a href="/" onClick={(event) => handleNavigate(event, '/')} className={activePage === 'home' ? activeClass : linkClass}>{t('home')}</a>

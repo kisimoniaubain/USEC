@@ -943,9 +943,8 @@ const handleNext = () => {
               className="inline-flex items-center justify-center gap-3 rounded-lg bg-vibrant-orange px-9 py-4 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-deep-navy"
             >
               Donate
-
-              <span className="text-xl">
-                →
+              <span className="material-symbols-outlined text-lg transition-transform duration-300 group-hover:translate-x-1">
+               arrow_forward
               </span>
 
             </a>

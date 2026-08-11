@@ -7,6 +7,8 @@ import GalleryPage from './pages/GalleryPage'
 import ContactPage from './pages/ContactPage'
 import DonatePage from './pages/DonatePage'
 import AnnualReportsPage from './pages/AnnualReportsPage'
+import ReportsPage from './pages/ReportsPage'
+import ReportViewer from './pages/ReportViewer'
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import TermsOfServicePage from './pages/TermsOfServicePage'
 import FaqsPage from './pages/FaqsPage'
@@ -211,6 +213,12 @@ function App() {
   if (path === '/annual-reports') {
     currentPage = <AnnualReportsPage />
   }
+  if (path === '/reports') {
+  currentPage = <ReportsPage />
+}
+if (path === '/report-viewer') {
+  currentPage = <ReportViewer />
+}
 
   if (path === '/privacy-policy') {
     currentPage = <PrivacyPolicyPage />

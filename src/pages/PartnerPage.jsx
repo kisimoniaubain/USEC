@@ -706,8 +706,8 @@ const PartnerPage = () => {
                     >
                       Contact Us
 
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">
-                        →
+                      <span className="material-symbols-outlined text-lg transition-transform duration-300 group-hover:translate-x-1">
+                       arrow_forward
                       </span>
                     </a>
 

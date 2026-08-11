@@ -501,9 +501,8 @@ const Volunteer = () => {
                       className="inline-flex items-center gap-3 rounded-md border-2 border-white bg-white px-7 py-4 text-sm font-bold uppercase tracking-widest text-primary transition-all duration-300 hover:border-white hover:bg-transparent hover:text-white"
                     >
                       Contact Us
-
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">
-                        →
+                      <span className="material-symbols-outlined text-lg transition-transform duration-300 group-hover:translate-x-1">
+                       arrow_forward
                       </span>
                     </a>
 
