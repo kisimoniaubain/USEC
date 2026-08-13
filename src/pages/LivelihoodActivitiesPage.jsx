@@ -97,7 +97,7 @@ const activeContent = learningOptions[activeTab]
         Livelihood Activities
         </h1>
         <span className="block font-display-lg font-bold text-2xl md:text-3xl lg:text-4xl text-white leading-tight mb-4 max-w-3xl">
-        Protecting the Most Vulnerable
+        Skills, Enterprise, and Market Connection
         </span>
 
         {/* Description */}
@@ -138,170 +138,152 @@ const activeContent = learningOptions[activeTab]
 
 
         {/* THREE CLICKABLE LINKS */}
-        <div className="space-y-3">
+  <div className="space-y-3">
+
+  {/* VOCATIONAL TRAINING */}
+  <button
+    type="button"
+    onClick={() => setActiveTab("access")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeTab === "access"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    {/* ICON */}
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeTab === "access"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        construction
+      </span>
+    </div>
+
+    {/* TEXT + CHEVRON */}
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeTab === "access"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Vocational Training
+      </h3>
+
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeTab === "access"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
 
 
-          {/* ACCESS TO LEARNING */}
-          <button
-            type="button"
-            onClick={() => setActiveTab("access")}
-            className={`flex w-full items-center gap-4 rounded-lg p-4 text-left transition-all duration-300 ${
-              activeTab === "access"
-                ? "bg-deep-navy text-white shadow-md"
-                : "bg-surface-cream hover:bg-surface-container-high"
-            }`}
-          >
+  {/* DIGITAL & FINANCIAL LITERACY */}
+  <button
+    type="button"
+    onClick={() => setActiveTab("vocational")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeTab === "vocational"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    {/* ICON */}
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeTab === "vocational"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        devices
+      </span>
+    </div>
 
-            {/* ICON */}
-            <div
-              className={`flex shrink-0 items-center justify-center rounded-md p-2.5 ${
-                activeTab === "access"
-                  ? "bg-vibrant-orange text-white"
-                  : "bg-deep-navy text-white"
-              }`}
-            >
-              <span className="material-symbols-outlined text-xl">
-              construction
-            </span>
-            </div>
+    {/* TEXT + CHEVRON */}
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeTab === "vocational"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Digital &amp; Financial Literacy
+      </h3>
 
-
-            {/* TEXT + CHEVRON */}
-            <div className="flex w-full items-center justify-between">
-
-              <h3
-                className={`font-headline-sm text-headline-sm ${
-                  activeTab === "access"
-                    ? "text-white"
-                    : "text-deep-navy"
-                }`}
-              >
-                Vocational Training
-              </h3>
-
-              <span
-                className={`material-symbols-outlined transition-transform duration-300 ${
-                  activeTab === "access"
-                    ? "rotate-90 text-vibrant-orange"
-                    : "rotate-0"
-                }`}
-              >
-                chevron_right
-              </span>
-
-            </div>
-
-          </button>
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeTab === "vocational"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
 
 
+  {/* WORK READINESS */}
+  <button
+    type="button"
+    onClick={() => setActiveTab("adult")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeTab === "adult"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    {/* ICON */}
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeTab === "adult"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        work
+      </span>
+    </div>
 
-          {/* PLAY-BASED METHODS */}
-          <button
-            type="button"
-            onClick={() => setActiveTab("vocational")}
-            className={`flex w-full items-center gap-4 rounded-lg p-4 text-left transition-all duration-300 ${
-              activeTab === "vocational"
-                ? "bg-deep-navy text-white shadow-md"
-                : "bg-surface-cream hover:bg-surface-container-high"
-            }`}
-          >
+    {/* TEXT + CHEVRON */}
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeTab === "adult"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Work Readiness
+      </h3>
 
-            {/* ICON */}
-            <div
-              className={`flex shrink-0 items-center justify-center rounded-md p-2.5 ${
-                activeTab === "vocational"
-                  ? "bg-vibrant-orange text-white"
-                  : "bg-deep-navy text-white"
-              }`}
-            >
-            <span className="material-symbols-outlined text-xl">
-              devices
-            </span>
-            </div>
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeTab === "adult"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
 
-
-            {/* TEXT + CHEVRON */}
-            <div className="flex w-full items-center justify-between">
-
-              <h3
-                className={`font-headline-sm text-headline-sm ${
-                  activeTab === "vocational"
-                    ? "text-white"
-                    : "text-deep-navy"
-                }`}
-              >
-                Digital & Financial Literacy
-              </h3>
-
-              <span
-                className={`material-symbols-outlined transition-transform duration-300 ${
-                  activeTab === "vocational"
-                    ? "rotate-90 text-vibrant-orange"
-                    : "rotate-0"
-                }`}
-              >
-                chevron_right
-              </span>
-
-            </div>
-
-          </button>
-
-
-
-          {/* FAMILY ENGAGEMENT */}
-          <button
-            type="button"
-            onClick={() => setActiveTab("adult")}
-            className={`flex w-full items-center gap-4 rounded-lg p-4 text-left transition-all duration-300 ${
-              activeTab === "adult"
-                ? "bg-deep-navy text-white shadow-md"
-                : "bg-surface-cream hover:bg-surface-container-high"
-            }`}
-          >
-
-            {/* ICON */}
-            <div
-              className={`flex shrink-0 items-center justify-center rounded-md p-2.5 ${
-                activeTab === "adult"
-                  ? "bg-vibrant-orange text-white"
-                  : "bg-deep-navy text-white"
-              }`}
-            >
-            <span className="material-symbols-outlined text-xl">
-              work
-            </span>
-            </div>
-
-
-            {/* TEXT + CHEVRON */}
-            <div className="flex w-full items-center justify-between">
-
-              <h3
-                className={`font-headline-sm text-headline-sm ${
-                  activeTab === "adult"
-                    ? "text-white"
-                    : "text-deep-navy"
-                }`}
-              >
-                Work Readiness
-              </h3>
-
-              <span
-                className={`material-symbols-outlined transition-transform duration-300 ${
-                  activeTab === "adult"
-                    ? "rotate-90 text-vibrant-orange"
-                    : "rotate-0"
-                }`}
-              >
-                chevron_right
-              </span>
-
-            </div>
-
-          </button>
-
-        </div>
+</div>
 
       </div>
 
@@ -486,8 +468,7 @@ const activeContent = learningOptions[activeTab]
 
 <section className="bg-white py-section-gap">
   <div className="absolute -top-40 left-[22%] w-[480px] h-[480px] rounded-full border-[80px] border-primary/10 pointer-events-none"></div>
-  <div className="absolute -bottom-10 -right-10 w-72 h-72 border-[55px] border-vibrant-orange/80 rounded-full"></div>
-
+  <div className="absolute -bottom-6 -right-6 h-40 w-40 rounded-full border-[30px] border-vibrant-orange/40 sm:-bottom-8 sm:-right-8 sm:h-56 sm:w-56 sm:border-[40px] md:-bottom-10 md:-right-10 md:h-72 md:w-72 md:border-[55px]" />
   <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
 
     {/* SECTION HEADER */}

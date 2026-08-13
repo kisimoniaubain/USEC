@@ -141,7 +141,7 @@ const WavyBottomDivider = () => (
 
           <article className="py-32 bg-white relative overflow-hidden border border-surface-variant/20 group">
             <div className="absolute -top-40 left-[22%] w-[480px] h-[480px] rounded-full border-[80px] border-primary/10 pointer-events-none"></div>
-            <div className="absolute -bottom-32 right-[-5%] w-[500px] h-[300px] bg-primary/80 rotate-[-25deg] rounded-[40%] pointer-events-none"></div>
+            <div className="pointer-events-none absolute -bottom-16 right-[-15%] h-40 w-64 rotate-[-25deg] rounded-[40%] bg-primary/80 sm:-bottom-20 sm:right-[-10%] sm:h-52 sm:w-80 md:-bottom-24 md:right-[-7%] md:h-64 md:w-[420px] lg:-bottom-32 lg:right-[-5%] lg:h-[300px] lg:w-[500px]" />
 
            <div className="absolute top-0 right-0 w-32 h-32 bg-vibrant-orange transform translate-x-16 -translate-y-16 rotate-45 opacity-10"></div>
 

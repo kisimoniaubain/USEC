@@ -158,9 +158,8 @@ const WavyBottomDivider = () => (
   className="relative overflow-hidden bg-surface-cream py-24"
 >
   {/* Background decoration */}
-          <div className="pointer-events-none absolute -top-40 left-[22%] h-[480px] w-[480px] rounded-full border-[80px] border-primary/10"></div>
-
-  <div className="pointer-events-none absolute -bottom-10 -right-10 h-72 w-72 rounded-full border-[55px] border-vibrant-orange/80"></div>
+  <div className="pointer-events-none absolute -top-40 left-[22%] h-[480px] w-[480px] rounded-full border-[80px] border-primary/10"></div>
+  <div className="absolute -bottom-6 -right-6 h-40 w-40 rounded-full border-[30px] border-vibrant-orange/40 sm:-bottom-8 sm:-right-8 sm:h-56 sm:w-56 sm:border-[40px] md:-bottom-10 md:-right-10 md:h-72 md:w-72 md:border-[55px]" />
 
   <div className="absolute -top-32 -left-32 h-72 w-72 rounded-full bg-vibrant-orange/10 blur-3xl" />
   <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-primary/10 blur-3xl" />

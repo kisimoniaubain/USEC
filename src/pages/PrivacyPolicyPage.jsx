@@ -107,12 +107,12 @@ function PrivacyPolicyPage() {
               <div className="inline-flex flex-col md:flex-row gap-8 items-center bg-white p-8 rounded-xl border border-outline-variant shadow-sm">
                 <div className="flex items-center gap-3">
                   <span className="material-symbols-outlined text-vibrant-orange">mail</span>
-                  <span className="font-label-md text-deep-navy">privacy@usec.org</span>
+                  <span className="font-label-md text-deep-navy">useccbo@gmail.com</span>
                 </div>
                 <div className="hidden md:block w-px h-8 bg-outline-variant" />
                 <div className="flex items-center gap-3">
                   <span className="material-symbols-outlined text-vibrant-orange">location_on</span>
-                  <span className="font-label-md text-deep-navy">Global HQ: Geneva, Switzerland</span>
+                  <span className="font-label-md text-deep-navy">Global HQ: Kenya, Kakuma</span>
                 </div>
               </div>
             </article>

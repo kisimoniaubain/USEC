@@ -150,160 +150,146 @@ const activeContent = survivorOptions[activeTab];
 
 
         {/* CLICKABLE TABS */}
-        <div className="space-y-3">
+ <div className="space-y-3">
+
+  {/* COMMUNITY AWARENESS */}
+  <button
+    type="button"
+    onClick={() => setActiveTab("safety")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeTab === "safety"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeTab === "safety"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        groups
+      </span>
+    </div>
+
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeTab === "safety"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Community Awareness
+      </h3>
+
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeTab === "safety"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
 
 
-          {/* SAFETY FIRST */}
-          <button
-            type="button"
-            onClick={() => setActiveTab("safety")}
-            className={`flex w-full items-center gap-4 rounded-lg p-4 text-left transition-all duration-300 ${
-              activeTab === "safety"
-                ? "bg-deep-navy text-white shadow-md"
-                : "bg-surface-cream hover:bg-surface-container-high"
-            }`}
-          >
+  {/* SAFE REPORTING */}
+  <button
+    type="button"
+    onClick={() => setActiveTab("legal")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeTab === "legal"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeTab === "legal"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        report
+      </span>
+    </div>
 
-            <div
-              className={`flex shrink-0 items-center justify-center rounded-md p-2.5 ${
-                activeTab === "safety"
-                  ? "bg-vibrant-orange text-white"
-                  : "bg-deep-navy text-white"
-              }`}
-            >
-          <span className="material-symbols-outlined text-xl">
-            groups
-          </span>
-            </div>
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeTab === "legal"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Safe Reporting
+      </h3>
 
-            <div className="flex w-full items-center justify-between">
-
-              <h3
-                className={`font-headline-sm text-headline-sm ${
-                  activeTab === "safety"
-                    ? "text-white"
-                    : "text-deep-navy"
-                }`}
-              >
-                Community Awareness
-              </h3>
-
-              <span
-                className={`material-symbols-outlined transition-transform duration-300 ${
-                  activeTab === "safety"
-                    ? "rotate-90 text-vibrant-orange"
-                    : "rotate-0"
-                }`}
-              >
-                chevron_right
-              </span>
-
-            </div>
-
-          </button>
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeTab === "legal"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
 
 
-          {/* LEGAL ADVOCACY */}
-          <button
-            type="button"
-            onClick={() => setActiveTab("legal")}
-            className={`flex w-full items-center gap-4 rounded-lg p-4 text-left transition-all duration-300 ${
-              activeTab === "legal"
-                ? "bg-deep-navy text-white shadow-md"
-                : "bg-surface-cream hover:bg-surface-container-high"
-            }`}
-          >
+  {/* ENGAGING MEN & BOYS */}
+  <button
+    type="button"
+    onClick={() => setActiveTab("healing")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeTab === "healing"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeTab === "healing"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        diversity_3
+      </span>
+    </div>
 
-            <div
-              className={`flex shrink-0 items-center justify-center rounded-md p-2.5 ${
-                activeTab === "legal"
-                  ? "bg-vibrant-orange text-white"
-                  : "bg-deep-navy text-white"
-              }`}
-            >
-            <span className="material-symbols-outlined text-xl">
-              report
-            </span>
-            </div>
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeTab === "healing"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Engaging Men &amp; Boys
+      </h3>
 
-            <div className="flex w-full items-center justify-between">
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeTab === "healing"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
 
-              <h3
-                className={`font-headline-sm text-headline-sm ${
-                  activeTab === "legal"
-                    ? "text-white"
-                    : "text-deep-navy"
-                }`}
-              >
-                Safe Reporting
-              </h3>
-
-              <span
-                className={`material-symbols-outlined transition-transform duration-300 ${
-                  activeTab === "legal"
-                    ? "rotate-90 text-vibrant-orange"
-                    : "rotate-0"
-                }`}
-              >
-                chevron_right
-              </span>
-
-            </div>
-
-          </button>
-
-
-          {/* HEALING & REINTEGRATION */}
-          <button
-            type="button"
-            onClick={() => setActiveTab("healing")}
-            className={`flex w-full items-center gap-4 rounded-lg p-4 text-left transition-all duration-300 ${
-              activeTab === "healing"
-                ? "bg-deep-navy text-white shadow-md"
-                : "bg-surface-cream hover:bg-surface-container-high"
-            }`}
-          >
-
-            <div
-              className={`flex shrink-0 items-center justify-center rounded-md p-2.5 ${
-                activeTab === "healing"
-                  ? "bg-vibrant-orange text-white"
-                  : "bg-deep-navy text-white"
-              }`}
-            >
-          <span className="material-symbols-outlined text-xl">
-            diversity_3
-          </span>
-            </div>
-
-            <div className="flex w-full items-center justify-between">
-
-              <h3
-                className={`font-headline-sm text-headline-sm ${
-                  activeTab === "healing"
-                    ? "text-white"
-                    : "text-deep-navy"
-                }`}
-              >
-                Engaging Men & Boys
-              </h3>
-
-              <span
-                className={`material-symbols-outlined transition-transform duration-300 ${
-                  activeTab === "healing"
-                    ? "rotate-90 text-vibrant-orange"
-                    : "rotate-0"
-                }`}
-              >
-                chevron_right
-              </span>
-
-            </div>
-
-          </button>
-
-        </div>
-
+</div>
       </div>
 
 

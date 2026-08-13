@@ -102,22 +102,22 @@ const WavyBottomDivider = () => (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
 
       {/* Left Content */}
-      <div className="lg:col-span-7">
-        <p className="text-vibrant-orange font-label-md text-label-md tracking-widest uppercase mb-5">
-          Be Part of the Change
-        </p>
+<div className="lg:col-span-7">
+  <p className="mb-4 text-sm font-medium uppercase tracking-[0.18em] text-vibrant-orange sm:mb-5 sm:text-base sm:tracking-widest">
+    Be Part of the Change
+  </p>
 
-        <h2 className="font-headline-md text-headline-md text-deep-navy leading-tight">
-          Join a global network of{" "}
-          <span className="text-vibrant-orange">
-            changemakers
-          </span>{" "}
-          dedicated to securing human rights and environmental stability.
-        </h2>
+  <h2 className="font-headline-md text-3xl leading-tight text-deep-navy sm:text-4xl md:text-5xl lg:text-headline-md">
+    Join a global network of{" "}
+    <span className="text-vibrant-orange">
+      changemakers
+    </span>{" "}
+    dedicated to securing human rights and environmental stability.
+  </h2>
 
-        {/* Orange Accent */}
-        <div className="w-24 h-1.5 bg-vibrant-orange mt-8" />
-      </div>
+  {/* Orange Accent */}
+  <div className="mt-6 h-1 w-16 bg-vibrant-orange sm:mt-8 sm:h-1.5 sm:w-24" />
+</div>
 
       {/* Right Content */}
       <div className="lg:col-span-5">

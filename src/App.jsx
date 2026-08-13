@@ -27,7 +27,7 @@ import HomeFooter from './components/HomeFooter'
 import TranslationContext from './TranslationContext'
 import translations, { languages } from './translations'
 
-const APP_ROUTES = new Set(['/', '/about', '/about-us', '/who-we-are', '/who-we-serve', '/our-team', '/team', '/programs', '/our-programs', '/get-involved','/volunteer','/partner','/our-impact', '/gallery', '/galary', '/contact-us', '/contact', '/donate', '/annual-reports', '/privacy-policy', '/terms-of-service', '/faqs', '/faq', '/education-program', '/livelihood-activities', '/livelyhood-activities', '/protection-activities', '/gbv-response-prevention'])
+const APP_ROUTES = new Set(['/', '/about', '/about-us', '/who-we-are', '/who-we-serve', '/our-team', '/team', '/programs', '/our-programs', '/get-involved','/volunteer','/reports','/partner','/our-impact', '/gallery', '/galary', '/contact-us', '/contact', '/donate', '/annual-reports', '/privacy-policy', '/terms-of-service', '/faqs', '/faq', '/education-program', '/livelihood-activities', '/livelyhood-activities', '/protection-activities', '/gbv-response-prevention'])
 
 function App() {
   const [path, setPath] = useState(() => window.location.pathname.toLowerCase())

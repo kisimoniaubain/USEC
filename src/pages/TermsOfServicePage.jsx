@@ -9,15 +9,14 @@ function TermsOfServicePage() {
       <SiteNavbar />
 
       <main>
-        <section className="bg-deep-navy text-white py-20 px-margin-mobile md:px-margin-desktop">
-          <div className="max-w-container-max mx-auto">
-            <p className="font-label-md text-label-md text-secondary-fixed mb-4 uppercase tracking-[0.2em]">Governance & Transparency</p>
-            <h1 className="font-display-lg text-display-lg mb-6 max-w-2xl">Terms of Service</h1>
-            <p className="font-body-lg text-body-lg text-surface-variant max-w-xl">Please review these terms before using USEC’s digital platform. By continuing to use our services, you accept the operational and ethical expectations described here.</p>
-            <div className="mt-8 flex gap-4 text-sm text-outline-variant">
-              <span>Effective Date: January 1, 2024</span>
-              <span>•</span>
-              <span>Last Updated: May 20, 2024</span>
+        <section className="relative h-[42vh] md:h-[52vh] flex items-center overflow-hidden bg-deep-navy">
+          <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: 'linear-gradient(rgba(0, 29, 43, 0.7), rgba(0, 29, 43, 0.7)), url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80")' }} />
+          <div className="relative z-10 mx-auto w-full max-w-5xl px-4 text-center">
+            <span className="font-label-sm text-label-sm uppercase tracking-[0.22em] text-white/70">Governance & Transparency</span>
+            <h1 className="mt-4 font-display-lg text-display-lg-mobile md:text-display-lg text-white">Governance & Transparency</h1>
+            <p className="mt-4 max-w-3xl mx-auto font-body-lg text-body-lg text-white/90">Please review these terms before using USEC’s digital platform. By continuing to use our services, you accept the operational and ethical expectations described here.</p>
+            <div className="mt-8 flex justify-center">
+              <div className="h-1 w-24 bg-vibrant-orange rounded-full" />
             </div>
           </div>
         </section>
@@ -145,9 +144,14 @@ function TermsOfServicePage() {
           <div className="max-w-3xl mx-auto text-center">
             <h3 className="font-headline-md text-headline-md text-primary mb-4">Questions about these terms?</h3>
             <p className="font-body-md text-on-surface-variant mb-8">Our legal team is available to help clarify any part of these service terms. Reach out if you need guidance.</p>
-            <a className="inline-flex items-center gap-2 text-primary font-bold hover:underline" href="mailto:legal@usec.org">
-              <span className="material-symbols-outlined">mail</span>
-              legal@usec.org
+            <a 
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=abedikabulo.salvador@gmail.com&su=Inquiry%20from%20USEC%20Website"
+               className="inline-flex items-center gap-2 text-primary font-bold hover:underline" 
+               >
+              <span className="material-symbols-outlined">
+                mail
+              </span>
+              abedikabulo.salvador@gmail.com
             </a>
           </div>
         </section>

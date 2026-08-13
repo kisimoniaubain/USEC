@@ -152,153 +152,152 @@ const activeProgramContent = programOptions[activeProgram];
         </p>
 
         {/* THREE CLICKABLE LINKS */}
-        <div className="space-y-3">
+ <div className="space-y-3">
 
-          {/* ACCESS TO LEARNING */}
-            <button
-              type="button"
-              onClick={() => setActiveTab("access")}
-              className={`w-full text-left flex gap-4 items-center p-4 rounded-lg transition-all duration-300 ${
-                activeTab === "access"
-                  ? "bg-deep-navy text-white shadow-md"
-                  : "bg-surface-cream hover:bg-surface-container-high"
-              }`}
-            >
-              {/* ICON */}
-              <div
-                className={`p-2.5 rounded-md flex items-center justify-center shrink-0 ${
-                  activeTab === "access"
-                    ? "bg-vibrant-orange text-white"
-                    : "bg-deep-navy text-white"
-                }`}
-              >
-                <span className="material-symbols-outlined text-xl">
-                  school
-                </span>
-              </div>
+  {/* ACCESS TO LEARNING */}
+  <button
+    type="button"
+    onClick={() => setActiveTab("access")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeTab === "access"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    {/* ICON */}
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeTab === "access"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        school
+      </span>
+    </div>
 
-              {/* TEXT + CHEVRON */}
-              <div className="flex items-center justify-between w-full">
-                <h3
-                  className={`font-headline-sm text-headline-sm ${
-                    activeTab === "access"
-                      ? "text-white"
-                      : "text-deep-navy"
-                  }`}
-                >
-                  Access To Learning
-                </h3>
+    {/* TEXT + CHEVRON */}
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeTab === "access"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Access To Learning
+      </h3>
 
-                {/* CHEVRON */}
-                <span
-                  className={`material-symbols-outlined transition-transform duration-300 ${
-                    activeTab === "access"
-                      ? "rotate-90 text-vibrant-orange"
-                      : "rotate-0"
-                  }`}
-                >
-                  chevron_right
-                </span>
-              </div>
-            </button>
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeTab === "access"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
 
 
-          {/* PLAY-BASED METHODS */}
-          <button
-            type="button"
-            onClick={() => setActiveTab("vocational")}
-            className={`w-full text-left flex gap-4 items-center p-4 rounded-lg transition-all duration-300 ${
-              activeTab === "vocational"
-                ? "bg-deep-navy text-white shadow-md"
-                : "bg-surface-cream hover:bg-surface-container-high"
-            }`}
-          >
-            {/* ICON */}
-            <div
-              className={`p-2.5 rounded-md flex items-center justify-center shrink-0 ${
-                activeTab === "vocational"
-                  ? "bg-vibrant-orange text-white"
-                  : "bg-deep-navy text-white"
-              }`}
-            >
-              <span className="material-symbols-outlined text-xl">
-                handyman
-              </span>
-            </div>
+  {/* PLAY-BASED METHODS */}
+  <button
+    type="button"
+    onClick={() => setActiveTab("vocational")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeTab === "vocational"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    {/* ICON */}
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeTab === "vocational"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        handyman
+      </span>
+    </div>
 
-            {/* TEXT + CHEVRON */}
-            <div className="flex items-center justify-between w-full">
-              <h3
-                className={`font-headline-sm text-headline-sm ${
-                  activeTab === "vocational"
-                    ? "text-white"
-                    : "text-deep-navy"
-                }`}
-              >
-                Play-Based Methods
-              </h3>
+    {/* TEXT + CHEVRON */}
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeTab === "vocational"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Play-Based Methods
+      </h3>
 
-              {/* CHEVRON */}
-              <span
-                className={`material-symbols-outlined transition-transform duration-300 ${
-                  activeTab === "vocational"
-                    ? "rotate-90 text-vibrant-orange"
-                    : "rotate-0"
-                }`}
-              >
-                chevron_right
-              </span>
-            </div>
-          </button>
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeTab === "vocational"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
 
-          {/* FAMILY ENGAGEMENT */}
-            <button
-              type="button"
-              onClick={() => setActiveTab("adult")}
-              className={`w-full text-left flex gap-4 items-center p-4 rounded-lg transition-all duration-300 ${
-                activeTab === "adult"
-                  ? "bg-deep-navy text-white shadow-md"
-                  : "bg-surface-cream hover:bg-surface-container-high"
-              }`}
-            >
-              {/* ICON */}
-              <div
-                className={`p-2.5 rounded-md flex items-center justify-center shrink-0 ${
-                  activeTab === "adult"
-                    ? "bg-vibrant-orange text-white"
-                    : "bg-deep-navy text-white"
-                }`}
-              >
-                <span className="material-symbols-outlined text-xl">
-                  menu_book
-                </span>
-              </div>
 
-              {/* TEXT + CHEVRON */}
-              <div className="flex items-center justify-between w-full">
-                <h3
-                  className={`font-headline-sm text-headline-sm ${
-                    activeTab === "adult"
-                      ? "text-white"
-                      : "text-deep-navy"
-                  }`}
-                >
-                  Family Engagement
-                </h3>
+  {/* FAMILY ENGAGEMENT */}
+  <button
+    type="button"
+    onClick={() => setActiveTab("adult")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeTab === "adult"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    {/* ICON */}
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeTab === "adult"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        menu_book
+      </span>
+    </div>
 
-                <span
-                  className={`material-symbols-outlined transition-transform duration-300 ${
-                    activeTab === "adult"
-                      ? "rotate-90 text-vibrant-orange"
-                      : "rotate-0"
-                  }`}
-                >
-                  chevron_right
-                </span>
-              </div>
-            </button>
+    {/* TEXT + CHEVRON */}
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeTab === "adult"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Family Engagement
+      </h3>
 
-        </div>
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeTab === "adult"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
+
+</div>
       </div>
 
 
@@ -446,164 +445,152 @@ const activeProgramContent = programOptions[activeProgram];
 
 
         {/* THREE CLICKABLE LINKS */}
-        <div className="space-y-3">
+  <div className="space-y-3">
 
-          {/* OPTION 1 */}
-          <button
-            type="button"
-            onClick={() => setActiveProgram("option1")}
-            className={`w-full text-left flex gap-4 items-center p-4 rounded-lg transition-all duration-300 ${
-              activeProgram === "option1"
-                ? "bg-deep-navy text-white shadow-md"
-                : "bg-surface-cream hover:bg-surface-container-high"
-            }`}
-          >
+  {/* OPTION 1 */}
+  <button
+    type="button"
+    onClick={() => setActiveProgram("option1")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeProgram === "option1"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    {/* ICON */}
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeProgram === "option1"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        school
+      </span>
+    </div>
 
-            {/* ICON */}
-            <div
-              className={`p-2.5 rounded-md flex items-center justify-center shrink-0 ${
-                activeProgram === "option1"
-                  ? "bg-vibrant-orange text-white"
-                  : "bg-deep-navy text-white"
-              }`}
-            >
-              <span className="material-symbols-outlined text-xl">
-                school
-              </span>
-            </div>
+    {/* TEXT + CHEVRON */}
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeProgram === "option1"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Youth Development
+      </h3>
 
-
-            {/* TEXT + CHEVRON */}
-            <div className="flex items-center justify-between w-full">
-
-              <h3
-                className={`font-headline-sm text-headline-sm ${
-                  activeProgram === "option1"
-                    ? "text-white"
-                    : "text-deep-navy"
-                }`}
-              >
-                Youth Development
-              </h3>
-
-              <span
-                className={`material-symbols-outlined transition-transform duration-300 ${
-                  activeProgram === "option1"
-                    ? "rotate-90 text-vibrant-orange"
-                    : "rotate-0 text-deep-navy"
-                }`}
-              >
-                chevron_right
-              </span>
-
-            </div>
-          </button>
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeProgram === "option1"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0 text-deep-navy"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
 
 
-          {/* OPTION 2 */}
-          <button
-            type="button"
-            onClick={() => setActiveProgram("option2")}
-            className={`w-full text-left flex gap-4 items-center p-4 rounded-lg transition-all duration-300 ${
-              activeProgram === "option2"
-                ? "bg-deep-navy text-white shadow-md"
-                : "bg-surface-cream hover:bg-surface-container-high"
-            }`}
-          >
+  {/* OPTION 2 */}
+  <button
+    type="button"
+    onClick={() => setActiveProgram("option2")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeProgram === "option2"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    {/* ICON */}
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeProgram === "option2"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        handyman
+      </span>
+    </div>
 
-            {/* ICON */}
-            <div
-              className={`p-2.5 rounded-md flex items-center justify-center shrink-0 ${
-                activeProgram === "option2"
-                  ? "bg-vibrant-orange text-white"
-                  : "bg-deep-navy text-white"
-              }`}
-            >
-              <span className="material-symbols-outlined text-xl">
-                handyman
-              </span>
-            </div>
+    {/* TEXT + CHEVRON */}
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeProgram === "option2"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Career Readiness
+      </h3>
 
-
-            {/* TEXT + CHEVRON */}
-            <div className="flex items-center justify-between w-full">
-
-              <h3
-                className={`font-headline-sm text-headline-sm ${
-                  activeProgram === "option2"
-                    ? "text-white"
-                    : "text-deep-navy"
-                }`}
-              >
-                Career Readiness
-              </h3>
-
-              <span
-                className={`material-symbols-outlined transition-transform duration-300 ${
-                  activeProgram === "option2"
-                    ? "rotate-90 text-vibrant-orange"
-                    : "rotate-0 text-deep-navy"
-                }`}
-              >
-                chevron_right
-              </span>
-
-            </div>
-          </button>
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeProgram === "option2"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0 text-deep-navy"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
 
 
-          {/* OPTION 3 */}
-          <button
-            type="button"
-            onClick={() => setActiveProgram("option3")}
-            className={`w-full text-left flex gap-4 items-center p-4 rounded-lg transition-all duration-300 ${
-              activeProgram === "option3"
-                ? "bg-deep-navy text-white shadow-md"
-                : "bg-surface-cream hover:bg-surface-container-high"
-            }`}
-          >
+  {/* OPTION 3 */}
+  <button
+    type="button"
+    onClick={() => setActiveProgram("option3")}
+    className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-300 sm:gap-4 sm:p-4 ${
+      activeProgram === "option3"
+        ? "bg-deep-navy text-white shadow-md"
+        : "bg-surface-cream hover:bg-surface-container-high"
+    }`}
+  >
+    {/* ICON */}
+    <div
+      className={`flex shrink-0 items-center justify-center rounded-md p-2 sm:p-2.5 ${
+        activeProgram === "option3"
+          ? "bg-vibrant-orange text-white"
+          : "bg-deep-navy text-white"
+      }`}
+    >
+      <span className="material-symbols-outlined text-lg sm:text-xl">
+        menu_book
+      </span>
+    </div>
 
-            {/* ICON */}
-            <div
-              className={`p-2.5 rounded-md flex items-center justify-center shrink-0 ${
-                activeProgram === "option3"
-                  ? "bg-vibrant-orange text-white"
-                  : "bg-deep-navy text-white"
-              }`}
-            >
-              <span className="material-symbols-outlined text-xl">
-                menu_book
-              </span>
-            </div>
+    {/* TEXT + CHEVRON */}
+    <div className="flex min-w-0 w-full items-center justify-between gap-2">
+      <h3
+        className={`font-headline-sm text-sm leading-snug sm:text-headline-sm ${
+          activeProgram === "option3"
+            ? "text-white"
+            : "text-deep-navy"
+        }`}
+      >
+        Leadership &amp; Civic Engagement
+      </h3>
 
+      <span
+        className={`material-symbols-outlined shrink-0 text-lg transition-transform duration-300 sm:text-xl ${
+          activeProgram === "option3"
+            ? "rotate-90 text-vibrant-orange"
+            : "rotate-0 text-deep-navy"
+        }`}
+      >
+        chevron_right
+      </span>
+    </div>
+  </button>
 
-            {/* TEXT + CHEVRON */}
-            <div className="flex items-center justify-between w-full">
-
-              <h3
-                className={`font-headline-sm text-headline-sm ${
-                  activeProgram === "option3"
-                    ? "text-white"
-                    : "text-deep-navy"
-                }`}
-              >
-                Leadership & Civic Engagement
-              </h3>
-
-              <span
-                className={`material-symbols-outlined transition-transform duration-300 ${
-                  activeProgram === "option3"
-                    ? "rotate-90 text-vibrant-orange"
-                    : "rotate-0 text-deep-navy"
-                }`}
-              >
-                chevron_right
-              </span>
-
-            </div>
-          </button>
-
-        </div>
+</div>
         
       </div>
 

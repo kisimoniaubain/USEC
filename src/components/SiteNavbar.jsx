@@ -138,7 +138,7 @@ function SiteNavbar({ activePage = 'home' }) {
             </div>
           </a>
 
-          <div className="hidden md:block w-px md:w-px min-h-[70px] md:min-h-[70px] bg-on-surface-variant shrink-0 rounded-full" />
+          <div className="bg-primary/50 hidden md:block w-px md:w-px min-h-[70px] md:min-h-[70px] bg-on-surface-variant shrink-0 rounded-full" />
 
           <nav ref={desktopNavRef} className="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-7">
           <a href="/" onClick={(event) => handleNavigate(event, '/')} className={activePage === 'home' ? activeClass : linkClass}>{t('home')}</a>
@@ -216,7 +216,7 @@ function SiteNavbar({ activePage = 'home' }) {
           </nav>
           
           <div className="ml-auto lg:ml-8 xl:ml-10 flex items-center gap-3 shrink-0">
-            <button onClick={(event) => handleNavigate(event, '/donate')} className="no-cta-shadow hidden md:inline-flex bg-vibrant-orange text-white px-6 py-12 font-label-md text-label-md font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all">
+            <button onClick={(event) => handleNavigate(event, '/donate')} className="no-cta-shadow hidden md:inline-flex bg-vibrant-orange text-white px-6 py-12 font-label-md text-label-md font-bold hover:opacity-90 active:scale-95 transition-all">
               {t('donate')}
             </button>
             <button className="lg:hidden text-deep-navy" onClick={() => setIsDrawerOpen(true)}>

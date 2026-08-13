@@ -106,7 +106,7 @@ function CookieConsentBanner() {
         onClick={() => setShowPreferences(true)}
         aria-label="Customize Consent Preferences"
         title="Customize Consent Preferences"
-        className="fixed bottom-6 right-6 z-[85] inline-flex h-12 w-12 items-center justify-center rounded-full border border-outline-variant bg-white text-deep-navy shadow-[0_10px_28px_rgba(3,51,71,0.2)] transition-all hover:-translate-y-0.5 hover:text-vibrant-orange"
+        className="fixed bottom-6 right-6 z-[85] inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-primary bg-white text-deep-navy shadow-[0_10px_28px_rgba(3,51,71,0.2)] transition-all hover:-translate-y-0.5 hover:text-white hover:border-vibrant-orange hover:bg-vibrant-orange"
       >
         <span className="material-symbols-outlined">cookie</span>
       </button>

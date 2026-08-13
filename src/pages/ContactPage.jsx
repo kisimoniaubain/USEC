@@ -78,7 +78,7 @@ export default function ContactSection() {
     {/* LEFT COLUMN: Contact Details */}
     <div className="mt-40 lg:col-span-5 space-y-10 pt-4 md:pt-8">
 
-      <h2 className="text-4xl font-bold text-slate-900">
+      <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg text-deep-navy mt-3">
         Get in Touch
       </h2>
 

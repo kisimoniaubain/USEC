@@ -1,26 +1,95 @@
-﻿import { useState } from 'react'
-import SiteNavbar from '../components/SiteNavbar'
-import useWhoWeAreReveal from '../hooks/useWhoWeAreReveal'
-import donateprotect from '../assets/images/Protection-imo/donate-protect.png'
-
+﻿import { useState } from "react"
+import SiteNavbar from "../components/SiteNavbar"
+import useWhoWeAreReveal from "../hooks/useWhoWeAreReveal"
+import donateprotect from "../assets/images/Protection-imo/donate-protect.png"
+import team from "../assets/images/team-images/hero-imo.jpeg"
 
 function DonatePage() {
   useWhoWeAreReveal()
-  const WavyBottomDivider = () => (
-  <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none z-0">
-    <svg
-      viewBox="0 0 1200 120"
-      preserveAspectRatio="none"
-      className="relative block w-full h-16 md:h-24 text-slate-50"
-      fill="currentColor"
-    >
-      <path d="M0,0 C150,90 350,-40 500,65 C650,160 900,10 1200,45 L1200,120 L0,120 Z"></path>
-    </svg>
-  </div>
-);
 
-  const [frequency, setFrequency] = useState('once')
+  const WavyBottomDivider = () => (
+    <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none z-0">
+      <svg
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+        className="relative block w-full h-16 md:h-24 text-slate-50"
+        fill="currentColor"
+      >
+        <path d="M0,0 C150,90 350,-40 500,65 C650,160 900,10 1200,45 L1200,120 L0,120 Z" />
+      </svg>
+    </div>
+  )
+
+  // Donation form state
+  const [frequency, setFrequency] = useState("once")
   const [selectedAmount, setSelectedAmount] = useState(50)
+  const [customAmount, setCustomAmount] = useState("")
+
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  const [email, setEmail] = useState("")
+
+  const [paymentMethod, setPaymentMethod] = useState("card")
+
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [donationError, setDonationError] = useState("")
+  const [donationSuccess, setDonationSuccess] = useState("")
+
+  const handleDonationSubmit = async (event) => {
+    event.preventDefault()
+
+    setDonationError("")
+    setDonationSuccess("")
+
+    const amount = customAmount
+      ? Number(customAmount)
+      : Number(selectedAmount)
+
+    if (!amount || amount <= 0) {
+      setDonationError("Please select or enter a valid donation amount.")
+      return
+    }
+
+    if (!firstName.trim() || !lastName.trim()) {
+      setDonationError("Please enter your full name.")
+      return
+    }
+
+    if (!email.trim()) {
+      setDonationError("Please enter your email address.")
+      return
+    }
+
+    if (!paymentMethod) {
+      setDonationError("Please select a payment method.")
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      console.log({
+        amount,
+        frequency,
+        firstName,
+        lastName,
+        email,
+        paymentMethod,
+      })
+
+      setDonationSuccess(
+        `Thank you ${firstName}! Your $${amount} donation has been prepared successfully.`
+      )
+    } catch (error) {
+      console.error(error)
+
+      setDonationError(
+        "Something went wrong while processing your donation. Please try again."
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <div className="bg-surface text-on-surface font-body-md overflow-x-hidden">
@@ -78,7 +147,7 @@ function DonatePage() {
 
       </section>
 
-        <section className="py-section-gap bg-surface-cream" id="donate-form">
+        {/* <section className="py-section-gap bg-surface-cream" id="donate-form">
           <div className="container mx-auto px-margin-mobile md:px-margin-desktop max-w-container-max">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               <div className="lg:col-span-5 flex flex-col gap-10">
@@ -193,7 +262,399 @@ function DonatePage() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
+        <section className="bg-surface-cream py-12 sm:py-16 md:py-section-gap" id="donate-form">
+  <div className="container mx-auto max-w-container-max px-4 sm:px-6 md:px-margin-desktop">
+
+    <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12">
+
+      {/* =====================================================
+          LEFT — IMPACT
+      ====================================================== */}
+      <div className="flex flex-col gap-8 lg:col-span-5 lg:gap-10">
+
+        <div>
+          <h2 className="mb-4 text-2xl font-bold leading-tight text-primary sm:text-3xl md:mb-6 md:text-headline-md">
+            Choose Your Impact
+          </h2>
+
+          <p className="text-sm leading-7 text-on-surface-variant sm:text-base md:text-body-lg">
+            Every dollar contributed goes directly to the field. We prioritize
+            long-term sustainability alongside immediate relief efforts.
+          </p>
+        </div>
+
+
+        {/* IMPACT CARDS */}
+        <div className="grid grid-cols-1 gap-3 sm:gap-4">
+
+          {/* $50 */}
+          <div className="flex items-center gap-4 border border-surface-container-high bg-white p-4 sm:gap-5 sm:p-5 md:p-6">
+
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary-fixed sm:h-14 sm:w-14 md:h-16 md:w-16">
+              <span className="material-symbols-outlined text-2xl text-secondary sm:text-3xl">
+                water_drop
+              </span>
+            </div>
+
+            <div>
+              <h4 className="mb-1 text-xs font-bold uppercase tracking-wider text-primary sm:text-sm">
+                $50 Level
+              </h4>
+
+              <p className="text-xs leading-5 text-on-surface-variant sm:text-sm sm:leading-6">
+                Provides clean, safe drinking water for a family of five for
+                an entire month.
+              </p>
+            </div>
+
+          </div>
+
+
+          {/* $100 */}
+          <div className="flex items-center gap-4 border border-surface-container-high bg-white p-4 sm:gap-5 sm:p-5 md:p-6">
+
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-fixed sm:h-14 sm:w-14 md:h-16 md:w-16">
+              <span className="material-symbols-outlined text-2xl text-deep-navy sm:text-3xl">
+                school
+              </span>
+            </div>
+
+            <div>
+              <h4 className="mb-1 text-xs font-bold uppercase tracking-wider text-primary sm:text-sm">
+                $100 Level
+              </h4>
+
+              <p className="text-xs leading-5 text-on-surface-variant sm:text-sm sm:leading-6">
+                Covers educational supplies and uniform for two children in
+                our outreach zones.
+              </p>
+            </div>
+
+          </div>
+
+
+          {/* $250 */}
+          <div className="flex items-center gap-4 border border-surface-container-high bg-white p-4 sm:gap-5 sm:p-5 md:p-6">
+
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary-fixed sm:h-14 sm:w-14 md:h-16 md:w-16">
+              <span className="material-symbols-outlined text-2xl text-secondary sm:text-3xl">
+                medical_services
+              </span>
+            </div>
+
+            <div>
+              <h4 className="mb-1 text-xs font-bold uppercase tracking-wider text-primary sm:text-sm">
+                $250 Level
+              </h4>
+
+              <p className="text-xs leading-5 text-on-surface-variant sm:text-sm sm:leading-6">
+                Funds a mobile health clinic visit, providing essential
+                screenings for 20 people.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      {/* =====================================================
+          RIGHT — DONATION FORM
+      ====================================================== */}
+      <div className="lg:col-span-7">
+
+        <div className="border border-white bg-white/95 p-5 shadow-sm backdrop-blur-md sm:p-7 md:p-10 lg:p-12">
+
+          <form
+            onSubmit={handleDonationSubmit}
+            className="flex flex-col gap-6 sm:gap-8"
+          >
+
+            {/* =================================================
+                FREQUENCY
+            ================================================== */}
+            <div className="flex rounded-lg bg-surface-container p-1">
+
+              <button
+                type="button"
+                onClick={() => setFrequency("once")}
+                className={`flex-1 rounded-md px-2 py-3 text-xs font-bold uppercase tracking-wider transition-all sm:text-sm ${
+                  frequency === "once"
+                    ? "bg-white text-primary shadow-sm"
+                    : "text-on-surface-variant hover:text-primary"
+                }`}
+              >
+                One-time Gift
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setFrequency("monthly")}
+                className={`flex-1 rounded-md px-2 py-3 text-xs font-bold uppercase tracking-wider transition-all sm:text-sm ${
+                  frequency === "monthly"
+                    ? "bg-white text-primary shadow-sm"
+                    : "text-on-surface-variant hover:text-primary"
+                }`}
+              >
+                Monthly Partner
+              </button>
+
+            </div>
+
+
+            {/* =================================================
+                AMOUNT
+            ================================================== */}
+            <div>
+
+              <label className="mb-3 block text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                Select Donation Amount
+              </label>
+
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+
+                {[25, 50, 100, 250].map((amount) => (
+                  <button
+                    key={amount}
+                    type="button"
+                    onClick={() => {
+                      setSelectedAmount(amount)
+                      setCustomAmount("")
+                    }}
+                    className={`border-2 px-3 py-3 text-center text-base font-bold text-primary transition-all sm:py-4 sm:text-lg ${
+                      selectedAmount === amount && !customAmount
+                        ? "border-vibrant-orange bg-vibrant-orange/5"
+                        : "border-surface-container-high hover:border-vibrant-orange"
+                    }`}
+                  >
+                    ${amount}
+                  </button>
+                ))}
+
+              </div>
+
+            </div>
+
+
+            {/* =================================================
+                CUSTOM AMOUNT
+            ================================================== */}
+            <div>
+
+              <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                Other Amount
+              </label>
+
+              <div className="relative">
+
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-base font-bold text-outline">
+                  $
+                </span>
+
+                <input
+                  type="number"
+                  min="1"
+                  step="0.01"
+                  value={customAmount}
+                  onChange={(event) => {
+                    setCustomAmount(event.target.value)
+                    setSelectedAmount(null)
+                  }}
+                  placeholder="Enter amount"
+                  className="w-full border border-outline-variant bg-white p-3 pl-10 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 sm:p-4"
+                />
+
+              </div>
+
+            </div>
+
+
+            {/* =================================================
+                DONOR INFORMATION
+            ================================================== */}
+            <div>
+
+              <label className="mb-3 block text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                Your Information
+              </label>
+
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(event) => setFirstName(event.target.value)}
+                  placeholder="First Name"
+                  required
+                  className="w-full border border-outline-variant bg-white p-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 sm:p-4"
+                />
+
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(event) => setLastName(event.target.value)}
+                  placeholder="Last Name"
+                  required
+                  className="w-full border border-outline-variant bg-white p-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 sm:p-4"
+                />
+
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder="Email Address"
+                  required
+                  className="w-full border border-outline-variant bg-white p-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 sm:p-4 sm:col-span-2"
+                />
+
+              </div>
+
+            </div>
+
+
+            {/* =================================================
+                PAYMENT METHOD
+            ================================================== */}
+            <div>
+
+              <label className="mb-3 block text-xs font-bold uppercase tracking-widest text-on-surface-variant">
+                Payment Method
+              </label>
+
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+
+                <button
+                  type="button"
+                  onClick={() => setPaymentMethod("card")}
+                  className={`flex h-14 items-center justify-center border px-4 transition-all sm:h-16 ${
+                    paymentMethod === "card"
+                      ? "border-vibrant-orange bg-vibrant-orange/5 text-primary"
+                      : "border-outline-variant hover:bg-surface-container"
+                  }`}
+                >
+                  <span className="material-symbols-outlined mr-2">
+                    credit_card
+                  </span>
+
+                  <span className="text-xs font-bold uppercase tracking-wider sm:text-sm">
+                    Card
+                  </span>
+
+                </button>
+
+
+                <button
+                  type="button"
+                  onClick={() => setPaymentMethod("paypal")}
+                  className={`flex h-14 items-center justify-center border px-4 transition-all sm:h-16 ${
+                    paymentMethod === "paypal"
+                      ? "border-vibrant-orange bg-vibrant-orange/5 text-primary"
+                      : "border-outline-variant hover:bg-surface-container"
+                  }`}
+                >
+                  <span className="material-symbols-outlined mr-2">
+                    payments
+                  </span>
+
+                  <span className="text-xs font-bold uppercase tracking-wider sm:text-sm">
+                    PayPal
+                  </span>
+
+                </button>
+
+              </div>
+
+            </div>
+
+
+            {/* =================================================
+                SECURITY
+            ================================================== */}
+            <div className="flex items-center justify-center gap-2 text-center text-[10px] uppercase tracking-wider text-on-surface-variant sm:text-xs">
+
+              <span className="material-symbols-outlined text-base">
+                shield_lock
+              </span>
+
+              <span>
+                Secure encrypted payment
+              </span>
+
+            </div>
+
+
+            {/* =================================================
+                ERROR
+            ================================================== */}
+            {donationError && (
+              <div className="border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+                {donationError}
+              </div>
+            )}
+
+
+            {/* =================================================
+                SUCCESS
+            ================================================== */}
+            {donationSuccess && (
+              <div className="border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
+                {donationSuccess}
+              </div>
+            )}
+
+
+            {/* =================================================
+                SUBMIT
+            ================================================== */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-vibrant-orange px-5 py-4 text-sm font-bold uppercase tracking-[0.15em] text-white shadow-lg transition-all hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:py-5"
+            >
+              {isSubmitting
+                ? "Processing..."
+                : `Continue with ${
+                    frequency === "monthly"
+                      ? "Monthly Donation"
+                      : "Donation"
+                  }`}
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <section className="py-section-gap bg-white border-t border-surface-container-high">
           <div className="container mx-auto px-margin-mobile md:px-margin-desktop text-center max-w-4xl">
@@ -219,20 +680,19 @@ function DonatePage() {
 
         <section className="relative py-section-gap overflow-hidden group">
           <div className="absolute inset-0 z-0">
-            <div
-              className="bg-cover bg-center w-full h-full grayscale-[20%] transition-transform duration-700 group-hover:scale-110"
-              style={{
-                backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDsihpUOMx77MiFnBjRgrS2GQTCydELEuNyWTJh-F8RtJOXm85Q5AF8Dqo9VHT-J6cxlg23KQXjyd__rMYGepxJxRxIVTn7yH7DGs7TbcDhsSmovkWasXW2UW1Q9Cz4Db5m_L0nxCwbRoIMN89xNOW6mlXbQY1AkCeHPLXRFOBAkfQ3KqvOW8qp3PrsANDEuJcGV15TyazxWbluj-tiwxVeyfcpozSmfvvaNyke-jqF8THLBf2XbNM1ZhYMNZcuu3T7m6nhKILxw1Ps')",
-              }}
+            
+          <div className="absolute inset-0 z-0">
+            <div/>
+            <img
+              className="hero-slide is-active absolute inset-0 h-full w-full object-cover object-top"
+              src={team}
+              alt="Portrait"
             />
-            <div className="absolute inset-0 bg-primary/60 backdrop-blur-[2px]" />
+              <div className="absolute inset-0 bg-black/70"></div>
+          </div>
           </div>
           <div className="container mx-auto px-margin-mobile relative z-10 text-center text-white max-w-2xl">
-            <h2 className="font-headline-md text-headline-md mb-8">Every child deserves a safe environment to grow, play, and dream.</h2>
-            <button className="bg-white text-primary px-12 py-5 font-label-md text-label-md uppercase tracking-[0.2em] hover:bg-vibrant-orange hover:text-white transition-all" type="button">
-              Make a Difference Today
-            </button>
+            <h2 className="font-headline-md text-headline-md mb-8">Make a difference with us today.</h2>
           </div>
         </section>
       </main>

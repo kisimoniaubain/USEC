@@ -59,7 +59,8 @@ const handleNext = () => {
       <svg
         viewBox="0 0 1200 120"
         preserveAspectRatio="none"
-        className="relative block h-16 w-full text-slate-50 md:h-24"
+        className="relative block h-16 w-full text-surface-cream md:h-24"
+        // className="relative block h-16 w-full text-slate-50 md:h-24"
         fill="currentColor"
       >
         <path d="M0,0 C150,90 350,-40 500,65 C650,160 900,10 1200,45 L1200,120 L0,120 Z" />
@@ -125,7 +126,8 @@ const handleNext = () => {
       {/* =========================================================
           WHO WE ARE
       ========================================================= */}
-      <section className="relative overflow-hidden bg-surface-cream px-margin-mobile py-section-gap md:px-margin-desktop">
+      <section className="relative overflow-hidden bg-surface-cream px-margin-mobile py-8 md:px-margin-desktop md:py-12">
+      {/* <section className="relative overflow-hidden bg-surface-cream px-margin-mobile py-section-gap md:px-margin-desktop"> */}
 
         <div className="pointer-events-none absolute -bottom-10 -right-10 h-72 w-72 rounded-full border-[55px] border-vibrant-orange/10"></div>
 

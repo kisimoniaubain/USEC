@@ -23,7 +23,7 @@ export default function BackToTopButton() {
       onClick={handleBackToTop}
       aria-label="Back to top"
       title="Back to top"
-      className={`fixed right-6 bottom-24 z-[85] inline-flex h-12 w-12 items-center justify-center rounded-full border border-outline-variant bg-white text-deep-navy shadow-[0_10px_28px_rgba(3,51,71,0.2)] transition-all hover:-translate-y-0.5 hover:text-vibrant-orange ${showPulse ? 'animate-pulse' : ''}`}
+      className={`fixed right-6 bottom-24 z-[85] inline-flex h-12 w-12 items-center justify-center rounded-full border-2 border-primary bg-white text-deep-navy shadow-[0_10px_28px_rgba(3,51,71,0.2)] transition-all hover:-translate-y-0.5 hover:border-vibrant-orange hover:bg-vibrant-orange hover:text-white`}
     >
       <span className="material-symbols-outlined">keyboard_arrow_up</span>
     </button>

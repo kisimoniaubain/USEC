@@ -455,11 +455,20 @@ const handleSubscribeSubmit = async (event) => {
 
         <section className="py-section-gap bg-primary text-white overflow-hidden">
           <div className="container mx-auto px-margin-mobile md:px-margin-desktop relative">
-            <div className="mb-16 max-w-4xl mx-auto text-center">
-              <span className="inline-block font-label-sm text-label-sm uppercase tracking-[0.22em] text-vibrant-orange mb-4">Stories From The Field</span>
-              <h2 className="font-display-lg text-display-lg text-white mb-6">Voices of Resilience</h2>
-              <p className="font-body-lg text-body-lg text-white/75">Beyond the statistics are real people, real stories, and real hope. Meet the individuals reshaping their own futures.</p>
-            </div>
+            <div className="mx-auto mb-10 max-w-4xl px-4 text-center sm:mb-12 md:mb-16 md:px-0">
+          <span className="mb-3 inline-block font-label-sm text-[0.65rem] uppercase tracking-[0.16em] text-vibrant-orange sm:mb-4 sm:text-label-sm sm:tracking-[0.22em]">
+            Stories From The Field
+          </span>
+
+          <h2 className="mb-4 font-display-lg text-3xl leading-tight text-white sm:mb-5 sm:text-4xl md:mb-6 md:text-display-lg">
+            Voices of Resilience
+          </h2>
+
+          <p className="mx-auto max-w-2xl font-body-lg text-base leading-relaxed text-white/75 sm:text-lg md:text-body-lg">
+            Beyond the statistics are real people, real stories, and real hope. Meet
+            the individuals reshaping their own futures.
+          </p>
+        </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
               {[
                 {
@@ -516,10 +525,15 @@ const handleSubscribeSubmit = async (event) => {
           </div>
 
           <div className="container relative z-10 mx-auto px-margin-mobile md:px-margin-desktop">
-            <div className="mb-12 md:mb-14 max-w-4xl mx-auto text-center">
-              <span className="font-label-sm text-label-sm uppercase tracking-[0.2em] text-vibrant-orange mb-3 block">Regional Presence</span>
-              <h2 className="font-display-lg text-display-lg text-primary mb-5">Where We Are</h2>
-            </div>
+            <div className="mx-auto mb-10 max-w-4xl px-4 text-center sm:mb-12 md:mb-14 md:px-0">
+            <span className="mb-3 block font-label-sm text-[0.65rem] uppercase tracking-[0.16em] text-vibrant-orange sm:text-label-sm sm:tracking-[0.2em]">
+              Regional Presence
+            </span>
+
+            <h2 className="font-display-lg text-3xl leading-tight text-primary sm:text-4xl md:text-display-lg">
+              Where We Are
+            </h2>
+          </div>
 
 
 

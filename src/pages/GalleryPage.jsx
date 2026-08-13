@@ -345,37 +345,39 @@ function GalleryPage() {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { src: program1, alt: 'Program image 1' },
-            { src: program2, alt: 'Program image 2' },
-            { src: program3, alt: 'Program image 3' },
-            { src: program4, alt: 'Program image 4' },
-            { src: program5, alt: 'Program image 5' },
-            { src: program6, alt: 'Program image 6' }
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-[28px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
-            >
-              <img
-                src={item.src}
-                alt={item.alt}
-                className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+<div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+  {[
+    { src: program1, alt: "Program image 1" },
+    { src: program2, alt: "Program image 2" },
+    { src: program3, alt: "Program image 3" },
+    { src: program4, alt: "Program image 4" },
+    { src: program5, alt: "Program image 5" },
+    { src: program6, alt: "Program image 6" },
+  ].map((item, index) => (
+    <div
+      key={index}
+      className="group relative overflow-hidden rounded-[20px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:rounded-[24px] lg:rounded-[28px]"
+    >
+      {/* IMAGE */}
+      <img
+        src={item.src}
+        alt={item.alt}
+        className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-48 md:h-56"
+      />
 
-              <button
-                type="button"
-                onClick={() => setSelectedImage(item.src)}
-                className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-vibrant-orange text-white flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 cursor-pointer hover:bg-white hover:text-deep-navy"
-              >
-                <span className="material-symbols-outlined text-3xl">
-                  visibility
-                </span>
-              </button>
-            </div>
-          ))}
-        </div>
+      {/* VIEW BUTTON - SHOWS ONLY ON HOVER */}
+      <button
+        type="button"
+        onClick={() => setSelectedImage(item.src)}
+        className="absolute left-1/2 top-1/2 z-20 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-75 items-center justify-center rounded-full bg-vibrant-orange text-white opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 hover:bg-white hover:text-deep-navy sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+      >
+        <span className="material-symbols-outlined text-2xl sm:text-3xl">
+          visibility
+        </span>
+      </button>
+    </div>
+  ))}
+</div>
 
       </div>
 
@@ -393,37 +395,39 @@ function GalleryPage() {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { src: program7, alt: 'Program image 1' },
-            { src: program8, alt: 'Program image 2' },
-            { src: program9, alt: 'Program image 3' },
-            { src: program10, alt: 'Program image 4' },
-            { src: program11, alt: 'Program image 5' },
-            { src: program12, alt: 'Program image 6' }
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-[28px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
-            >
-              <img
-                src={item.src}
-                alt={item.alt}
-                className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+<div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+  {[
+    { src: program7, alt: "Program image 1" },
+    { src: program8, alt: "Program image 2" },
+    { src: program9, alt: "Program image 3" },
+    { src: program10, alt: "Program image 4" },
+    { src: program11, alt: "Program image 5" },
+    { src: program12, alt: "Program image 6" },
+  ].map((item, index) => (
+    <div
+      key={index}
+      className="group relative overflow-hidden rounded-[20px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:rounded-[24px] lg:rounded-[28px]"
+    >
+      {/* IMAGE */}
+      <img
+        src={item.src}
+        alt={item.alt}
+        className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-48 md:h-56"
+      />
 
-              <button
-                type="button"
-                onClick={() => setSelectedImage(item.src)}
-                className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-vibrant-orange text-white flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 cursor-pointer hover:bg-white hover:text-deep-navy"
-              >
-                <span className="material-symbols-outlined text-3xl">
-                  visibility
-                </span>
-              </button>
-            </div>
-          ))}
-        </div>
+      {/* VIEW BUTTON - SHOWS ONLY ON HOVER */}
+      <button
+        type="button"
+        onClick={() => setSelectedImage(item.src)}
+        className="absolute left-1/2 top-1/2 z-20 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-75 items-center justify-center rounded-full bg-vibrant-orange text-white opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 hover:bg-white hover:text-deep-navy sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+      >
+        <span className="material-symbols-outlined text-2xl sm:text-3xl">
+          visibility
+        </span>
+      </button>
+    </div>
+  ))}
+</div>
 
       </div>
         {/* =================================================
@@ -437,37 +441,39 @@ function GalleryPage() {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { src: program13, alt: 'Program image 1' },
-            { src: program14, alt: 'Program image 2' },
-            { src: program15, alt: 'Program image 3' },
-            { src: program16, alt: 'Program image 4' },
-            { src: program17, alt: 'Program image 5' },
-            { src: program18, alt: 'Program image 6' }
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-[28px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
-            >
-              <img
-                src={item.src}
-                alt={item.alt}
-                className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+<div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+  {[
+    { src: program13, alt: "Program image 1" },
+    { src: program14, alt: "Program image 2" },
+    { src: program15, alt: "Program image 3" },
+    { src: program16, alt: "Program image 4" },
+    { src: program17, alt: "Program image 5" },
+    { src: program18, alt: "Program image 6" },
+  ].map((item, index) => (
+    <div
+      key={index}
+      className="group relative overflow-hidden rounded-[20px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:rounded-[24px] lg:rounded-[28px]"
+    >
+      {/* IMAGE */}
+      <img
+        src={item.src}
+        alt={item.alt}
+        className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-48 md:h-56"
+      />
 
-              <button
-                type="button"
-                onClick={() => setSelectedImage(item.src)}
-                className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-vibrant-orange text-white flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 cursor-pointer hover:bg-white hover:text-deep-navy"
-              >
-                <span className="material-symbols-outlined text-3xl">
-                  visibility
-                </span>
-              </button>
-            </div>
-          ))}
-        </div>
+      {/* VIEW BUTTON - SHOWS ONLY ON HOVER */}
+      <button
+        type="button"
+        onClick={() => setSelectedImage(item.src)}
+        className="absolute left-1/2 top-1/2 z-20 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-75 items-center justify-center rounded-full bg-vibrant-orange text-white opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 hover:bg-white hover:text-deep-navy sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+      >
+        <span className="material-symbols-outlined text-2xl sm:text-3xl">
+          visibility
+        </span>
+      </button>
+    </div>
+  ))}
+</div>
 
       </div>
 
@@ -488,37 +494,38 @@ function GalleryPage() {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { src: community1, alt: 'Community leaders discussion' },
-            { src: community2, alt: 'Local planning session' },
-            { src: community3, alt: 'Community engagement activity' },
-            { src: community4, alt: 'Neighborhood collaboration' },
-            { src: community5, alt: 'Community outreach event' },
-            { src: community6, alt: 'Team working with residents' }
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-[28px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
-            >
-              <img
-                src={item.src}
-                alt={item.alt}
-                className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+<div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+  {[
+    { src: community1, alt: "Community leaders discussion" },
+    { src: community2, alt: "Local planning session" },
+    { src: community3, alt: "Community engagement activity" },
+    { src: community4, alt: "Neighborhood collaboration" },
+    { src: community5, alt: "Community outreach event" },
+    { src: community6, alt: "Team working with residents" },
+  ].map((item, index) => (
+    <div
+      key={index}
+      className="group relative overflow-hidden rounded-[20px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:rounded-[24px] lg:rounded-[28px]"
+    >
+      <img
+        src={item.src}
+        alt={item.alt}
+        className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-48 md:h-56"
+      />
 
-              <button
-                type="button"
-                onClick={() => setSelectedImage(item.src)}
-                className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-vibrant-orange text-white flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 cursor-pointer hover:bg-white hover:text-deep-navy"
-              >
-                <span className="material-symbols-outlined text-3xl">
-                  visibility
-                </span>
-              </button>
-            </div>
-          ))}
-        </div>
+      {/* VIEW BUTTON - SHOWS ONLY ON HOVER */}
+      <button
+        type="button"
+        onClick={() => setSelectedImage(item.src)}
+        className="absolute left-1/2 top-1/2 z-20 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-75 items-center justify-center rounded-full bg-vibrant-orange text-white opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 hover:bg-white hover:text-deep-navy sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+      >
+        <span className="material-symbols-outlined text-2xl sm:text-3xl">
+          visibility
+        </span>
+      </button>
+    </div>
+  ))}
+</div>
 
       </div>
 
@@ -547,37 +554,39 @@ function GalleryPage() {
          </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { src: field1, alt: 'Community leaders discussion' },
-            { src: field2, alt: 'Local planning session' },
-            { src: field3, alt: 'Community engagement activity' },
-            { src: field4, alt: 'Neighborhood collaboration' },
-            { src: field5, alt: 'Community outreach event' },
-            { src: field6, alt: 'Team working with residents' }
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-[28px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
-            >
-              <img
-                src={item.src}
-                alt={item.alt}
-                className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+<div className="grid grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+  {[
+    { src: field1, alt: "Community leaders discussion" },
+    { src: field2, alt: "Local planning session" },
+    { src: field3, alt: "Community engagement activity" },
+    { src: field4, alt: "Neighborhood collaboration" },
+    { src: field5, alt: "Community outreach event" },
+    { src: field6, alt: "Team working with residents" },
+  ].map((item, index) => (
+    <div
+      key={index}
+      className="group relative overflow-hidden rounded-[20px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:rounded-[24px] lg:rounded-[28px]"
+    >
+      {/* IMAGE */}
+      <img
+        src={item.src}
+        alt={item.alt}
+        className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-48 md:h-56"
+      />
 
-              <button
-                type="button"
-                onClick={() => setSelectedImage(item.src)}
-                className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-vibrant-orange text-white flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 cursor-pointer hover:bg-white hover:text-deep-navy"
-              >
-                <span className="material-symbols-outlined text-3xl">
-                  visibility
-                </span>
-              </button>
-            </div>
-          ))}
-        </div>
+      {/* VIEW BUTTON - SHOWS ONLY ON HOVER */}
+      <button
+        type="button"
+        onClick={() => setSelectedImage(item.src)}
+        className="absolute left-1/2 top-1/2 z-20 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-75 items-center justify-center rounded-full bg-vibrant-orange text-white opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 hover:bg-white hover:text-deep-navy sm:h-14 sm:w-14 lg:h-16 lg:w-16"
+      >
+        <span className="material-symbols-outlined text-2xl sm:text-3xl">
+          visibility
+        </span>
+      </button>
+    </div>
+  ))}
+</div>
 
       </div>      
          
@@ -597,73 +606,77 @@ function GalleryPage() {
             Explore Our Gallary
           </h3>
        </div>      
-      <div className="grid gap-10 py-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {galleryItems
-        .filter(
-          (item) =>
-            activeCategory === 'ALL' ||
-            item.category === activeCategory
-        )
-        .map((item, index) => (
+        <div className="grid grid-cols-2 gap-4 py-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {galleryItems
+            .filter(
+              (item) =>
+                activeCategory === "ALL" ||
+                item.category === activeCategory
+            )
+            .map((item, index) => (
 
-          <div
-            key={index}
-            className="group relative overflow-hidden rounded-[28px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)]"
-          >
-            
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-[20px] bg-white shadow-[0_24px_70px_rgba(15,23,42,0.08)] sm:rounded-[24px] lg:rounded-[28px]"
+              >
 
-            {/* IMAGE */}
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-            />
+                {/* IMAGE */}
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105 sm:h-48 md:h-56"
+                />
 
-            {/* GRADIENT */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+                {/* GRADIENT */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
 
-            {/* VIEW BUTTON */}
-            <button
-              type="button"
-              onClick={() => setSelectedImage(item.image)}
-              className="absolute z-20 top-1/2 left-1/2
-                -translate-x-1/2 -translate-y-1/2
-                w-16 h-16 rounded-full
-                bg-vibrant-orange text-white
-                flex items-center justify-center
-                opacity-0 scale-75
-                group-hover:opacity-100
-                group-hover:scale-100
-                transition-all duration-300
-                cursor-pointer
-                hover:bg-white hover:text-deep-navy"
-              aria-label={`View ${item.title}`}
-            >
-              <span className="material-symbols-outlined text-3xl">
-                visibility
-              </span>
-            </button>
+                {/* VIEW BUTTON - SHOWS ONLY ON HOVER */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedImage(item.image)}
+                  className="
+                    absolute left-1/2 top-1/2 z-20
+                    flex h-12 w-12
+                    -translate-x-1/2 -translate-y-1/2
+                    scale-75
+                    items-center justify-center
+                    rounded-full
+                    bg-vibrant-orange text-white
+                    opacity-0
+                    transition-all duration-300
+                    cursor-pointer
+                    group-hover:scale-100
+                    group-hover:opacity-100
+                    hover:bg-white hover:text-deep-navy
+                    sm:h-14 sm:w-14
+                    lg:h-16 lg:w-16
+                  "
+                  aria-label={`View ${item.title}`}
+                >
+                  <span className="material-symbols-outlined text-2xl sm:text-3xl">
+                    visibility
+                  </span>
+                </button>
 
-            {/* CONTENT */}
-            <div className="absolute bottom-0 left-0 p-6 text-white">
+                {/* CONTENT */}
+                <div className="absolute bottom-0 left-0 p-3 text-white sm:p-4 lg:p-6">
 
-              <span className="font-label-sm uppercase tracking-widest text-white">
-                {item.tag}
-              </span>
+                  <span className="font-label-sm text-xs uppercase tracking-widest text-white sm:text-label-sm">
+                    {item.tag}
+                  </span>
 
-              {item.title && (
-                <h3 className="font-headline-sm text-headline-sm mt-2">
-                  {item.title}
-                </h3>
-              )}
+                  {item.title && (
+                    <h3 className="mt-1 text-sm font-semibold leading-tight sm:mt-2 sm:text-base lg:text-headline-sm">
+                      {item.title}
+                    </h3>
+                  )}
 
-            </div>
+                </div>
 
-          </div>
+              </div>
 
-      ))}
-
-      </div>
+            ))}
+        </div>          
       </div>
 
     )}
@@ -739,7 +752,7 @@ function GalleryPage() {
 
               {/* Link */}
               <a
-                href="#"
+                href="reports"
                 className="relative z-10 mt-8 inline-flex items-center gap-3 text-deep-navy font-label-md text-label-md font-semibold group-hover:text-vibrant-orange transition-colors duration-300"
               >
                 READ MORE
@@ -992,7 +1005,7 @@ function GalleryPage() {
               className="absolute top-4 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-deep-navy text-3xl shadow-lg transition-colors duration-300 hover:bg-vibrant-orange hover:text-white"
               aria-label="Close image"
             >
-              �
+                <span className="material-symbols-outlined text-base">close</span>
             </button>
 
             <img
