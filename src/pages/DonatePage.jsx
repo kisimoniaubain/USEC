@@ -263,373 +263,394 @@ function DonatePage() {
             </div>
           </div>
         </section> */}
-        <section className="bg-surface-cream py-12 sm:py-16 md:py-section-gap" id="donate-form">
-  <div className="container mx-auto max-w-container-max px-4 sm:px-6 md:px-margin-desktop">
+<section
+  className="bg-surface-cream py-12 sm:py-16 md:py-section-gap"
+  id="donate-form"
+>
+  <div className="container mx-auto px-4 sm:px-6">
 
-    <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12">
+    {/* =====================================================
+        SMALLER DONATION CARD
+    ====================================================== */}
+    <div
+      className="
+        mx-auto
+        w-full
+        max-w-5xl
+        overflow-hidden
+        rounded-2xl
+        shadow-[0_20px_50px_rgba(0,0,0,0.06)]
+      "
+    >
 
-      {/* =====================================================
-          LEFT — IMPACT
-      ====================================================== */}
-      <div className="flex flex-col gap-8 lg:col-span-5 lg:gap-10">
+      <div className="grid grid-cols-1 items-stretch lg:grid-cols-2">
 
-        <div>
-          <h2 className="mb-4 text-2xl font-bold leading-tight text-primary sm:text-3xl md:mb-6 md:text-headline-md">
-            Choose Your Impact
-          </h2>
+        {/* =================================================
+            LEFT — IMAGE
+            Hidden on mobile/tablet
+        ================================================== */}
+        <div className="hidden lg:block">
 
-          <p className="text-sm leading-7 text-on-surface-variant sm:text-base md:text-body-lg">
-            Every dollar contributed goes directly to the field. We prioritize
-            long-term sustainability alongside immediate relief efforts.
-          </p>
-        </div>
-
-
-        {/* IMPACT CARDS */}
-        <div className="grid grid-cols-1 gap-3 sm:gap-4">
-
-          {/* $50 */}
-          <div className="flex items-center gap-4 border border-surface-container-high bg-white p-4 sm:gap-5 sm:p-5 md:p-6">
-
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary-fixed sm:h-14 sm:w-14 md:h-16 md:w-16">
-              <span className="material-symbols-outlined text-2xl text-secondary sm:text-3xl">
-                water_drop
-              </span>
-            </div>
-
-            <div>
-              <h4 className="mb-1 text-xs font-bold uppercase tracking-wider text-primary sm:text-sm">
-                $50 Level
-              </h4>
-
-              <p className="text-xs leading-5 text-on-surface-variant sm:text-sm sm:leading-6">
-                Provides clean, safe drinking water for a family of five for
-                an entire month.
-              </p>
-            </div>
-
-          </div>
-
-
-          {/* $100 */}
-          <div className="flex items-center gap-4 border border-surface-container-high bg-white p-4 sm:gap-5 sm:p-5 md:p-6">
-
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-fixed sm:h-14 sm:w-14 md:h-16 md:w-16">
-              <span className="material-symbols-outlined text-2xl text-deep-navy sm:text-3xl">
-                school
-              </span>
-            </div>
-
-            <div>
-              <h4 className="mb-1 text-xs font-bold uppercase tracking-wider text-primary sm:text-sm">
-                $100 Level
-              </h4>
-
-              <p className="text-xs leading-5 text-on-surface-variant sm:text-sm sm:leading-6">
-                Covers educational supplies and uniform for two children in
-                our outreach zones.
-              </p>
-            </div>
-
-          </div>
-
-
-          {/* $250 */}
-          <div className="flex items-center gap-4 border border-surface-container-high bg-white p-4 sm:gap-5 sm:p-5 md:p-6">
-
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-secondary-fixed sm:h-14 sm:w-14 md:h-16 md:w-16">
-              <span className="material-symbols-outlined text-2xl text-secondary sm:text-3xl">
-                medical_services
-              </span>
-            </div>
-
-            <div>
-              <h4 className="mb-1 text-xs font-bold uppercase tracking-wider text-primary sm:text-sm">
-                $250 Level
-              </h4>
-
-              <p className="text-xs leading-5 text-on-surface-variant sm:text-sm sm:leading-6">
-                Funds a mobile health clinic visit, providing essential
-                screenings for 20 people.
-              </p>
-            </div>
-
-          </div>
+          <img
+            src={team}
+            alt="Supporting our community"
+            className="
+              block
+              h-full
+              min-h-[560px]
+              w-full
+              object-cover
+            "
+          />
 
         </div>
 
-      </div>
 
+        {/* =================================================
+            RIGHT — DONATION FORM
+        ================================================== */}
+        <div className="w-full bg-white">
 
-      {/* =====================================================
-          RIGHT — DONATION FORM
-      ====================================================== */}
-      <div className="lg:col-span-7">
-
-        <div className="border border-white bg-white/95 p-5 shadow-sm backdrop-blur-md sm:p-7 md:p-10 lg:p-12">
-
-          <form
-            onSubmit={handleDonationSubmit}
-            className="flex flex-col gap-6 sm:gap-8"
+          <div
+            className="
+              h-full
+              w-full
+              p-5
+              sm:p-6
+              md:p-7
+              lg:p-8
+            "
           >
 
-            {/* =================================================
-                FREQUENCY
-            ================================================== */}
-            <div className="flex rounded-lg bg-surface-container p-1">
+            <form
+              onSubmit={handleDonationSubmit}
+              className="flex flex-col gap-5"
+            >
 
-              <button
-                type="button"
-                onClick={() => setFrequency("once")}
-                className={`flex-1 rounded-md px-2 py-3 text-xs font-bold uppercase tracking-wider transition-all sm:text-sm ${
-                  frequency === "once"
-                    ? "bg-white text-primary shadow-sm"
-                    : "text-on-surface-variant hover:text-primary"
-                }`}
-              >
-                One-time Gift
-              </button>
+              {/* FREQUENCY */}
+              <div className="flex rounded-lg bg-slate-50 p-1">
 
-              <button
-                type="button"
-                onClick={() => setFrequency("monthly")}
-                className={`flex-1 rounded-md px-2 py-3 text-xs font-bold uppercase tracking-wider transition-all sm:text-sm ${
-                  frequency === "monthly"
-                    ? "bg-white text-primary shadow-sm"
-                    : "text-on-surface-variant hover:text-primary"
-                }`}
-              >
-                Monthly Partner
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setFrequency("once")}
+                  className={`flex-1 rounded-md px-2 py-2.5 text-[11px] font-bold uppercase tracking-wider transition-all sm:text-xs ${
+                    frequency === "once"
+                      ? "bg-white text-primary shadow-sm"
+                      : "text-slate-500 hover:text-primary"
+                  }`}
+                >
+                  One-time Gift
+                </button>
 
-            </div>
+                <button
+                  type="button"
+                  onClick={() => setFrequency("monthly")}
+                  className={`flex-1 rounded-md px-2 py-2.5 text-[11px] font-bold uppercase tracking-wider transition-all sm:text-xs ${
+                    frequency === "monthly"
+                      ? "bg-white text-primary shadow-sm"
+                      : "text-slate-500 hover:text-primary"
+                  }`}
+                >
+                  Monthly Partner
+                </button>
+
+              </div>
 
 
-            {/* =================================================
-                AMOUNT
-            ================================================== */}
-            <div>
+              {/* AMOUNT */}
+              <div>
 
-              <label className="mb-3 block text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-                Select Donation Amount
-              </label>
+                <label className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-slate-500 sm:text-xs">
+                  Select Donation Amount
+                </label>
 
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
 
-                {[25, 50, 100, 250].map((amount) => (
-                  <button
-                    key={amount}
-                    type="button"
-                    onClick={() => {
-                      setSelectedAmount(amount)
-                      setCustomAmount("")
+                  {[25, 50, 100, 250].map((amount) => (
+                    <button
+                      key={amount}
+                      type="button"
+                      onClick={() => {
+                        setSelectedAmount(amount);
+                        setCustomAmount("");
+                      }}
+                      className={`rounded-lg border-2 px-2 py-2.5 text-sm font-bold transition-all sm:py-3 ${
+                        selectedAmount === amount && !customAmount
+                          ? "border-vibrant-orange bg-vibrant-orange/5 text-primary"
+                          : "border-slate-200 text-primary hover:border-vibrant-orange"
+                      }`}
+                    >
+                      ${amount}
+                    </button>
+                  ))}
+
+                </div>
+
+              </div>
+
+
+              {/* OTHER AMOUNT */}
+              <div>
+
+                <label className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-slate-500 sm:text-xs">
+                  Other Amount
+                </label>
+
+                <div className="relative">
+
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">
+                    $
+                  </span>
+
+                  <input
+                    type="number"
+                    min="1"
+                    step="0.01"
+                    value={customAmount}
+                    onChange={(event) => {
+                      setCustomAmount(event.target.value);
+                      setSelectedAmount(null);
                     }}
-                    className={`border-2 px-3 py-3 text-center text-base font-bold text-primary transition-all sm:py-4 sm:text-lg ${
-                      selectedAmount === amount && !customAmount
-                        ? "border-vibrant-orange bg-vibrant-orange/5"
-                        : "border-surface-container-high hover:border-vibrant-orange"
+                    placeholder="Enter amount"
+                    className="
+                      w-full
+                      rounded-lg
+                      border
+                      border-slate-200
+                      bg-slate-50
+                      p-3
+                      pl-8
+                      text-sm
+                      text-slate-800
+                      outline-none
+                      transition
+                      placeholder:text-slate-400
+                      focus:border-orange-500
+                      focus:bg-white
+                      focus:ring-2
+                      focus:ring-orange-500/20
+                    "
+                  />
+
+                </div>
+
+              </div>
+
+
+              {/* DONOR INFORMATION */}
+              <div>
+
+                <label className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-slate-500 sm:text-xs">
+                  Your Information
+                </label>
+
+                <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+
+                  <input
+                    type="text"
+                    value={firstName}
+                    onChange={(event) => setFirstName(event.target.value)}
+                    placeholder="First Name"
+                    required
+                    className="
+                      w-full
+                      rounded-lg
+                      border
+                      border-slate-200
+                      bg-slate-50
+                      p-3
+                      text-sm
+                      text-slate-800
+                      outline-none
+                      transition
+                      placeholder:text-slate-400
+                      focus:border-orange-500
+                      focus:bg-white
+                      focus:ring-2
+                      focus:ring-orange-500/20
+                    "
+                  />
+
+                  <input
+                    type="text"
+                    value={lastName}
+                    onChange={(event) => setLastName(event.target.value)}
+                    placeholder="Last Name"
+                    required
+                    className="
+                      w-full
+                      rounded-lg
+                      border
+                      border-slate-200
+                      bg-slate-50
+                      p-3
+                      text-sm
+                      text-slate-800
+                      outline-none
+                      transition
+                      placeholder:text-slate-400
+                      focus:border-orange-500
+                      focus:bg-white
+                      focus:ring-2
+                      focus:ring-orange-500/20
+                    "
+                  />
+
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    placeholder="Email Address"
+                    required
+                    className="
+                      w-full
+                      rounded-lg
+                      border
+                      border-slate-200
+                      bg-slate-50
+                      p-3
+                      text-sm
+                      text-slate-800
+                      outline-none
+                      transition
+                      placeholder:text-slate-400
+                      focus:border-orange-500
+                      focus:bg-white
+                      focus:ring-2
+                      focus:ring-orange-500/20
+                      sm:col-span-2
+                    "
+                  />
+
+                </div>
+
+              </div>
+
+
+              {/* PAYMENT METHOD */}
+              <div>
+
+                <label className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-slate-500 sm:text-xs">
+                  Payment Method
+                </label>
+
+                <div className="grid grid-cols-2 gap-2.5">
+
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod("card")}
+                    className={`flex h-12 items-center justify-center rounded-lg border px-3 transition-all ${
+                      paymentMethod === "card"
+                        ? "border-vibrant-orange bg-vibrant-orange/5 text-primary"
+                        : "border-slate-200 text-slate-600 hover:bg-slate-50"
                     }`}
                   >
-                    ${amount}
+                    <span className="material-symbols-outlined mr-1.5 text-lg">
+                      credit_card
+                    </span>
+
+                    <span className="text-[11px] font-bold uppercase tracking-wider">
+                      Card
+                    </span>
                   </button>
-                ))}
+
+
+                  <button
+                    type="button"
+                    onClick={() => setPaymentMethod("paypal")}
+                    className={`flex h-12 items-center justify-center rounded-lg border px-3 transition-all ${
+                      paymentMethod === "paypal"
+                        ? "border-vibrant-orange bg-vibrant-orange/5 text-primary"
+                        : "border-slate-200 text-slate-600 hover:bg-slate-50"
+                    }`}
+                  >
+                    <span className="material-symbols-outlined mr-1.5 text-lg">
+                      payments
+                    </span>
+
+                    <span className="text-[11px] font-bold uppercase tracking-wider">
+                      PayPal
+                    </span>
+                  </button>
+
+                </div>
 
               </div>
 
-            </div>
 
+              {/* SECURITY */}
+              <div className="flex items-center justify-center gap-1.5 text-center text-[9px] uppercase tracking-wider text-slate-400 sm:text-[10px]">
 
-            {/* =================================================
-                CUSTOM AMOUNT
-            ================================================== */}
-            <div>
-
-              <label className="mb-2 block text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-                Other Amount
-              </label>
-
-              <div className="relative">
-
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-base font-bold text-outline">
-                  $
+                <span className="material-symbols-outlined text-sm">
+                  shield_lock
                 </span>
 
-                <input
-                  type="number"
-                  min="1"
-                  step="0.01"
-                  value={customAmount}
-                  onChange={(event) => {
-                    setCustomAmount(event.target.value)
-                    setSelectedAmount(null)
-                  }}
-                  placeholder="Enter amount"
-                  className="w-full border border-outline-variant bg-white p-3 pl-10 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 sm:p-4"
-                />
+                <span>
+                  Secure encrypted payment
+                </span>
 
               </div>
 
-            </div>
+
+              {/* ERROR */}
+              {donationError && (
+                <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-xs text-red-600">
+                  {donationError}
+                </div>
+              )}
 
 
-            {/* =================================================
-                DONOR INFORMATION
-            ================================================== */}
-            <div>
-
-              <label className="mb-3 block text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-                Your Information
-              </label>
-
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-
-                <input
-                  type="text"
-                  value={firstName}
-                  onChange={(event) => setFirstName(event.target.value)}
-                  placeholder="First Name"
-                  required
-                  className="w-full border border-outline-variant bg-white p-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 sm:p-4"
-                />
-
-                <input
-                  type="text"
-                  value={lastName}
-                  onChange={(event) => setLastName(event.target.value)}
-                  placeholder="Last Name"
-                  required
-                  className="w-full border border-outline-variant bg-white p-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 sm:p-4"
-                />
-
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                  placeholder="Email Address"
-                  required
-                  className="w-full border border-outline-variant bg-white p-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 sm:p-4 sm:col-span-2"
-                />
-
-              </div>
-
-            </div>
+              {/* SUCCESS */}
+              {donationSuccess && (
+                <div className="rounded-lg border border-green-200 bg-green-50 px-3 py-2.5 text-xs text-green-700">
+                  {donationSuccess}
+                </div>
+              )}
 
 
-            {/* =================================================
-                PAYMENT METHOD
-            ================================================== */}
-            <div>
+              {/* SUBMIT */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="
+                  w-full
+                  rounded-lg
+                  bg-vibrant-orange
+                  px-4
+                  py-3
+                  text-xs
+                  font-bold
+                  uppercase
+                  tracking-[0.1em]
+                  text-white
+                  shadow-lg
+                  shadow-orange-500/20
+                  transition-all
+                  hover:brightness-110
+                  active:scale-[0.98]
+                  disabled:cursor-not-allowed
+                  disabled:opacity-60
+                "
+              >
+                {isSubmitting
+                  ? "Processing..."
+                  : `Continue with ${
+                      frequency === "monthly"
+                        ? "Monthly Donation"
+                        : "Donation"
+                    }`}
+              </button>
 
-              <label className="mb-3 block text-xs font-bold uppercase tracking-widest text-on-surface-variant">
-                Payment Method
-              </label>
+            </form>
 
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-
-                <button
-                  type="button"
-                  onClick={() => setPaymentMethod("card")}
-                  className={`flex h-14 items-center justify-center border px-4 transition-all sm:h-16 ${
-                    paymentMethod === "card"
-                      ? "border-vibrant-orange bg-vibrant-orange/5 text-primary"
-                      : "border-outline-variant hover:bg-surface-container"
-                  }`}
-                >
-                  <span className="material-symbols-outlined mr-2">
-                    credit_card
-                  </span>
-
-                  <span className="text-xs font-bold uppercase tracking-wider sm:text-sm">
-                    Card
-                  </span>
-
-                </button>
-
-
-                <button
-                  type="button"
-                  onClick={() => setPaymentMethod("paypal")}
-                  className={`flex h-14 items-center justify-center border px-4 transition-all sm:h-16 ${
-                    paymentMethod === "paypal"
-                      ? "border-vibrant-orange bg-vibrant-orange/5 text-primary"
-                      : "border-outline-variant hover:bg-surface-container"
-                  }`}
-                >
-                  <span className="material-symbols-outlined mr-2">
-                    payments
-                  </span>
-
-                  <span className="text-xs font-bold uppercase tracking-wider sm:text-sm">
-                    PayPal
-                  </span>
-
-                </button>
-
-              </div>
-
-            </div>
-
-
-            {/* =================================================
-                SECURITY
-            ================================================== */}
-            <div className="flex items-center justify-center gap-2 text-center text-[10px] uppercase tracking-wider text-on-surface-variant sm:text-xs">
-
-              <span className="material-symbols-outlined text-base">
-                shield_lock
-              </span>
-
-              <span>
-                Secure encrypted payment
-              </span>
-
-            </div>
-
-
-            {/* =================================================
-                ERROR
-            ================================================== */}
-            {donationError && (
-              <div className="border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
-                {donationError}
-              </div>
-            )}
-
-
-            {/* =================================================
-                SUCCESS
-            ================================================== */}
-            {donationSuccess && (
-              <div className="border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
-                {donationSuccess}
-              </div>
-            )}
-
-
-            {/* =================================================
-                SUBMIT
-            ================================================== */}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-vibrant-orange px-5 py-4 text-sm font-bold uppercase tracking-[0.15em] text-white shadow-lg transition-all hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:py-5"
-            >
-              {isSubmitting
-                ? "Processing..."
-                : `Continue with ${
-                    frequency === "monthly"
-                      ? "Monthly Donation"
-                      : "Donation"
-                  }`}
-            </button>
-
-          </form>
+          </div>
 
         </div>
 
       </div>
 
     </div>
+
   </div>
 </section>
 

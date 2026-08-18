@@ -3,8 +3,8 @@ import { useRef } from "react"
 import { useEffect, useState } from "react"
 import AboutHero from "../assets/images/aboutimages/About-hero.png";
 import mission from "../assets/images/aboutimages/m,v,g.jpg";
-import tiba from "../assets/images/aboutimages/Tiba.png";
-import robert from "../assets/images/aboutimages/Robert.png";
+import gisma from "../assets/images/aboutimages/Gisma.png";
+import robert from "../assets/images/aboutimages/Robert.jpeg";
 import kabulo from "../assets/images/aboutimages/Kabulo.jpg";
 import donateprotect from "../assets/images/Protection-imo/donate-protect.png";
 
@@ -799,7 +799,7 @@ const handleNext = () => {
 
                 <img
                   className="absolute inset-0 h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
-                  src={tiba}
+                  src={gisma}
                   alt="Gisma Abass Kocho"
                 />
 

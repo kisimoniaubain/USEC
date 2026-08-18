@@ -1,6 +1,7 @@
 ﻿import React from 'react';
 import SiteNavbar from '../components/SiteNavbar';
 import contacthero from '../assets/images/contactimo/contact-hero.jpg'
+// import { MapPin } from "lucide-react"; // Option 1: Using Lucide React Icons
 
 
 // Curved organic wave SVG for hero bottom section
@@ -143,137 +144,216 @@ export default function ContactSection() {
 
     </div>
 
-    {/* RIGHT COLUMN: FORM */}
-    <div className="mt-40 lg:col-span-7 bg-white p-8 md:p-10 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-slate-100">
+{/* RIGHT COLUMN: FORM */}
+<div
+  className="
+    mt-10
+    lg:mt-40
+    lg:col-span-7
+    w-full
+    bg-white
+    p-4
+    sm:p-6
+    md:p-8
+    lg:p-10
+    rounded-3xl
+    shadow-[0_20px_50px_rgba(0,0,0,0.06)]
+    border border-slate-100
+  "
+>
+  <form
+    className="space-y-4 sm:space-y-5 lg:space-y-6"
+    onSubmit={(event) => event.preventDefault()}
+  >
 
-      <form
-        className="space-y-6"
-        onSubmit={(event) => event.preventDefault()}
-      >
+    {/* First + Last Name */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* First Name */}
+      <div className="space-y-1.5">
+        <label className="text-xs sm:text-sm font-semibold text-slate-500">
+          First name
+        </label>
 
-          {/* First Name */}
-          <div className="space-y-2">
+        <div className="relative flex items-center">
+          <span className="material-symbols-outlined absolute left-3.5 text-slate-400 text-lg">
+            person
+          </span>
 
-            <label className="text-sm font-semibold text-slate-500">
-              First name
-            </label>
-
-            <div className="relative flex items-center">
-
-              <span className="material-symbols-outlined absolute left-4 text-slate-400 text-xl">
-                person
-              </span>
-
-              <input
-                type="text"
-                placeholder="Mike"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-base text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
-              />
-
-            </div>
-
-          </div>
-
-          {/* Last Name */}
-          <div className="space-y-2">
-
-            <label className="text-sm font-semibold text-slate-500">
-              Last name
-            </label>
-
-            <div className="relative flex items-center">
-
-              <span className="material-symbols-outlined absolute left-4 text-slate-400 text-xl">
-                badge
-              </span>
-
-              <input
-                type="text"
-                placeholder="Type name"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-base text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
-              />
-
-            </div>
-
-          </div>
-
+          <input
+            type="text"
+            placeholder="Mike"
+            className="
+              w-full
+              bg-slate-50
+              border border-slate-200
+              rounded-lg sm:rounded-xl
+              py-3
+              pl-10
+              pr-3
+              text-sm sm:text-base
+              text-slate-800
+              placeholder:text-slate-400
+              focus:outline-none
+              focus:ring-2
+              focus:ring-orange-500/20
+              focus:border-orange-500
+              transition-all
+            "
+          />
         </div>
+      </div>
 
-        {/* Email */}
-        <div className="space-y-2">
+      {/* Last Name */}
+      <div className="space-y-1.5">
+        <label className="text-xs sm:text-sm font-semibold text-slate-500">
+          Last name
+        </label>
 
-          <label className="text-sm font-semibold text-slate-500">
-            Email
-          </label>
+        <div className="relative flex items-center">
+          <span className="material-symbols-outlined absolute left-3.5 text-slate-400 text-lg">
+            badge
+          </span>
 
-          <div className="relative flex items-center">
-
-            <span className="material-symbols-outlined absolute left-4 text-slate-400 text-xl">
-              mail
-            </span>
-
-            <input
-              type="email"
-              placeholder="Type email"
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-base text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all"
-            />
-
-          </div>
-
+          <input
+            type="text"
+            placeholder="Type name"
+            className="
+              w-full
+              bg-slate-50
+              border border-slate-200
+              rounded-lg sm:rounded-xl
+              py-3
+              pl-10
+              pr-3
+              text-sm sm:text-base
+              text-slate-800
+              placeholder:text-slate-400
+              focus:outline-none
+              focus:ring-2
+              focus:ring-orange-500/20
+              focus:border-orange-500
+              transition-all
+            "
+          />
         </div>
-
-        {/* Message */}
-        <div className="space-y-2">
-
-          <label className="text-sm font-semibold text-slate-500">
-            Message
-          </label>
-
-          <div className="relative">
-
-            <span className="material-symbols-outlined absolute left-4 top-4 text-slate-400 text-xl">
-              chat
-            </span>
-
-            <textarea
-              rows="5"
-              placeholder="Type message"
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-base text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all resize-none"
-            />
-
-          </div>
-
-        </div>
-
-        {/* Button */}
-        <button
-          type="submit"
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white text-base font-semibold py-4 rounded-xl transition-all shadow-md shadow-orange-500/20 active:scale-95"
-        >
-          Send Message
-        </button>
-
-      </form>
+      </div>
 
     </div>
+
+    {/* Email */}
+    <div className="space-y-1.5">
+      <label className="text-xs sm:text-sm font-semibold text-slate-500">
+        Email
+      </label>
+
+      <div className="relative flex items-center">
+        <span className="material-symbols-outlined absolute left-3.5 text-slate-400 text-lg">
+          mail
+        </span>
+
+        <input
+          type="email"
+          placeholder="Type email"
+          className="
+            w-full
+            bg-slate-50
+            border border-slate-200
+            rounded-lg sm:rounded-xl
+            py-3
+            pl-10
+            pr-3
+            text-sm sm:text-base
+            text-slate-800
+            placeholder:text-slate-400
+            focus:outline-none
+            focus:ring-2
+            focus:ring-orange-500/20
+            focus:border-orange-500
+            transition-all
+          "
+        />
+      </div>
+    </div>
+
+    {/* Message */}
+    <div className="space-y-1.5">
+      <label className="text-xs sm:text-sm font-semibold text-slate-500">
+        Message
+      </label>
+
+      <div className="relative">
+        <span className="material-symbols-outlined absolute left-3.5 top-3.5 text-slate-400 text-lg">
+          chat
+        </span>
+
+        <textarea
+          rows={3}
+          placeholder="Type message"
+          className="
+            w-full
+            bg-slate-50
+            border border-slate-200
+            rounded-lg sm:rounded-xl
+            py-3
+            pl-10
+            pr-3
+            text-sm sm:text-base
+            text-slate-800
+            placeholder:text-slate-400
+            focus:outline-none
+            focus:ring-2
+            focus:ring-orange-500/20
+            focus:border-orange-500
+            transition-all
+            resize-none
+          "
+        />
+      </div>
+    </div>
+
+    {/* Button */}
+    <button
+      type="submit"
+      className="
+        w-full
+        bg-orange-500
+        hover:bg-orange-600
+        text-white
+        text-sm sm:text-base
+        font-semibold
+        py-3
+        sm:py-4
+        rounded-lg sm:rounded-xl
+        transition-all
+        shadow-md
+        shadow-orange-500/20
+        active:scale-[0.98]
+      "
+    >
+      Send Message
+    </button>
+
+  </form>
+</div>
 
   </div>
 </div>
 
       {/* ---------------- MAP SECTION ---------------- */}
-      <section id="global-impact-map" className="w-full relative">
-        <div className="w-full h-72 relative overflow-hidden grayscale contrast-125 opacity-70">
-          <iframe
-            title="USEC Location Map"
-            className="w-full h-full border-0"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps?q=London%2C%20UK&z=12&output=embed"
-          />
-        </div>
-      </section>
+<section id="global-impact-map" className="w-full relative">
+  <div className="w-full h-96 relative overflow-hidden rounded-lg shadow-lg">
+    {/* Fully interactive iframe */}
+    <iframe
+      title="USEC Location Map - Kakuma"
+      className="w-full h-full border-0"
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps?q=Kakuma%2C%20Kenya&z=12&output=embed"
+      allowFullScreen
+    />
+  </div>
+</section>
     </div>
   );
 }

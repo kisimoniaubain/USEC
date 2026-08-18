@@ -139,7 +139,11 @@ function HomeFooter({ language, setLanguage, t, languages }) {
         },
         {
           label: "Volunteer",
-          href: "#",
+          href: "volunteer",
+        },
+        {
+          label: "Partner With us",
+          href: "partner",
         },
       ].map((item) => (
         <li key={item.label}>
