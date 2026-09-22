@@ -163,8 +163,13 @@ export default function ContactSection() {
 >
   <form
     className="space-y-4 sm:space-y-5 lg:space-y-6"
-    onSubmit={(event) => event.preventDefault()}
+    method="POST"
+    action="https://formsubmit.co/useccbo@gmail.com"
+    encType="multipart/form-data"
   >
+    <input type="hidden" name="_subject" value="New inquiry from USEC website" />
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="_template" value="table" />
 
     {/* First + Last Name */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
@@ -182,7 +187,10 @@ export default function ContactSection() {
 
           <input
             type="text"
+            name="firstName"
             placeholder="Mike"
+            required
+            autoComplete="given-name"
             className="
               w-full
               bg-slate-50
@@ -217,7 +225,10 @@ export default function ContactSection() {
 
           <input
             type="text"
+            name="lastName"
             placeholder="Type name"
+            required
+            autoComplete="family-name"
             className="
               w-full
               bg-slate-50
@@ -254,7 +265,10 @@ export default function ContactSection() {
 
         <input
           type="email"
+          name="email"
           placeholder="Type email"
+          required
+          autoComplete="email"
           className="
             w-full
             bg-slate-50
@@ -288,8 +302,10 @@ export default function ContactSection() {
         </span>
 
         <textarea
+          name="message"
           rows={3}
           placeholder="Type message"
+          required
           className="
             w-full
             bg-slate-50
