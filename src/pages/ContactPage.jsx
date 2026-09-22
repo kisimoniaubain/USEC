@@ -1,4 +1,5 @@
-﻿import React from 'react';
+﻿import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import SiteNavbar from '../components/SiteNavbar';
 import contacthero from '../assets/images/contactimo/contact-hero.jpg'
 // import { MapPin } from "lucide-react"; // Option 1: Using Lucide React Icons
@@ -19,6 +20,43 @@ const WavyBottomDivider = () => (
 );
 
 export default function ContactSection() {
+  const formRef = useRef(null);
+  const [status, setStatus] = useState({ type: 'idle', message: '' });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setStatus({
+        type: 'error',
+        message: 'EmailJS is not configured yet. Please add your service ID, template ID, and public key.',
+      });
+      return;
+    }
+
+    setStatus({ type: 'loading', message: 'Sending your message...' });
+
+    emailjs
+      .sendForm(serviceId, templateId, formRef.current, publicKey)
+      .then(() => {
+        setStatus({
+          type: 'success',
+          message: 'Your message has been sent successfully. We will get back to you soon.',
+        });
+        formRef.current.reset();
+      })
+      .catch(() => {
+        setStatus({
+          type: 'error',
+          message: 'Something went wrong. Please try again or email us directly.',
+        });
+      });
+  };
+
   return (
     <div className="w-full bg-slate-50 font-sans text-slate-700">
       <SiteNavbar activePage="contact" />
@@ -162,14 +200,12 @@ export default function ContactSection() {
   "
 >
   <form
+    ref={formRef}
+    onSubmit={handleSubmit}
     className="space-y-4 sm:space-y-5 lg:space-y-6"
-    method="POST"
-    action="https://formsubmit.co/useccbo@gmail.com"
-    encType="multipart/form-data"
   >
     <input type="hidden" name="_subject" value="New inquiry from USEC website" />
     <input type="hidden" name="_captcha" value="false" />
-    <input type="hidden" name="_template" value="table" />
 
     {/* First + Last Name */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
@@ -328,13 +364,30 @@ export default function ContactSection() {
       </div>
     </div>
 
+    {status.message && (
+      <div
+        className={`rounded-xl border px-3 py-2 text-sm ${
+          status.type === 'success'
+            ? 'border-green-200 bg-green-50 text-green-700'
+            : status.type === 'error'
+            ? 'border-red-200 bg-red-50 text-red-700'
+            : 'border-orange-200 bg-orange-50 text-orange-700'
+        }`}
+      >
+        {status.message}
+      </div>
+    )}
+
     {/* Button */}
     <button
       type="submit"
+      disabled={status.type === 'loading'}
       className="
         w-full
         bg-orange-500
         hover:bg-orange-600
+        disabled:cursor-not-allowed
+        disabled:bg-orange-300
         text-white
         text-sm sm:text-base
         font-semibold
@@ -347,7 +400,7 @@ export default function ContactSection() {
         active:scale-[0.98]
       "
     >
-      Send Message
+      {status.type === 'loading' ? 'Sending...' : 'Send Message'}
     </button>
 
   </form>
