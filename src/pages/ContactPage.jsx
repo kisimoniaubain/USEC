@@ -1,5 +1,4 @@
 ﻿import React, { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import md5 from 'blueimp-md5';
 import SiteNavbar from '../components/SiteNavbar';
 import contacthero from '../assets/images/contactimo/contact-hero.jpg'
@@ -36,38 +35,62 @@ export default function ContactSection() {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    // Get form data
+    const formData = new FormData(formRef.current);
+    const firstName = formData.get('firstName');
+    const lastName = formData.get('lastName');
+    const email = formData.get('email');
+    const message = formData.get('message');
 
-    if (!serviceId || !templateId || !publicKey) {
+    if (!firstName || !lastName || !email || !message) {
       setStatus({
         type: 'error',
-        message: 'EmailJS is not configured yet. Please add your service ID, template ID, and public key.',
+        message: 'All fields are required.',
       });
       return;
     }
 
     setStatus({ type: 'loading', message: 'Sending your message...' });
 
-    emailjs
-      .sendForm(serviceId, templateId, formRef.current, publicKey)
-      .then(() => {
-        setStatus({
-          type: 'success',
-          message: 'Your message has been sent successfully. We will get back to you soon.',
-        });
-        formRef.current.reset();
-      })
-      .catch(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          message,
+          avatarUrl,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
         setStatus({
           type: 'error',
-          message: 'Something went wrong. Please try again or email us directly.',
+          message: result.error || 'Failed to send message. Please try again.',
         });
+        return;
+      }
+
+      setStatus({
+        type: 'success',
+        message: 'Your message has been sent successfully. We will get back to you soon.',
       });
+      formRef.current.reset();
+      setAvatarUrl('');
+    } catch (error) {
+      console.error('Contact form error:', error);
+      setStatus({
+        type: 'error',
+        message: 'Something went wrong. Please try again or email us directly.',
+      });
+    }
   };
 
   return (
@@ -217,9 +240,6 @@ export default function ContactSection() {
     onSubmit={handleSubmit}
     className="space-y-4 sm:space-y-5 lg:space-y-6"
   >
-    <input type="hidden" name="_subject" value="New inquiry from USEC website" />
-    <input type="hidden" name="_captcha" value="false" />
-    <input type="hidden" name="avatarUrl" value={avatarUrl} />
 
     {/* First + Last Name */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">

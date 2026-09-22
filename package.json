@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
     "blueimp-md5": "^2.19.0",
     "lucide-react": "^1.31.0",
     "nodemailer": "^9.0.3",
