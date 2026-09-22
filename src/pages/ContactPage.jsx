@@ -1,5 +1,6 @@
 ﻿import React, { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
+import md5 from 'blueimp-md5';
 import SiteNavbar from '../components/SiteNavbar';
 import contacthero from '../assets/images/contactimo/contact-hero.jpg'
 // import { MapPin } from "lucide-react"; // Option 1: Using Lucide React Icons
@@ -22,6 +23,18 @@ const WavyBottomDivider = () => (
 export default function ContactSection() {
   const formRef = useRef(null);
   const [status, setStatus] = useState({ type: 'idle', message: '' });
+  const [avatarUrl, setAvatarUrl] = useState('');
+
+  const getGravatarUrl = (email) => {
+    if (!email) return '';
+    try {
+      const normalized = String(email).trim().toLowerCase();
+      const hash = md5(normalized);
+      return `https://www.gravatar.com/avatar/${hash}?d=identicon&s=200`;
+    } catch (e) {
+      return '';
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -206,6 +219,7 @@ export default function ContactSection() {
   >
     <input type="hidden" name="_subject" value="New inquiry from USEC website" />
     <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="avatarUrl" value={avatarUrl} />
 
     {/* First + Last Name */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
@@ -305,6 +319,7 @@ export default function ContactSection() {
           placeholder="Type email"
           required
           autoComplete="email"
+          onChange={(e) => setAvatarUrl(getGravatarUrl(e.target.value))}
           className="
             w-full
             bg-slate-50
