@@ -25,9 +25,9 @@ export default async function handler(req, res) {
   // Get EmailJS credentials from environment (non-VITE, server-only)
   const serviceId = process.env.EMAILJS_SERVICE_ID;
   const templateId = process.env.EMAILJS_TEMPLATE_ID;
-  const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+  const privateKey = process.env.EMAILJS_PRIVATE_KEY;
 
-  if (!serviceId || !templateId || !publicKey) {
+  if (!serviceId || !templateId || !privateKey) {
     console.error('EmailJS credentials not configured');
     return res.status(500).json({
       error: 'Email service is not configured on the server',
@@ -39,7 +39,7 @@ export default async function handler(req, res) {
     const emailJsPayload = {
       service_id: serviceId,
       template_id: templateId,
-      user_id: publicKey,
+      user_id: privateKey,
       template_params: {
         firstName,
         lastName,
