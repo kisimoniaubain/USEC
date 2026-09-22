@@ -1,464 +1,291 @@
 ﻿import React, { useRef, useState } from 'react';
 import md5 from 'blueimp-md5';
 import SiteNavbar from '../components/SiteNavbar';
-import contacthero from '../assets/images/contactimo/contact-hero.jpg'
-// import { MapPin } from "lucide-react"; // Option 1: Using Lucide React Icons
+import contacthero from '../assets/images/contactimo/contact-hero.jpg';
 
-
-// Curved organic wave SVG for hero bottom section
-const WavyBottomDivider = () => (
-  <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none z-0">
-    <svg
-      viewBox="0 0 1200 120"
-      preserveAspectRatio="none"
-      className="relative block w-full h-16 md:h-24 text-slate-50"
-      fill="currentColor"
-    >
-      <path d="M0,0 C150,90 350,-40 500,65 C650,160 900,10 1200,45 L1200,120 L0,120 Z"></path>
-    </svg>
-  </div>
-);
-
-export default function ContactSection() {
+const ContactPage = () => {
   const formRef = useRef(null);
-  const [status, setStatus] = useState({ type: 'idle', message: '' });
-  const [avatarUrl, setAvatarUrl] = useState('');
 
-  const getGravatarUrl = (email) => {
-    if (!email) return '';
-    try {
-      const normalized = String(email).trim().toLowerCase();
-      const hash = md5(normalized);
-      return `https://www.gravatar.com/avatar/${hash}?d=identicon&s=200`;
-    } catch (e) {
-      return '';
-    }
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  const [status, setStatus] = useState({
+    type: '',
+    message: '',
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Get form data
-    const formData = new FormData(formRef.current);
-    const firstName = formData.get('firstName');
-    const lastName = formData.get('lastName');
-    const email = formData.get('email');
-    const message = formData.get('message');
-
-    if (!firstName || !lastName || !email || !message) {
-      setStatus({
-        type: 'error',
-        message: 'All fields are required.',
-      });
-      return;
-    }
-
-    setStatus({ type: 'loading', message: 'Sending your message...' });
+    setIsSubmitting(true);
+    setStatus({
+      type: '',
+      message: '',
+    });
 
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          message,
-          avatarUrl,
-        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
 
-      const result = await response.json();
+      const data = await response.json();
 
       if (!response.ok) {
-        setStatus({
-          type: 'error',
-          message: result.error || 'Failed to send message. Please try again.',
-        });
-        return;
+        throw new Error(data.message || 'Failed to send your message.');
       }
 
       setStatus({
         type: 'success',
-        message: 'Your message has been sent successfully. We will get back to you soon.',
+        message:
+          "Thank you for contacting USEC! We'll get back to you as soon as possible.",
       });
-      formRef.current.reset();
-      setAvatarUrl('');
+
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+
+      formRef.current?.reset();
     } catch (error) {
-      console.error('Contact form error:', error);
       setStatus({
         type: 'error',
-        message: 'Something went wrong. Please try again or email us directly.',
+        message:
+          error.message ||
+          'Something went wrong. Please try again later.',
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+  const emailHash = formData.email
+    ? md5(formData.email.trim().toLowerCase())
+    : '';
+
+  const gravatarUrl = emailHash
+    ? `https://www.gravatar.com/avatar/${emailHash}?d=mp&s=160`
+    : 'https://www.gravatar.com/avatar/?d=mp&s=160';
+
   return (
-    <div className="w-full bg-slate-50 font-sans text-slate-700">
-      <SiteNavbar activePage="contact" />
-      {/* ---------------- HERO / HEADER SECTION ---------------- */}
-      {/* =========================================================
-    CONTACT US HERO
-========================================================= */}
-<section className="relative h-[70vh] min-h-[600px] flex items-end overflow-hidden">
+    <div className="min-h-screen bg-[#F8F3E8] text-[#0B1F3A]">
+      <SiteNavbar />
 
-  {/* BACKGROUND IMAGE */}
-  <div className="absolute inset-0 bg-deep-navy">
-    <img
-      src={contacthero}
-      alt="Contact USEC"
-      className="w-full h-full object-cover object-[center_15%] opacity-60"
-    />
-
-    {/* DARK OVERLAY */}
-    <div className="absolute inset-0 bg-black/55"></div>
-
-  </div>
-
-
-  {/* CONTENT */}
-  <div className="relative z-10 w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-20 md:pb-24 text-white">
-
-    {/* MAIN TITLE */}
-    <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg max-w-4xl mb-8 border-l-[43px] border-vibrant-orange pl-[30px] leading-tight">
-      Contact Us
-    </h1>
-
-
-    {/* SUBTITLE */}
-    <span className="block font-display-lg font-bold text-2xl md:text-3xl lg:text-4xl text-white leading-tight mb-4 max-w-3xl">
-      Let's Connect and Make a Difference Together
-    </span>
-
-
-    {/* DESCRIPTION */}
-    <p className="font-body-lg text-body-lg max-w-2xl text-white/90 leading-relaxed">
-      Whether you want to partner with us, volunteer, support our work,
-      or simply learn more about our humanitarian and environmental
-      initiatives, our team is ready to hear from you.
-    </p>
-
-  </div>
-
-
-  {/* WAVY BOTTOM DIVIDER */}
-  <WavyBottomDivider />
-
-</section>
-
-{/* ---------------- MAIN CONTENT SECTION ---------------- */}
-<div className="max-w-6xl mx-auto px-6 -mt-20 relative z-20 pb-24">
-  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-
-    {/* LEFT COLUMN: Contact Details */}
-    <div className="mt-40 lg:col-span-5 space-y-10 pt-4 md:pt-8">
-
-      <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg text-deep-navy mt-3">
-        Get in Touch
-      </h2>
-
-      {/* Phone */}
-      <div>
-        <h3 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2">
-          Phone
-        </h3>
-        <a
-          href="tel:+15550123456"
-          className="text-lg font-semibold text-slate-700 hover:text-orange-500 transition"
-        >
-          +254 711 881 346
-        </a>
-      </div>
-
-{/* Email */}
-<div>
-
-  <h3 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-2">
-    Email
-  </h3>
-
-  <div className="space-y-2 text-lg font-medium">
-
-    <p>
-    <a
-      href="https://mail.google.com/mail/?view=cm&fs=1&to=useccbo@gmail.com&su=Inquiry%20from%20USEC%20Website"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-orange-500 hover:underline"
-    >
-      useccbo@gmail.com
-    </a>
-    </p>
-
-    <p>
-      <a
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=abedikabulo.salvador@gmail.com&su=Inquiry%20from%20USEC%20Website"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-orange-500 hover:underline"
-      >
-        abedikabulo.salvador@gmail.com
-      </a>
-    </p>
-
-    <p>
-      <a
-        href="https://mail.google.com/mail/?view=cm&fs=1&to=robertamuri7@gmail.com&su=Inquiry%20from%20USEC%20Website"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-orange-500 hover:underline"
-      >
-        robertamuri7@gmail.com
-      </a>
-    </p>
-
-  </div>
-
-</div>
-
-    </div>
-
-{/* RIGHT COLUMN: FORM */}
-<div
-  className="
-    mt-10
-    lg:mt-40
-    lg:col-span-7
-    w-full
-    bg-white
-    p-4
-    sm:p-6
-    md:p-8
-    lg:p-10
-    rounded-3xl
-    shadow-[0_20px_50px_rgba(0,0,0,0.06)]
-    border border-slate-100
-  "
->
-  <form
-    ref={formRef}
-    onSubmit={handleSubmit}
-    className="space-y-4 sm:space-y-5 lg:space-y-6"
-  >
-
-    {/* First + Last Name */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
-
-      {/* First Name */}
-      <div className="space-y-1.5">
-        <label className="text-xs sm:text-sm font-semibold text-slate-500">
-          First name
-        </label>
-
-        <div className="relative flex items-center">
-          <span className="material-symbols-outlined absolute left-3.5 text-slate-400 text-lg">
-            person
-          </span>
-
-          <input
-            type="text"
-            name="firstName"
-            placeholder="Mike"
-            required
-            autoComplete="given-name"
-            className="
-              w-full
-              bg-slate-50
-              border border-slate-200
-              rounded-lg sm:rounded-xl
-              py-3
-              pl-10
-              pr-3
-              text-sm sm:text-base
-              text-slate-800
-              placeholder:text-slate-400
-              focus:outline-none
-              focus:ring-2
-              focus:ring-orange-500/20
-              focus:border-orange-500
-              transition-all
-            "
-          />
-        </div>
-      </div>
-
-      {/* Last Name */}
-      <div className="space-y-1.5">
-        <label className="text-xs sm:text-sm font-semibold text-slate-500">
-          Last name
-        </label>
-
-        <div className="relative flex items-center">
-          <span className="material-symbols-outlined absolute left-3.5 text-slate-400 text-lg">
-            badge
-          </span>
-
-          <input
-            type="text"
-            name="lastName"
-            placeholder="Type name"
-            required
-            autoComplete="family-name"
-            className="
-              w-full
-              bg-slate-50
-              border border-slate-200
-              rounded-lg sm:rounded-xl
-              py-3
-              pl-10
-              pr-3
-              text-sm sm:text-base
-              text-slate-800
-              placeholder:text-slate-400
-              focus:outline-none
-              focus:ring-2
-              focus:ring-orange-500/20
-              focus:border-orange-500
-              transition-all
-            "
-          />
-        </div>
-      </div>
-
-    </div>
-
-    {/* Email */}
-    <div className="space-y-1.5">
-      <label className="text-xs sm:text-sm font-semibold text-slate-500">
-        Email
-      </label>
-
-      <div className="relative flex items-center">
-        <span className="material-symbols-outlined absolute left-3.5 text-slate-400 text-lg">
-          mail
-        </span>
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Type email"
-          required
-          autoComplete="email"
-          onChange={(e) => setAvatarUrl(getGravatarUrl(e.target.value))}
-          className="
-            w-full
-            bg-slate-50
-            border border-slate-200
-            rounded-lg sm:rounded-xl
-            py-3
-            pl-10
-            pr-3
-            text-sm sm:text-base
-            text-slate-800
-            placeholder:text-slate-400
-            focus:outline-none
-            focus:ring-2
-            focus:ring-orange-500/20
-            focus:border-orange-500
-            transition-all
-          "
+      <section className="relative h-[420px] overflow-hidden">
+        <img
+          src={contacthero}
+          alt="Contact USEC"
+          className="h-full w-full object-cover"
         />
-      </div>
-    </div>
 
-    {/* Message */}
-    <div className="space-y-1.5">
-      <label className="text-xs sm:text-sm font-semibold text-slate-500">
-        Message
-      </label>
+        <div className="absolute inset-0 bg-[#0B1F3A]/65" />
 
-      <div className="relative">
-        <span className="material-symbols-outlined absolute left-3.5 top-3.5 text-slate-400 text-lg">
-          chat
-        </span>
+        <div className="absolute inset-0 flex items-center justify-center px-6 text-center">
+          <div>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-[#F7941D]">
+              Get In Touch
+            </p>
 
-        <textarea
-          name="message"
-          rows={3}
-          placeholder="Type message"
-          required
-          className="
-            w-full
-            bg-slate-50
-            border border-slate-200
-            rounded-lg sm:rounded-xl
-            py-3
-            pl-10
-            pr-3
-            text-sm sm:text-base
-            text-slate-800
-            placeholder:text-slate-400
-            focus:outline-none
-            focus:ring-2
-            focus:ring-orange-500/20
-            focus:border-orange-500
-            transition-all
-            resize-none
-          "
-        />
-      </div>
-    </div>
+            <h1 className="text-4xl font-bold text-white md:text-6xl">
+              Contact Us
+            </h1>
 
-    {status.message && (
-      <div
-        className={`rounded-xl border px-3 py-2 text-sm ${
-          status.type === 'success'
-            ? 'border-green-200 bg-green-50 text-green-700'
-            : status.type === 'error'
-            ? 'border-red-200 bg-red-50 text-red-700'
-            : 'border-orange-200 bg-orange-50 text-orange-700'
-        }`}
-      >
-        {status.message}
-      </div>
-    )}
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/90 md:text-lg">
+              Have a question, idea, partnership opportunity, or want to learn
+              more about our work? We would love to hear from you.
+            </p>
+          </div>
+        </div>
+      </section>
 
-    {/* Button */}
-    <button
-      type="submit"
-      disabled={status.type === 'loading'}
-      className="
-        w-full
-        bg-orange-500
-        hover:bg-orange-600
-        disabled:cursor-not-allowed
-        disabled:bg-orange-300
-        text-white
-        text-sm sm:text-base
-        font-semibold
-        py-3
-        sm:py-4
-        rounded-lg sm:rounded-xl
-        transition-all
-        shadow-md
-        shadow-orange-500/20
-        active:scale-[0.98]
-      "
-    >
-      {status.type === 'loading' ? 'Sending...' : 'Send Message'}
-    </button>
+      <section className="px-6 py-16 md:px-10 lg:px-20">
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+          <div>
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#F7941D]">
+              Reach Out
+            </p>
 
-  </form>
-</div>
+            <h2 className="text-3xl font-bold md:text-4xl">
+              Let&apos;s Start a Conversation
+            </h2>
 
-  </div>
-</div>
+            <p className="mt-5 leading-8 text-[#4B5563]">
+              Whether you are interested in volunteering, partnering with
+              USEC, supporting our community projects, or simply learning more
+              about our activities, send us a message.
+            </p>
 
-      {/* ---------------- MAP SECTION ---------------- */}
-<section id="global-impact-map" className="w-full relative">
-  <div className="w-full h-96 relative overflow-hidden rounded-lg shadow-lg">
-    {/* Fully interactive iframe */}
-    <iframe
-      title="USEC Location Map - Kakuma"
-      className="w-full h-full border-0"
-      loading="lazy"
-      referrerPolicy="no-referrer-when-downgrade"
-      src="https://www.google.com/maps?q=Kakuma%2C%20Kenya&z=12&output=embed"
-      allowFullScreen
-    />
-  </div>
-</section>
+            <div className="mt-8 flex items-center gap-4">
+              <img
+                src={gravatarUrl}
+                alt="Contact profile"
+                className="h-16 w-16 rounded-full object-cover"
+              />
+
+              <div>
+                <p className="font-semibold text-[#0B1F3A]">
+                  United Safe Environment Creators
+                </p>
+
+                <p className="text-sm text-[#6B7280]">
+                  Kakuma, Turkana County, Kenya
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 space-y-5">
+              <div>
+                <h3 className="font-semibold">Email</h3>
+                <p className="mt-1 text-[#6B7280]">useccbo@gmail.com</p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold">Location</h3>
+                <p className="mt-1 text-[#6B7280]">
+                  Kakuma Refugee Camp, Turkana County, Kenya
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-[#E5DED1] bg-white p-6 shadow-sm md:p-8">
+            <h2 className="text-2xl font-bold">Send Us a Message</h2>
+
+            <p className="mt-2 text-sm text-[#6B7280]">
+              Fill in the form below and we&apos;ll receive your message
+              directly.
+            </p>
+
+            {status.message && (
+              <div
+                className={`mt-6 rounded-lg border p-4 text-sm ${
+                  status.type === 'success'
+                    ? 'border-green-200 bg-green-50 text-green-700'
+                    : 'border-red-200 bg-red-50 text-red-700'
+                }`}
+              >
+                {status.message}
+              </div>
+            )}
+
+            <form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              className="mt-6 space-y-5"
+            >
+              <div>
+                <label
+                  htmlFor="name"
+                  className="mb-2 block text-sm font-medium"
+                >
+                  Name
+                </label>
+
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full rounded-lg border border-[#D9D2C5] px-4 py-3 outline-none transition focus:border-[#F7941D]"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  className="mb-2 block text-sm font-medium"
+                >
+                  Email
+                </label>
+
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full rounded-lg border border-[#D9D2C5] px-4 py-3 outline-none transition focus:border-[#F7941D]"
+                  placeholder="you@example.com"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="subject"
+                  className="mb-2 block text-sm font-medium"
+                >
+                  Subject
+                </label>
+
+                <input
+                  id="subject"
+                  name="subject"
+                  type="text"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  required
+                  className="w-full rounded-lg border border-[#D9D2C5] px-4 py-3 outline-none transition focus:border-[#F7941D]"
+                  placeholder="How can we help?"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  className="mb-2 block text-sm font-medium"
+                >
+                  Message
+                </label>
+
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows="6"
+                  className="w-full resize-none rounded-lg border border-[#D9D2C5] px-4 py-3 outline-none transition focus:border-[#F7941D]"
+                  placeholder="Write your message..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full rounded-lg bg-[#F7941D] px-6 py-3 font-semibold text-white transition hover:bg-[#E7830C] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
     </div>
   );
-}
-// export default ContactPage
+};
+
+export default ContactPage;
