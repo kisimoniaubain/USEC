@@ -1,4 +1,4 @@
-﻿import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import md5 from 'blueimp-md5';
 import SiteNavbar from '../components/SiteNavbar';
 import contacthero from '../assets/images/contactimo/contact-hero.jpg';
@@ -50,7 +50,9 @@ const ContactPage = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to send your message.');
+        throw new Error(
+          data.error || data.message || 'Failed to send your message.'
+        );
       }
 
       setStatus({
@@ -91,6 +93,7 @@ const ContactPage = () => {
     <div className="min-h-screen bg-[#F8F3E8] text-[#0B1F3A]">
       <SiteNavbar />
 
+      {/* HERO */}
       <section className="relative h-[420px] overflow-hidden">
         <img
           src={contacthero}
@@ -118,8 +121,11 @@ const ContactPage = () => {
         </div>
       </section>
 
+      {/* MAIN CONTENT */}
       <section className="px-6 py-16 md:px-10 lg:px-20">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+          
+          {/* CONTACT INFORMATION */}
           <div>
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#F7941D]">
               Reach Out
@@ -156,11 +162,29 @@ const ContactPage = () => {
             <div className="mt-10 space-y-5">
               <div>
                 <h3 className="font-semibold">Email</h3>
-                <p className="mt-1 text-[#6B7280]">useccbo@gmail.com</p>
+
+                <a
+                  href="mailto:useccbo@gmail.com"
+                  className="mt-1 inline-block text-[#F7941D] hover:underline"
+                >
+                  useccbo@gmail.com
+                </a>
+              </div>
+
+              <div>
+                <h3 className="font-semibold">Phone</h3>
+
+                <a
+                  href="tel:+254711881346"
+                  className="mt-1 inline-block text-[#6B7280] hover:text-[#F7941D]"
+                >
+                  +254 711 881 346
+                </a>
               </div>
 
               <div>
                 <h3 className="font-semibold">Location</h3>
+
                 <p className="mt-1 text-[#6B7280]">
                   Kakuma Refugee Camp, Turkana County, Kenya
                 </p>
@@ -168,14 +192,18 @@ const ContactPage = () => {
             </div>
           </div>
 
+          {/* CONTACT FORM */}
           <div className="rounded-2xl border border-[#E5DED1] bg-white p-6 shadow-sm md:p-8">
-            <h2 className="text-2xl font-bold">Send Us a Message</h2>
+            <h2 className="text-2xl font-bold">
+              Send Us a Message
+            </h2>
 
             <p className="mt-2 text-sm text-[#6B7280]">
               Fill in the form below and we&apos;ll receive your message
               directly.
             </p>
 
+            {/* STATUS MESSAGE */}
             {status.message && (
               <div
                 className={`mt-6 rounded-lg border p-4 text-sm ${
@@ -193,6 +221,7 @@ const ContactPage = () => {
               onSubmit={handleSubmit}
               className="mt-6 space-y-5"
             >
+              {/* NAME */}
               <div>
                 <label
                   htmlFor="name"
@@ -208,11 +237,13 @@ const ContactPage = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  autoComplete="name"
                   className="w-full rounded-lg border border-[#D9D2C5] px-4 py-3 outline-none transition focus:border-[#F7941D]"
                   placeholder="Your name"
                 />
               </div>
 
+              {/* EMAIL */}
               <div>
                 <label
                   htmlFor="email"
@@ -228,11 +259,13 @@ const ContactPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  autoComplete="email"
                   className="w-full rounded-lg border border-[#D9D2C5] px-4 py-3 outline-none transition focus:border-[#F7941D]"
                   placeholder="you@example.com"
                 />
               </div>
 
+              {/* SUBJECT */}
               <div>
                 <label
                   htmlFor="subject"
@@ -253,6 +286,7 @@ const ContactPage = () => {
                 />
               </div>
 
+              {/* MESSAGE */}
               <div>
                 <label
                   htmlFor="message"
@@ -273,6 +307,7 @@ const ContactPage = () => {
                 />
               </div>
 
+              {/* SUBMIT */}
               <button
                 type="submit"
                 disabled={isSubmitting}
