@@ -1,6 +1,7 @@
 import https from 'https';
 
-const RECIPIENT_EMAIL = 'useccbo@gmail.com';
+const getEmailJsPublicKey = () => process.env.EMAILJS_PUBLIC_KEY || process.env.EMAILJS_USER_ID;
+const getEmailJsPrivateKey = () => process.env.EMAILJS_PRIVATE_KEY;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -25,9 +26,10 @@ export default async function handler(req, res) {
   // Get EmailJS credentials from environment (non-VITE, server-only)
   const serviceId = process.env.EMAILJS_SERVICE_ID;
   const templateId = process.env.EMAILJS_TEMPLATE_ID;
-  const privateKey = process.env.EMAILJS_PRIVATE_KEY;
+  const publicKey = getEmailJsPublicKey();
+  const privateKey = getEmailJsPrivateKey();
 
-  if (!serviceId || !templateId || !privateKey) {
+  if (!serviceId || !templateId || !publicKey || !privateKey) {
     console.error('EmailJS credentials not configured');
     return res.status(500).json({
       error: 'Email service is not configured on the server',
@@ -39,7 +41,8 @@ export default async function handler(req, res) {
     const emailJsPayload = {
       service_id: serviceId,
       template_id: templateId,
-      user_id: privateKey,
+      user_id: publicKey,
+      accessToken: privateKey,
       template_params: {
         firstName,
         lastName,
@@ -57,9 +60,10 @@ export default async function handler(req, res) {
       message: 'Email sent successfully',
     });
   } catch (error) {
-    console.error('Contact form email error:', error);
+    const errorMessage = error?.message || 'Unknown error';
+    console.error('Contact form email error:', errorMessage);
     return res.status(500).json({
-      error: 'Failed to send email: ' + (error.message || 'Unknown error'),
+      error: `Failed to send email: ${errorMessage}`,
     });
   }
 }
@@ -79,7 +83,7 @@ function sendEmailViaEmailJS(payload) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Content-Length': postData.length,
+        'Content-Length': Buffer.byteLength(postData),
       },
     };
 
@@ -94,7 +98,8 @@ function sendEmailViaEmailJS(payload) {
         if (res.statusCode === 200 || res.statusCode === 201) {
           resolve({ ok: true, status: res.statusCode });
         } else {
-          reject(new Error(`EmailJS API returned ${res.statusCode}: ${data}`));
+          const detail = data || `HTTP ${res.statusCode}`;
+          reject(new Error(`EmailJS API returned ${res.statusCode}: ${detail}`));
         }
       });
     });

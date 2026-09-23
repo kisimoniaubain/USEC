@@ -17,18 +17,15 @@ If you are developing a production application, we recommend using TypeScript wi
 
 ## EmailJS Configuration & Security
 
-This project uses EmailJS for client-side email sending. The public key is intentionally exposed to the browser using Vite env vars with the `VITE_` prefix so the `@emailjs/browser` SDK can authenticate from the client.
+This project sends contact emails through a server-side Vercel API route, so the EmailJS key is kept off the browser.
 
-- If you keep the client-side flow (`VITE_EMAILJS_PUBLIC_KEY`):
-	- Monitor EmailJS dashboard > Logs for usage and errors.
-	- Add usage alerts in EmailJS (if available) or periodically review logs to detect abuse.
-	- Consider rate-limiting submissions on the client (simple debounce) and server-side (if you add a proxy).
-	- Rotate the public key if you detect suspicious activity and update the Vercel env var.
+- Add these values in Vercel under Project → Settings → Environment Variables:
+  - `EMAILJS_SERVICE_ID`
+  - `EMAILJS_TEMPLATE_ID`
+  - `EMAILJS_PUBLIC_KEY`
+- Use the EmailJS Public Key value from your EmailJS account, not the private key.
+- Trigger a redeploy after adding or changing any environment variables.
 
-- If you need stricter secrecy, move sending to a server-side endpoint (non-`VITE_` env var) so the key is not bundled into the client.
-
-Vercel notes:
-- Add `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID`, and `VITE_EMAILJS_PUBLIC_KEY` under Project → Settings → Environment Variables.
-- Trigger a redeploy after adding/updating environment variables.
-
-Contact/Rotation: track who has access to the Vercel project and rotate keys when team membership changes.
+Why this matters:
+- The EmailJS API expects the public key in the `user_id` field.
+- Using a private key or an incorrect value will return the "Public Key is invalid" error you saw.
