@@ -3,9 +3,6 @@ import https from 'https';
 const getEmailJsPublicKey = () =>
   process.env.EMAILJS_PUBLIC_KEY || process.env.EMAILJS_USER_ID;
 
-const getEmailJsPrivateKey = () =>
-  process.env.EMAILJS_PRIVATE_KEY;
-
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -36,26 +33,26 @@ export default async function handler(req, res) {
       });
     }
 
+    // IMPORTANT:
+    // Newsletter uses its own EmailJS service.
+    // Contact Us continues using EMAILJS_SERVICE_ID
+    // in api/contact.js.
     const serviceId =
-  process.env.EMAILJS_SUBSCRIBE_SERVICE_ID;
+      process.env.EMAILJS_SUBSCRIBE_SERVICE_ID;
+
     const templateId =
       process.env.EMAILJS_SUBSCRIBE_TEMPLATE_ID;
+
     const publicKey = getEmailJsPublicKey();
-    const privateKey = getEmailJsPrivateKey();
 
-console.log('NEWSLETTER CONFIG:', {
-  serviceId,
-  templateId,
-  publicKey,
-  privateKeyPresent: !!privateKey,
-});
+    console.log('NEWSLETTER CONFIG:', {
+      serviceId,
+      templateId,
+      publicKey,
+      publicKeyPresent: !!publicKey,
+    });
 
-    if (
-      !serviceId ||
-      !templateId ||
-      !publicKey ||
-      !privateKey
-    ) {
+    if (!serviceId || !templateId || !publicKey) {
       console.error(
         'EmailJS subscription credentials are missing.'
       );
@@ -69,10 +66,9 @@ console.log('NEWSLETTER CONFIG:', {
       service_id: serviceId,
       template_id: templateId,
       user_id: publicKey,
-      accessToken: privateKey,
 
       template_params: {
-        subscriberEmail: subscriberEmail,
+        subscriberEmail,
         time: new Date().toLocaleString(),
       },
     };
