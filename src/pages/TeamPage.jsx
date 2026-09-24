@@ -18,7 +18,7 @@ const leadership = [
   {
     role: 'Program coordinator',
     name: <>Gisma Abass<br />Kocho</>,
-    bio: 'Tiba coordinates field implementation across education, protection, and livelihood activities, ensuring day-to-day program delivery stays aligned with community priorities.',
+    bio: 'Gisma Abass coordinates field implementation across education, protection, and livelihood activities, ensuring day-to-day program delivery stays aligned with community priorities.',
     image: '/images/Gisma.png',
     iconA: 'link',
     iconB: 'mail',

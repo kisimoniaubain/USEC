@@ -36,7 +36,8 @@ export default async function handler(req, res) {
       });
     }
 
-    const serviceId = process.env.EMAILJS_SERVICE_ID;
+    const serviceId =
+  process.env.EMAILJS_SUBSCRIBE_SERVICE_ID;
     const templateId =
       process.env.EMAILJS_SUBSCRIBE_TEMPLATE_ID;
     const publicKey = getEmailJsPublicKey();
