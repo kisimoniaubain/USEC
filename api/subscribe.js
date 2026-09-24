@@ -43,12 +43,12 @@ export default async function handler(req, res) {
     const publicKey = getEmailJsPublicKey();
     const privateKey = getEmailJsPrivateKey();
 
-    console.log('EmailJS configuration:', {
-      serviceId: !!serviceId,
-      templateId: !!templateId,
-      publicKey: !!publicKey,
-      privateKey: !!privateKey,
-    });
+console.log('NEWSLETTER CONFIG:', {
+  serviceId,
+  templateId,
+  publicKey,
+  privateKeyPresent: !!privateKey,
+});
 
     if (
       !serviceId ||
