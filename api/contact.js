@@ -1,77 +1,129 @@
 import https from 'https';
 
-const getEmailJsPublicKey = () => process.env.EMAILJS_PUBLIC_KEY || process.env.EMAILJS_USER_ID;
-const getEmailJsPrivateKey = () => process.env.EMAILJS_PRIVATE_KEY;
+const getEmailJsPublicKey = () =>
+  process.env.EMAILJS_PUBLIC_KEY || process.env.EMAILJS_USER_ID;
+
+const getEmailJsPrivateKey = () =>
+  process.env.EMAILJS_PRIVATE_KEY;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  const { firstName, lastName, email, message, avatarUrl } = req.body || {};
-
-  // Validate all required fields
-  if (!firstName || !lastName || !email || !message) {
-    return res.status(400).json({
-      error: 'Missing required fields: firstName, lastName, email, message',
-    });
-  }
-
-  // Validate email format
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return res.status(400).json({ error: 'Invalid email format' });
-  }
-
-  // Get EmailJS credentials from environment (non-VITE, server-only)
-  const serviceId = process.env.EMAILJS_SERVICE_ID;
-  const templateId = process.env.EMAILJS_TEMPLATE_ID;
-  const publicKey = getEmailJsPublicKey();
-  const privateKey = getEmailJsPrivateKey();
-
-  if (!serviceId || !templateId || !publicKey || !privateKey) {
-    console.error('EmailJS credentials not configured');
-    return res.status(500).json({
-      error: 'Email service is not configured on the server',
+    return res.status(405).json({
+      error: 'Method not allowed',
     });
   }
 
   try {
-    // Call EmailJS API server-side (sends parameter-based template)
+    const body = req.body || {};
+
+    console.log('Contact form received:', body);
+
+    // Accept the exact field names from the form
+    const firstName = String(
+      body.firstName || body.first_name || ''
+    ).trim();
+
+    const lastName = String(
+      body.lastName || body.last_name || ''
+    ).trim();
+
+    const email = String(
+      body.email || body.emailAddress || ''
+    ).trim();
+
+    const message = String(
+      body.message || body.text || body.content || ''
+    ).trim();
+
+    const avatarUrl = String(
+      body.avatarUrl || ''
+    ).trim();
+
+    // Validate required fields
+    if (!firstName || !lastName || !email || !message) {
+      console.error('Missing contact form fields:', {
+        firstName: !!firstName,
+        lastName: !!lastName,
+        email: !!email,
+        message: !!message,
+        receivedBody: body,
+      });
+
+      return res.status(400).json({
+        error: 'Missing required fields: firstName, lastName, email, message',
+        received: {
+          firstName: !!firstName,
+          lastName: !!lastName,
+          email: !!email,
+          message: !!message,
+        },
+      });
+    }
+
+    // Validate email
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return res.status(400).json({
+        error: 'Invalid email format',
+      });
+    }
+
+    // EmailJS configuration
+    const serviceId = process.env.EMAILJS_SERVICE_ID;
+    const templateId = process.env.EMAILJS_TEMPLATE_ID;
+    const publicKey = getEmailJsPublicKey();
+    const privateKey = getEmailJsPrivateKey();
+
+    if (!serviceId || !templateId || !publicKey || !privateKey) {
+      console.error('EmailJS credentials not configured:', {
+        serviceId: !!serviceId,
+        templateId: !!templateId,
+        publicKey: !!publicKey,
+        privateKey: !!privateKey,
+      });
+
+      return res.status(500).json({
+        error: 'Email service is not configured on the server',
+      });
+    }
+
     const emailJsPayload = {
       service_id: serviceId,
       template_id: templateId,
       user_id: publicKey,
       accessToken: privateKey,
+
       template_params: {
         firstName,
         lastName,
         email,
         message,
-        avatarUrl: avatarUrl || '',
+        avatarUrl,
         time: new Date().toLocaleString(),
       },
     };
 
+    console.log('Sending email through EmailJS...');
+
     await sendEmailViaEmailJS(emailJsPayload);
+
+    console.log('Email sent successfully');
 
     return res.status(200).json({
       ok: true,
       message: 'Email sent successfully',
     });
   } catch (error) {
-    const errorMessage = error?.message || 'Unknown error';
-    console.error('Contact form email error:', errorMessage);
+    console.error('Contact form email error:', error);
+
     return res.status(500).json({
-      error: `Failed to send email: ${errorMessage}`,
+      error: `Failed to send email: ${
+        error?.message || 'Unknown error'
+      }`,
     });
   }
 }
 
-/**
- * Send email via EmailJS API (server-to-server)
- * Docs: https://www.emailjs.com/docs/sdk/send/
- */
 function sendEmailViaEmailJS(payload) {
   return new Promise((resolve, reject) => {
     const postData = JSON.stringify(payload);
@@ -81,34 +133,49 @@ function sendEmailViaEmailJS(payload) {
       port: 443,
       path: '/api/v1.0/email/send',
       method: 'POST',
+
       headers: {
         'Content-Type': 'application/json',
         'Content-Length': Buffer.byteLength(postData),
       },
     };
 
-    const req = https.request(options, (res) => {
+    const request = https.request(options, (response) => {
       let data = '';
 
-      res.on('data', (chunk) => {
+      response.on('data', (chunk) => {
         data += chunk;
       });
 
-      res.on('end', () => {
-        if (res.statusCode === 200 || res.statusCode === 201) {
-          resolve({ ok: true, status: res.statusCode });
+      response.on('end', () => {
+        console.log('EmailJS response:', {
+          status: response.statusCode,
+          body: data,
+        });
+
+        if (
+          response.statusCode >= 200 &&
+          response.statusCode < 300
+        ) {
+          resolve({
+            ok: true,
+            status: response.statusCode,
+          });
         } else {
-          const detail = data || `HTTP ${res.statusCode}`;
-          reject(new Error(`EmailJS API returned ${res.statusCode}: ${detail}`));
+          reject(
+            new Error(
+              `EmailJS API returned ${response.statusCode}: ${data}`
+            )
+          );
         }
       });
     });
 
-    req.on('error', (error) => {
+    request.on('error', (error) => {
       reject(error);
     });
 
-    req.write(postData);
-    req.end();
+    request.write(postData);
+    request.end();
   });
 }

@@ -820,7 +820,7 @@ const handleNext = () => {
               <div className="px-2">
 
                 <p className="line-clamp-3 font-body-md text-body-md text-on-surface-variant">
-                  Tiba coordinates field implementation across education,
+                  Gisma Abass Kocho coordinates field implementation across education,
                   protection, and livelihood activities.
                 </p>
 

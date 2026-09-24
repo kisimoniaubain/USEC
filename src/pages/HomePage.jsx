@@ -56,55 +56,68 @@ const partnerLogos = [
 function HomePage() {
   const { t } = useContext(TranslationContext)
   useWhoWeAreReveal()
+
+  // 1. ALL HOOKS MUST BE DECLARED HERE AT THE TOP LEVEL OF THE COMPONENT
   const [activeSlide, setActiveSlide] = useState(0)
   const [activePartner, setActivePartner] = useState(0)
   const [partnerSidePad, setPartnerSidePad] = useState(0)
-  const [subscribeStatus, setSubscribeStatus] = useState('idle')
+  
+  // Subscription state
+  const [subscriberEmail, setSubscriberEmail] = useState('')
+  const [subscribeStatus, setSubscribeStatus] = useState('idle') // 'idle' | 'loading' | 'success' | 'error'
   const [subscribeMessage, setSubscribeMessage] = useState('')
+
   const partnersTrackRef = useRef(null)
 
-const handleSubscribeSubmit = async (event) => {
-  event.preventDefault()
+  // 2. HANDLER FUNCTIONS BELONG HERE IN THE BODY, NOT INSIDE USEEFFECT
+  const handleSubscribeSubmit = async (event) => {
+    event.preventDefault()
 
-  const formData = new FormData(event.currentTarget)
-  const email = String(formData.get('subscriberEmail') || '').trim()
+    if (subscribeStatus === 'loading') return
 
-  if (!email) return
-
-  try {
     setSubscribeStatus('loading')
-    setSubscribeMessage('Sending your subscription...')
+    setSubscribeMessage('')
 
-    const response = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email }),
-    })
+    try {
+      const email = subscriberEmail.trim()
 
-    const payload = await response.json().catch(() => ({}))
+      if (!email) {
+        throw new Error('Please enter your email address.')
+      }
 
-    if (!response.ok) {
-      throw new Error(payload?.error || 'Failed to subscribe')
+      // Client-side email format check
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(email)) {
+        throw new Error('Please enter a valid email address.')
+      }
+
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email, // Matches backend expecting req.body.email
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || data.message || 'Failed to subscribe.')
+      }
+
+      setSubscribeStatus('success')
+      setSubscribeMessage('Thank you for subscribing!')
+      setSubscriberEmail('')
+    } catch (error) {
+      console.error('Subscribe error:', error)
+      setSubscribeStatus('error')
+      setSubscribeMessage(
+        error.message || 'Something went wrong. Please try again.'
+      )
     }
-
-    setSubscribeStatus('success')
-    setSubscribeMessage(
-      'Thank you. Your subscription has been sent successfully.'
-    )
-
-    event.currentTarget.reset()
-
-  } catch (error) {
-    setSubscribeStatus('error')
-    setSubscribeMessage(
-      error instanceof Error
-        ? error.message
-        : 'Subscription failed. Please try again.'
-    )
   }
-}
 
   const scrollPartners = (direction) => {
     if (!partnersTrackRef.current) return
@@ -127,6 +140,7 @@ const handleSubscribeSubmit = async (event) => {
     })
   }
 
+  // 3. CLEAN USEEFFECT FOR PARTNERS RESIZE
   useEffect(() => {
     const track = partnersTrackRef.current
     if (!track) return
@@ -143,6 +157,7 @@ const handleSubscribeSubmit = async (event) => {
     return () => window.removeEventListener('resize', updatePartnerSidePad)
   }, [])
 
+  // 4. CLEAN USEEFFECT FOR PARTNERS SCROLL
   useEffect(() => {
     const track = partnersTrackRef.current
     if (!track) return
@@ -170,6 +185,7 @@ const handleSubscribeSubmit = async (event) => {
     return () => track.removeEventListener('scroll', onTrackScroll)
   }, [])
 
+  // 5. CLEAN USEEFFECT FOR HERO SLIDES
   useEffect(() => {
     const intervalId = window.setInterval(() => {
       setActiveSlide((previous) => (previous + 1) % heroSlides.length)
@@ -178,6 +194,7 @@ const handleSubscribeSubmit = async (event) => {
     return () => window.clearInterval(intervalId)
   }, [])
 
+  // 6. CLEAN USEEFFECT FOR HEADER SHADOW
   useEffect(() => {
     const onScroll = () => {
       const header = document.querySelector('header')
@@ -1006,7 +1023,42 @@ const handleSubscribeSubmit = async (event) => {
           </p>
 
           {/* Subscribe Form */}
-          <form
+          <div className="max-w-2xl mx-auto mb-5">
+  <form
+    className="flex flex-col sm:flex-row gap-3"
+    onSubmit={handleSubscribeSubmit}
+  >
+    <input
+      name="subscriberEmail"
+      type="email"
+      value={subscriberEmail}
+      onChange={(e) => setSubscriberEmail(e.target.value)}
+      placeholder="Enter your email address"
+      required
+      disabled={subscribeStatus === 'loading'}
+      className="flex-grow h-14 px-5 bg-surface border border-surface-variant/40 text-deep-navy placeholder:text-on-surface-variant/60 focus:border-primary focus:ring-2 focus:ring-primary/10 outline-none transition-all rounded-xl disabled:opacity-60"
+    />
+
+    <button
+      type="submit"
+      disabled={subscribeStatus === 'loading'}
+      className="h-14 px-8 bg-primary text-white font-label-md text-label-md uppercase tracking-wider rounded-xl hover:bg-vibrant-orange transition-all duration-300 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-primary/10"
+    >
+      {subscribeStatus === 'loading' ? 'Sending...' : 'Subscribe'}
+    </button>
+  </form>
+
+  {subscribeMessage && (
+    <p
+      className={`mt-2 text-sm text-center font-medium ${
+        subscribeStatus === 'success' ? 'text-green-600' : 'text-red-600'
+      }`}
+    >
+      {subscribeMessage}
+    </p>
+  )}
+</div>
+          {/* <form
             className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-5"
             onSubmit={handleSubscribeSubmit}
           >
@@ -1025,7 +1077,7 @@ const handleSubscribeSubmit = async (event) => {
             >
               {subscribeStatus === "loading" ? "Sending..." : "Subscribe"}
             </button>
-          </form>
+          </form> */}
 
           {/* Subscribe status */}
           {subscribeMessage ? (

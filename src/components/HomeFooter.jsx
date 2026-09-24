@@ -1,13 +1,81 @@
+import { useState } from 'react'
 import LanguageSelector from './LanguageSelector'
 import footerlogo from '../assets/logo.png'
 
 function HomeFooter({ language, setLanguage, t, languages }) {
+  const [subscriberEmail, setSubscriberEmail] = useState('')
+  const [isSubscribing, setIsSubscribing] = useState(false)
+
+  const [subscribeStatus, setSubscribeStatus] = useState({
+    type: '',
+    message: '',
+  })
+
+  const handleSubscribe = async (event) => {
+    event.preventDefault()
+
+    if (isSubscribing) return
+
+    setIsSubscribing(true)
+
+    setSubscribeStatus({
+      type: '',
+      message: '',
+    })
+
+    try {
+      const email = subscriberEmail.trim()
+
+      if (!email) {
+        throw new Error('Please enter your email address.')
+      }
+
+      // Regex check to validate email format on client side
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+      if (!emailRegex.test(email)) {
+        throw new Error('Please enter a valid email address.')
+      }
+
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email, // Changed key from 'subscriberEmail' to 'email' to fix 400 Bad Request
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(
+          data.error || data.message || 'Failed to subscribe.'
+        )
+      }
+
+      setSubscribeStatus({
+        type: 'success',
+        message: 'Thank you for subscribing!',
+      })
+
+      setSubscriberEmail('')
+    } catch (error) {
+      console.error('Subscribe error:', error)
+
+      setSubscribeStatus({
+        type: 'error',
+        message:
+          error.message ||
+          'Something went wrong. Please try again.',
+      })
+    } finally {
+      setIsSubscribing(false)
+    }
+  }
+
   const socialLinks = [
-    { name: 'Facebook', href: 'https://www.facebook.com', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg' },
-    { name: 'YouTube', href: 'https://www.youtube.com', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg' },
-    { name: 'LinkedIn', href: 'https://www.linkedin.com', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg' },
-    { name: 'Instagram', href: 'https://www.instagram.com', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg' },
-    { name: 'Twitter', href: 'https://www.twitter.com', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/twitter.svg' },
+    // your existing social links...
   ]
 
   return (
@@ -205,20 +273,8 @@ function HomeFooter({ language, setLanguage, t, languages }) {
         <div className="mt-6 mb-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="w-full sm:max-w-lg">
             <p className="font-label-sm text-label-sm uppercase tracking-widest text-white/70 mb-2">Stay informed</p>
+
             {/* <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="w-full rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-vibrant-orange focus:ring-2 focus:ring-vibrant-orange/20"
-              />
-              <button
-                type="button"
-                className="hover:bg-vibrant-orange font-bold hover:text-white inline-flex items-center justify-center rounded-2xl bg-white px-5 py-3 text-primary font-semibold text-primary transition hover:bg-orange-500"
-              >
-                Subscribe
-              </button>
-            </div> */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <input
             type="email"
             placeholder="Enter your email address"
@@ -231,7 +287,46 @@ function HomeFooter({ language, setLanguage, t, languages }) {
           >
             Subscribe
           </button>
-        </div>
+        </div> */}
+        {/* NEWSLETTER */}
+<div>
+  {/* your newsletter heading/text */}
+
+  <form
+    onSubmit={handleSubscribe}
+    className="flex flex-col gap-3 sm:flex-row sm:items-center"
+  >
+<input
+  type="email"
+  value={subscriberEmail}
+  onChange={(event) => setSubscriberEmail(event.target.value)}
+  placeholder="Enter your email address"
+  required
+  disabled={isSubscribing}
+  className="w-full rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm text-white placeholder:text-white/40 outline-none focus:border-vibrant-orange focus:ring-2 focus:ring-vibrant-orange/20 disabled:opacity-60"
+/>
+
+    <button
+      type="submit"
+      disabled={isSubscribing}
+      className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-2 text-sm font-bold text-primary transition hover:bg-vibrant-orange hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+    >
+      {isSubscribing ? 'Subscribing...' : 'Subscribe'}
+    </button>
+  </form>
+
+  {subscribeStatus.message && (
+    <p
+      className={`mt-2 text-xs ${
+        subscribeStatus.type === 'success'
+          ? 'text-green-300'
+          : 'text-red-300'
+      }`}
+    >
+      {subscribeStatus.message}
+    </p>
+  )}
+</div>
           </div>
 <div className="flex justify-center gap-3 md:justify-end">
   {socialLinks.map((item) => (
