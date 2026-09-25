@@ -9,7 +9,7 @@
       "destination": "/reports/$1"
     },
     {
-      "source": "/(.*)",
+      "source": "/:path*",
       "destination": "/index.html"
     }
   ]
