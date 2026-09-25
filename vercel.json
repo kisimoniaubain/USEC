@@ -5,7 +5,11 @@
       "destination": "/api/$1"
     },
     {
-      "source": "/report-viewer",
+      "source": "/reports/(.*)",
+      "destination": "/reports/$1"
+    },
+    {
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
