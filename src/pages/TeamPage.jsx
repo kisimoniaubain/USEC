@@ -2,14 +2,6 @@ import SiteNavbar from '../components/SiteNavbar'
 import useWhoWeAreReveal from '../hooks/useWhoWeAreReveal'
 
 import team from "../assets/images/team-images/hero-imo.jpeg";
-import trustee1 from "../assets/images/team-images/trustee1.jpg";
-import trustee2 from "../assets/images/team-images/trustee2.jpg";
-import trustee3 from "../assets/images/team-images/trustee3.jpg";
-import trustee4 from "../assets/images/team-images/trustee4.jpg";
-import trustee5 from "../assets/images/team-images/trustee5.jpg";
-import trustee6 from "../assets/images/team-images/trustee6.jpg";
-import trustee7 from "../assets/images/team-images/trustee7.jpg";
-import trustee8 from "../assets/images/team-images/trustee8.jpg";
 import donateprotect from '../assets/images/Protection-imo/donate-protect.png'
 
 
@@ -40,50 +32,6 @@ const leadership = [
     iconB: 'mail',
   },
 ]
-
-
-const trustees = [
-  {
-    name: "Trustee One",
-    role: "Chairperson",
-    image: trustee1,
-  },
-  {
-    name: "Trustee Two",
-    role: "Vice Chairperson",
-    image: trustee2,
-  },
-  {
-    name: "Trustee Three",
-    role: "Secretary",
-    image: trustee3,
-  },
-  {
-    name: "Trustee Four",
-    role: "Treasurer",
-    image: trustee4,
-  },
-  {
-    name: "Trustee Five",
-    role: "Member",
-    image: trustee5,
-  },
-  {
-    name: "Trustee Six",
-    role: "Member",
-    image: trustee6,
-  },
-  {
-    name: "Trustee Six",
-    role: "Member",
-    image: trustee7,
-  },
-  {
-    name: "Trustee Six",
-    role: "Member",
-    image: trustee8,
-  },
-];
 
 function TeamPage() {
   useWhoWeAreReveal()
@@ -238,34 +186,6 @@ const WavyBottomDivider = () => (
           </div>
 
         </section>
-
-        <section className="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center">
-  <h2 className="font-headline-md text-deep-navy mb-12">
-    Our Board of Trustees
-  </h2>
-
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter">
-    {trustees.map((person) => (
-      <div key={person.name} className="flex flex-col items-center">
-        <div className="w-32 h-32 rounded-full bg-surface-cream mb-4 border border-outline-variant overflow-hidden">
-          <img
-            src={person.image}
-            alt={person.name}
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        <h5 className="font-headline-sm text-[16px] text-deep-navy">
-          {person.name}
-        </h5>
-
-        <span className="font-label-sm text-on-surface-variant">
-          {person.role}
-        </span>
-      </div>
-    ))}
-  </div>
-</section>
         <section
           className="relative min-h-[400px] md:min-h-[450px] flex items-center bg-cover bg-center overflow-hidden"          style={{
             backgroundImage: `url(${donateprotect})`,

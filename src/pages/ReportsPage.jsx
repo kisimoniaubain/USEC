@@ -39,54 +39,13 @@ const reports = [
       'Explore USEC annual impact reports highlighting our programs, achievements, challenges, and the communities we served.',
     file: '/reports/usec-annual-impact-report-2026.pdf',
   },
-  {
-    year: '2025',
-    category: 'Financial Reports',
-    title: 'USEC Financial Report 2025',
-    description:
-      'Externally audited financial statements for the 2025 reporting period.',
-    categoryDescription:
-      'View USEC’s externally audited financial statements and financial reporting documents.',
-    file: '/reports/usec-financial-report-2025.pdf',
-  },
-  {
-    year: '2026',
-    category: 'Financial Reports',
-    title: 'USEC Financial Report 2026',
-    description:
-      'Externally audited financial statements for the 2026 reporting period.',
-    categoryDescription:
-      'View USEC’s externally audited financial statements and financial reporting documents.',
-    file: '/reports/usec-financial-report-2026.pdf',
-  },
-  {
-    year: '2025',
-    category: 'Program Reports',
-    title: 'USEC Program Report 2025',
-    description:
-      'A detailed overview of our programs and activities.',
-    categoryDescription:
-      'Discover reports documenting our programs, activities, community engagement, and progress across our areas of work.',
-    file: '/reports/usec-program-report-2025.pdf',
-  },
-  {
-    year: '2026',
-    category: 'Program Reports',
-    title: 'USEC Program Report 2026',
-    description:
-      'A detailed overview of our programs and activities.',
-    categoryDescription:
-      'Discover reports documenting our programs, activities, community engagement, and progress across our areas of work.',
-    file: '/reports/usec-program-report-2026.pdf',
-  },
-]
+  ]
 export default function ReportsPage() {
   const [activeCategory, setActiveCategory] = useState('All')
 
 const categories = [
   'Annual Reports',
-  'Financial Reports',
-  'Program Reports',
+
 ]
 
   const filteredReports =

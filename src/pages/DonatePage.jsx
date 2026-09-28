@@ -20,74 +20,74 @@ function DonatePage() {
     </div>
   )
 
-  // Donation form state
-  const [frequency, setFrequency] = useState("once")
-  const [selectedAmount, setSelectedAmount] = useState(50)
-  const [customAmount, setCustomAmount] = useState("")
+  // Equity account number visibility
+  const [showAccountNumber, setShowAccountNumber] = useState(false)
 
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
+  // Donation notification form
+  const [isSendingDonationNotification, setIsSendingDonationNotification] =
+    useState(false)
 
-  const [paymentMethod, setPaymentMethod] = useState("card")
+  const [donationNotification, setDonationNotification] = useState({
+    status: "",
+    type: "",
+  })
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [donationError, setDonationError] = useState("")
-  const [donationSuccess, setDonationSuccess] = useState("")
-
-  const handleDonationSubmit = async (event) => {
+  const handleDonationNotification = async (event) => {
     event.preventDefault()
 
-    setDonationError("")
-    setDonationSuccess("")
+    setIsSendingDonationNotification(true)
 
-    const amount = customAmount
-      ? Number(customAmount)
-      : Number(selectedAmount)
+    setDonationNotification({
+      status: "",
+      type: "",
+    })
 
-    if (!amount || amount <= 0) {
-      setDonationError("Please select or enter a valid donation amount.")
-      return
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    const payload = {
+      donorName: formData.get("donorName"),
+      donorEmail: formData.get("donorEmail"),
+      donationAmount: formData.get("donationAmount"),
+      transactionReference: formData.get("transactionReference"),
+      donorMessage: formData.get("donorMessage"),
     }
-
-    if (!firstName.trim() || !lastName.trim()) {
-      setDonationError("Please enter your full name.")
-      return
-    }
-
-    if (!email.trim()) {
-      setDonationError("Please enter your email address.")
-      return
-    }
-
-    if (!paymentMethod) {
-      setDonationError("Please select a payment method.")
-      return
-    }
-
-    setIsSubmitting(true)
 
     try {
-      console.log({
-        amount,
-        frequency,
-        firstName,
-        lastName,
-        email,
-        paymentMethod,
+      const response = await fetch("/api/donation-notification", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
       })
 
-      setDonationSuccess(
-        `Thank you ${firstName}! Your $${amount} donation has been prepared successfully.`
-      )
-    } catch (error) {
-      console.error(error)
+      const data = await response.json()
 
-      setDonationError(
-        "Something went wrong while processing your donation. Please try again."
-      )
+      if (!response.ok) {
+        throw new Error(
+          data.error || "Unable to send donation notification."
+        )
+      }
+
+      setDonationNotification({
+        status:
+          "Thank you. Your donation notification has been sent successfully to the USEC team.",
+        type: "success",
+      })
+
+      form.reset()
+    } catch (error) {
+      console.error("Donation notification error:", error)
+
+      setDonationNotification({
+        status:
+          error.message ||
+          "Something went wrong. Please try again.",
+        type: "error",
+      })
     } finally {
-      setIsSubmitting(false)
+      setIsSendingDonationNotification(false)
     }
   }
 
@@ -153,10 +153,6 @@ function DonatePage() {
   id="donate-form"
 >
   <div className="container mx-auto px-4 sm:px-6">
-
-    {/* =====================================================
-        SMALLER DONATION CARD
-    ====================================================== */}
     <div
       className="
         mx-auto
@@ -164,425 +160,388 @@ function DonatePage() {
         max-w-5xl
         overflow-hidden
         rounded-2xl
+        bg-white
         shadow-[0_20px_50px_rgba(0,0,0,0.06)]
       "
     >
+      <div className="grid grid-cols-1 lg:grid-cols-2">
 
-      <div className="grid grid-cols-1 items-stretch lg:grid-cols-2">
+        {/* LEFT — EQUITY BANK DETAILS */}
+        <div className="flex w-full flex-col justify-center bg-white p-6 sm:p-8 md:p-10 lg:p-12">
 
-        {/* =================================================
-            LEFT — IMAGE
-            Hidden on mobile/tablet
-        ================================================== */}
-        <div className="hidden lg:block">
+          {/* Equity Logo */}
+          <div className="mb-8 flex items-center justify-center lg:justify-start">
+            <img
+              src="/Equity_Bank_Logo.png"
+              alt="Equity Bank"
+              className="h-auto w-[190px] object-contain sm:w-[220px]"
+            />
+          </div>
 
-          <img
-            src={team}
-            alt="Supporting our community"
+          {/* Heading */}
+          <div className="mb-7">
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-vibrant-orange">
+              Bank Transfer
+            </p>
+
+            <h2 className="text-2xl font-black text-primary sm:text-3xl">
+              Support USEC
+            </h2>
+
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              You can support United Safe Environment Creators (USEC)
+              through the Equity Bank account below.
+            </p>
+          </div>
+
+          {/* Bank Details */}
+          <div className="space-y-5">
+
+            {/* Bank */}
+            <div>
+              <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 sm:text-xs">
+                Bank
+              </p>
+
+              <p className="text-base font-bold text-primary">
+                Equity Bank
+              </p>
+            </div>
+
+            {/* Account Name */}
+            <div>
+              <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 sm:text-xs">
+                Account Name
+              </p>
+
+              <p className="text-base font-bold text-primary">
+                United Safe Environment Creators (USEC)
+              </p>
+            </div>
+
+            {/* Account Number */}
+            <div>
+              <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 sm:text-xs">
+                Account Number
+              </p>
+
+              <div className="flex items-center gap-3">
+                <p className="text-base font-bold tracking-wider text-primary">
+                  {showAccountNumber
+                    ? "1650172450883"
+                    : "••••••••••••"}
+                </p>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setShowAccountNumber(!showAccountNumber)
+                  }
+                  className="
+                    inline-flex
+                    items-center
+                    gap-1.5
+                    rounded-md
+                    border
+                    border-slate-200
+                    px-3
+                    py-1.5
+                    text-xs
+                    font-bold
+                    text-primary
+                    transition
+                    hover:border-vibrant-orange
+                    hover:text-vibrant-orange
+                  "
+                >
+                  <span className="material-symbols-outlined text-base">
+                    {showAccountNumber
+                      ? "visibility_off"
+                      : "visibility"}
+                  </span>
+
+                  {showAccountNumber ? "Hide" : "View"}
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Notice */}
+          <div
             className="
-              block
-              h-full
-              min-h-[560px]
-              w-full
-              object-cover
+              mt-8
+              rounded-xl
+              border
+              border-orange-100
+              bg-orange-50
+              p-4
             "
-          />
+          >
+            <div className="flex gap-3">
+              <span className="material-symbols-outlined shrink-0 text-vibrant-orange">
+                info
+              </span>
+
+              <p className="text-xs leading-5 text-slate-600 sm:text-sm">
+                After completing your bank transfer, please use the
+                notification form on the right to let the USEC team
+                know about your donation.
+              </p>
+            </div>
+          </div>
 
         </div>
 
+        {/* RIGHT — DONATION NOTIFICATION FORM */}
+        <div className="w-full bg-surface-cream p-6 sm:p-8 md:p-10 lg:p-12">
 
-        {/* =================================================
-            RIGHT — DONATION FORM
-        ================================================== */}
-        <div className="w-full bg-white">
+          <div className="mb-7">
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-vibrant-orange">
+              Donation Notification
+            </p>
 
-          <div
-            className="
-              h-full
-              w-full
-              p-5
-              sm:p-6
-              md:p-7
-              lg:p-8
-            "
+            <h2 className="text-2xl font-black text-primary sm:text-3xl">
+              Tell Us About Your Donation
+            </h2>
+
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              Once you have completed your bank transfer, fill in the
+              form below. Your notification will be sent directly to
+              the USEC team.
+            </p>
+          </div>
+
+          <form
+            onSubmit={handleDonationNotification}
+            className="space-y-5"
           >
 
-            <form
-              onSubmit={handleDonationSubmit}
-              className="flex flex-col gap-5"
-            >
+            {/* Donor Name */}
+            <div>
+              <label
+                htmlFor="donorName"
+                className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
+              >
+                Full Name
+              </label>
 
-              {/* FREQUENCY */}
-              <div className="flex rounded-lg bg-slate-50 p-1">
-
-                <button
-                  type="button"
-                  onClick={() => setFrequency("once")}
-                  className={`flex-1 rounded-md px-2 py-2.5 text-[11px] font-bold uppercase tracking-wider transition-all sm:text-xs ${
-                    frequency === "once"
-                      ? "bg-white text-primary shadow-sm"
-                      : "text-slate-500 hover:text-primary"
-                  }`}
-                >
-                  One-time Gift
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setFrequency("monthly")}
-                  className={`flex-1 rounded-md px-2 py-2.5 text-[11px] font-bold uppercase tracking-wider transition-all sm:text-xs ${
-                    frequency === "monthly"
-                      ? "bg-white text-primary shadow-sm"
-                      : "text-slate-500 hover:text-primary"
-                  }`}
-                >
-                  Monthly Partner
-                </button>
-
-              </div>
-
-
-              {/* AMOUNT */}
-              <div>
-
-                <label className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-slate-500 sm:text-xs">
-                  Select Donation Amount
-                </label>
-
-                <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-
-                  {[25, 50, 100, 250].map((amount) => (
-                    <button
-                      key={amount}
-                      type="button"
-                      onClick={() => {
-                        setSelectedAmount(amount);
-                        setCustomAmount("");
-                      }}
-                      className={`rounded-lg border-2 px-2 py-2.5 text-sm font-bold transition-all sm:py-3 ${
-                        selectedAmount === amount && !customAmount
-                          ? "border-vibrant-orange bg-vibrant-orange/5 text-primary"
-                          : "border-slate-200 text-primary hover:border-vibrant-orange"
-                      }`}
-                    >
-                      ${amount}
-                    </button>
-                  ))}
-
-                </div>
-
-              </div>
-
-
-              {/* OTHER AMOUNT */}
-              <div>
-
-                <label className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-slate-500 sm:text-xs">
-                  Other Amount
-                </label>
-
-                <div className="relative">
-
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">
-                    $
-                  </span>
-
-                  <input
-                    type="number"
-                    min="1"
-                    step="0.01"
-                    value={customAmount}
-                    onChange={(event) => {
-                      setCustomAmount(event.target.value);
-                      setSelectedAmount(null);
-                    }}
-                    placeholder="Enter amount"
-                    className="
-                      w-full
-                      rounded-lg
-                      border
-                      border-slate-200
-                      bg-slate-50
-                      p-3
-                      pl-8
-                      text-sm
-                      text-slate-800
-                      outline-none
-                      transition
-                      placeholder:text-slate-400
-                      focus:border-orange-500
-                      focus:bg-white
-                      focus:ring-2
-                      focus:ring-orange-500/20
-                    "
-                  />
-
-                </div>
-
-              </div>
-
-
-              {/* DONOR INFORMATION */}
-              <div>
-
-                <label className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-slate-500 sm:text-xs">
-                  Your Information
-                </label>
-
-                <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-
-                  <input
-                    type="text"
-                    value={firstName}
-                    onChange={(event) => setFirstName(event.target.value)}
-                    placeholder="First Name"
-                    required
-                    className="
-                      w-full
-                      rounded-lg
-                      border
-                      border-slate-200
-                      bg-slate-50
-                      p-3
-                      text-sm
-                      text-slate-800
-                      outline-none
-                      transition
-                      placeholder:text-slate-400
-                      focus:border-orange-500
-                      focus:bg-white
-                      focus:ring-2
-                      focus:ring-orange-500/20
-                    "
-                  />
-
-                  <input
-                    type="text"
-                    value={lastName}
-                    onChange={(event) => setLastName(event.target.value)}
-                    placeholder="Last Name"
-                    required
-                    className="
-                      w-full
-                      rounded-lg
-                      border
-                      border-slate-200
-                      bg-slate-50
-                      p-3
-                      text-sm
-                      text-slate-800
-                      outline-none
-                      transition
-                      placeholder:text-slate-400
-                      focus:border-orange-500
-                      focus:bg-white
-                      focus:ring-2
-                      focus:ring-orange-500/20
-                    "
-                  />
-
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                    placeholder="Email Address"
-                    required
-                    className="
-                      w-full
-                      rounded-lg
-                      border
-                      border-slate-200
-                      bg-slate-50
-                      p-3
-                      text-sm
-                      text-slate-800
-                      outline-none
-                      transition
-                      placeholder:text-slate-400
-                      focus:border-orange-500
-                      focus:bg-white
-                      focus:ring-2
-                      focus:ring-orange-500/20
-                      sm:col-span-2
-                    "
-                  />
-
-                </div>
-
-              </div>
-
-
-              {/* PAYMENT METHOD */}
-              <div>
-
-                <label className="mb-2 block text-[10px] font-bold uppercase tracking-widest text-slate-500 sm:text-xs">
-                  Payment Method
-                </label>
-
-                <div className="grid grid-cols-2 gap-2.5">
-
-                  <button
-                    type="button"
-                    onClick={() => setPaymentMethod("card")}
-                    className={`flex h-12 items-center justify-center rounded-lg border px-3 transition-all ${
-                      paymentMethod === "card"
-                        ? "border-vibrant-orange bg-vibrant-orange/5 text-primary"
-                        : "border-slate-200 text-slate-600 hover:bg-slate-50"
-                    }`}
-                  >
-                    <span className="material-symbols-outlined mr-1.5 text-lg">
-                      credit_card
-                    </span>
-
-                    <span className="text-[11px] font-bold uppercase tracking-wider">
-                      Card
-                    </span>
-                  </button>
-
-
-                  <button
-                    type="button"
-                    onClick={() => setPaymentMethod("paypal")}
-                    className={`flex h-12 items-center justify-center rounded-lg border px-3 transition-all ${
-                      paymentMethod === "paypal"
-                        ? "border-vibrant-orange bg-vibrant-orange/5 text-primary"
-                        : "border-slate-200 text-slate-600 hover:bg-slate-50"
-                    }`}
-                  >
-                    <span className="material-symbols-outlined mr-1.5 text-lg">
-                      payments
-                    </span>
-
-                    <span className="text-[11px] font-bold uppercase tracking-wider">
-                      PayPal
-                    </span>
-                  </button>
-
-                </div>
-
-              </div>
-
-
-              {/* SECURITY */}
-              <div className="flex items-center justify-center gap-1.5 text-center text-[9px] uppercase tracking-wider text-slate-400 sm:text-[10px]">
-
-                <span className="material-symbols-outlined text-sm">
-                  shield_lock
-                </span>
-
-                <span>
-                  Secure encrypted payment
-                </span>
-
-              </div>
-
-
-              {/* ERROR */}
-              {donationError && (
-                <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2.5 text-xs text-red-600">
-                  {donationError}
-                </div>
-              )}
-
-
-              {/* SUCCESS */}
-              {donationSuccess && (
-                <div className="rounded-lg border border-green-200 bg-green-50 px-3 py-2.5 text-xs text-green-700">
-                  {donationSuccess}
-                </div>
-              )}
-
-
-              {/* SUBMIT */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
+              <input
+                id="donorName"
+                name="donorName"
+                type="text"
+                required
+                placeholder="Enter your full name"
                 className="
                   w-full
                   rounded-lg
-                  bg-vibrant-orange
+                  border
+                  border-slate-200
+                  bg-white
                   px-4
                   py-3
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.1em]
-                  text-white
-                  shadow-lg
-                  shadow-orange-500/20
-                  transition-all
-                  hover:brightness-110
-                  active:scale-[0.98]
-                  disabled:cursor-not-allowed
-                  disabled:opacity-60
+                  text-sm
+                  text-primary
+                  outline-none
+                  transition
+                  focus:border-vibrant-orange
+                  focus:ring-2
+                  focus:ring-orange-100
                 "
+              />
+            </div>
+
+            {/* Email */}
+            <div>
+              <label
+                htmlFor="donorEmail"
+                className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
               >
-                {isSubmitting
-                  ? "Processing..."
-                  : `Continue with ${
-                      frequency === "monthly"
-                        ? "Monthly Donation"
-                        : "Donation"
-                    }`}
-              </button>
+                Email Address
+              </label>
 
-            </form>
+              <input
+                id="donorEmail"
+                name="donorEmail"
+                type="email"
+                required
+                placeholder="you@example.com"
+                className="
+                  w-full
+                  rounded-lg
+                  border
+                  border-slate-200
+                  bg-white
+                  px-4
+                  py-3
+                  text-sm
+                  text-primary
+                  outline-none
+                  transition
+                  focus:border-vibrant-orange
+                  focus:ring-2
+                  focus:ring-orange-100
+                "
+              />
+            </div>
 
-          </div>
+            {/* Amount */}
+            <div>
+              <label
+                htmlFor="donationAmount"
+                className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
+              >
+                Donation Amount
+              </label>
 
+              <input
+                id="donationAmount"
+                name="donationAmount"
+                type="text"
+                required
+                placeholder="e.g. KES 5,000"
+                className="
+                  w-full
+                  rounded-lg
+                  border
+                  border-slate-200
+                  bg-white
+                  px-4
+                  py-3
+                  text-sm
+                  text-primary
+                  outline-none
+                  transition
+                  focus:border-vibrant-orange
+                  focus:ring-2
+                  focus:ring-orange-100
+                "
+              />
+            </div>
+
+            {/* Transaction Reference */}
+            <div>
+              <label
+                htmlFor="transactionReference"
+                className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
+              >
+                Transaction Reference
+              </label>
+
+              <input
+                id="transactionReference"
+                name="transactionReference"
+                type="text"
+                required
+                placeholder="Enter your transaction/reference number"
+                className="
+                  w-full
+                  rounded-lg
+                  border
+                  border-slate-200
+                  bg-white
+                  px-4
+                  py-3
+                  text-sm
+                  text-primary
+                  outline-none
+                  transition
+                  focus:border-vibrant-orange
+                  focus:ring-2
+                  focus:ring-orange-100
+                "
+              />
+            </div>
+
+            {/* Optional Message */}
+            <div>
+              <label
+                htmlFor="donorMessage"
+                className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
+              >
+                Message <span className="normal-case">(optional)</span>
+              </label>
+
+              <textarea
+                id="donorMessage"
+                name="donorMessage"
+                rows="4"
+                placeholder="Any additional message..."
+                className="
+                  w-full
+                  resize-none
+                  rounded-lg
+                  border
+                  border-slate-200
+                  bg-white
+                  px-4
+                  py-3
+                  text-sm
+                  text-primary
+                  outline-none
+                  transition
+                  focus:border-vibrant-orange
+                  focus:ring-2
+                  focus:ring-orange-100
+                "
+              />
+            </div>
+
+            {/* Status Message */}
+            {donationNotification.status && (
+              <div
+                className={`rounded-lg px-4 py-3 text-sm ${
+                  donationNotification.type === "success"
+                    ? "border border-green-200 bg-green-50 text-green-700"
+                    : "border border-red-200 bg-red-50 text-red-700"
+                }`}
+              >
+                {donationNotification.status}
+              </div>
+            )}
+
+            {/* Submit */}
+            <button
+              type="submit"
+              disabled={isSendingDonationNotification}
+              className="
+                inline-flex
+                w-full
+                items-center
+                justify-center
+                gap-2
+                rounded-lg
+                bg-vibrant-orange
+                px-5
+                py-3.5
+                text-sm
+                font-bold
+                text-white
+                transition-all
+                hover:bg-orange-600
+                disabled:cursor-not-allowed
+                disabled:opacity-60
+              "
+            >
+              <span className="material-symbols-outlined text-base">
+                {isSendingDonationNotification
+                  ? "progress_activity"
+                  : "send"}
+              </span>
+
+              {isSendingDonationNotification
+                ? "Sending..."
+                : "Notify USEC Team"}
+            </button>
+
+          </form>
         </div>
 
       </div>
-
     </div>
-
   </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <section className="py-section-gap bg-white border-t border-surface-container-high">
-          <div className="container mx-auto px-margin-mobile md:px-margin-desktop text-center max-w-4xl">
-            <span className="font-label-md text-label-md text-secondary uppercase tracking-[0.3em] mb-4 block">Trust and Accountability</span>
-            <h2 className="font-headline-md text-headline-md text-primary mb-12">How Your Funds Are Used</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              {[
-                { percent: '90%', label: 'Direct Impact', text: 'Funds applied directly to program services and community initiatives.' },
-                { percent: '7%', label: 'Fundraising', text: 'Investment into donor acquisition and long-term funding stability.' },
-                { percent: '3%', label: 'Admin', text: 'Essential operations and oversight to maintain transparency.' },
-              ].map((item) => (
-                <div className="flex flex-col items-center" key={item.label}>
-                  <div className="mb-6 w-32 h-32 rounded-full border-8 border-surface-container-high flex items-center justify-center">
-                    <div className="font-headline-sm text-headline-sm text-primary">{item.percent}</div>
-                  </div>
-                  <h4 className="font-label-md text-label-md uppercase mb-2">{item.label}</h4>
-                  <p className="font-body-md text-body-md text-on-surface-variant">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         <section className="relative py-section-gap overflow-hidden group">
           <div className="absolute inset-0 z-0">

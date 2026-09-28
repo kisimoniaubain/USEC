@@ -1,5 +1,6 @@
 import http from 'node:http';
 import contactHandler from './api/contact.js';
+import donationNotificationHandler from './api/donation-notification.js';
 
 const PORT = Number(process.env.PORT || 3999);
 
@@ -38,6 +39,7 @@ const server = http.createServer(async (req, res) => {
       req.body = rawBody ? JSON.parse(rawBody) : {};
     } catch {
       req.body = {};
+
       return withResHelpers(res)
         .status(400)
         .json({ error: 'Invalid JSON request body' });
@@ -45,7 +47,10 @@ const server = http.createServer(async (req, res) => {
 
     // Contact form
     if (req.method === 'POST' && req.url === '/api/contact') {
-      return await contactHandler(req, withResHelpers(res));
+      return await contactHandler(
+        req,
+        withResHelpers(res)
+      );
     }
 
     // Newsletter subscription
@@ -62,8 +67,20 @@ const server = http.createServer(async (req, res) => {
 
       return withResHelpers(res).status(200).json({
         ok: true,
-        message: 'Thank you for subscribing! You\'ll receive updates about our activities.',
+        message:
+          'Thank you for subscribing! You\'ll receive updates about our activities.',
       });
+    }
+
+    // Donation notification
+    if (
+      req.method === 'POST' &&
+      req.url === '/api/donation-notification'
+    ) {
+      return await donationNotificationHandler(
+        req,
+        withResHelpers(res)
+      );
     }
 
     // Health check
@@ -81,7 +98,8 @@ const server = http.createServer(async (req, res) => {
     console.error('Local API error:', error);
 
     return withResHelpers(res).status(500).json({
-      error: 'Something went wrong. Please try again or email us directly.',
+      error:
+        'Something went wrong. Please try again or email us directly.',
     });
   }
 });

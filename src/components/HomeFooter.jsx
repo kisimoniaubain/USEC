@@ -22,6 +22,7 @@ function HomeFooter({ language, setLanguage, t, languages }) {
       type: '',
       message: '',
     })
+    
 
     try {
       const email = subscriberEmail.trim()
@@ -74,9 +75,12 @@ function HomeFooter({ language, setLanguage, t, languages }) {
     }
   }
 
-  const socialLinks = [
-    // your existing social links...
-  ]
+const socialLinks = [
+  { name: 'Facebook', href: 'https://www.facebook.com/usec.page', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg' },
+  { name: 'YouTube', href: 'https://www.youtube.com/@useccbo', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/useccbo/?originalSubdomain=ke', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg' },
+  { name: 'X', href: 'https://x.com/useccbo', icon: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg' },
+]
 
   return (
     // <footer className="bg-primary text-white pt-12 pb-6">
@@ -273,22 +277,6 @@ function HomeFooter({ language, setLanguage, t, languages }) {
         <div className="mt-6 mb-4 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div className="w-full sm:max-w-lg">
             <p className="font-label-sm text-label-sm uppercase tracking-widest text-white/70 mb-2">Stay informed</p>
-
-            {/* <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            className="w-full rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm text-white placeholder:text-white/40 outline-none focus:border-vibrant-orange focus:ring-2 focus:ring-vibrant-orange/20"
-          />
-
-          <button
-            type="button"
-            className="inline-flex items-center justify-center rounded-xl bg-white px-5 py-2 text-sm font-bold text-primary transition hover:bg-vibrant-orange hover:text-white"
-          >
-            Subscribe
-          </button>
-        </div> */}
-        {/* NEWSLETTER */}
 <div>
   {/* your newsletter heading/text */}
 
