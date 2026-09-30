@@ -56,7 +56,7 @@ export default async function handler(req, res) {
       process.env.EMAILJS_SERVICE_ID;
 
     const templateId =
-      process.env.EMAILJS_TEMPLATE_ID;
+      process.env.EMAILJS_DONATION_TEMPLATE_ID;
 
     const publicKey = getEmailJsPublicKey();
     const privateKey = getEmailJsPrivateKey();
@@ -87,11 +87,12 @@ export default async function handler(req, res) {
       template_params: {
         to_email: 'useccbo@gmail.com',
 
-        donor_name: donorName,
-        donor_email: donorEmail,
-        donation_amount: donationAmount,
-        transaction_reference: transactionReference,
-        donor_message: donorMessage || 'No additional message.',
+        donorName,
+        donorEmail,
+        donationAmount,
+        transactionReference,
+        donorMessage:
+          donorMessage || 'No additional message.',
 
         time: new Date().toLocaleString(),
       },
