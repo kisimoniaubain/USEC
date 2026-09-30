@@ -36,85 +36,83 @@ const ContactPage = () => {
     }));
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+const handleSubmit = async (event) => {
+  event.preventDefault();
 
-    if (isSubmitting) return;
+  if (isSubmitting) return;
 
-    setIsSubmitting(true);
+  setIsSubmitting(true);
+
+  setStatus({
+    type: '',
+    message: '',
+  });
+
+  try {
+    const contactData = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      message: formData.message.trim(),
+    };
+
+    if (!contactData.name) {
+      throw new Error('Please enter your name.');
+    }
+
+    if (!contactData.email) {
+      throw new Error('Please enter your email address.');
+    }
+
+    if (!contactData.message) {
+      throw new Error('Please enter your message.');
+    }
+
+    console.log('Sending contact form:', contactData);
+
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(contactData),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        data.error ||
+        data.message ||
+        'Failed to send your message.'
+      );
+    }
 
     setStatus({
-      type: '',
+      type: 'success',
+      message:
+        "Thank you for contacting USEC! We'll get back to you as soon as possible.",
+    });
+
+    setFormData({
+      name: '',
+      email: '',
       message: '',
     });
 
-    try {
-      const fullName = formData.name.trim();
+    formRef.current?.reset();
+  } catch (error) {
+    console.error('Contact form error:', error);
 
-      const nameParts = fullName.split(/\s+/);
-
-      const firstName = nameParts[0] || '';
-      const lastName = nameParts.slice(1).join(' ') || '';
-
-      if (!firstName || !lastName) {
-        throw new Error(
-          'Please enter your first name and last name.'
-        );
-      }
-
-      const contactData = {
-        firstName,
-        lastName,
-        email: formData.email.trim(),
-        message: formData.message.trim(),
-      };
-
-      console.log('Sending contact form:', contactData);
-
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(contactData),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.error ||
-          data.message ||
-          'Failed to send your message.'
-        );
-      }
-
-      setStatus({
-        type: 'success',
-        message:
-          "Thank you for contacting USEC! We'll get back to you as soon as possible.",
-      });
-
-      setFormData({
-        name: '',
-        email: '',
-        message: '',
-      });
-
-      formRef.current?.reset();
-    } catch (error) {
-      console.error('Contact form error:', error);
-
-      setStatus({
-        type: 'error',
-        message:
-          error.message ||
-          'Something went wrong. Please try again later.',
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    setStatus({
+      type: 'error',
+      message:
+        error.message ||
+        'Something went wrong. Please try again later.',
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   // Newsletter subscription
   const handleSubscribe = async (event) => {

@@ -293,250 +293,251 @@ function DonatePage() {
 
         </div>
 
-        {/* RIGHT — DONATION NOTIFICATION FORM */}
-        <div className="w-full bg-surface-cream p-6 sm:p-8 md:p-10 lg:p-12">
+      {/* RIGHT — DONATION NOTIFICATION FORM */}
+<div className="w-full bg-surface-cream p-6 sm:p-8 md:p-10 lg:p-12">
 
-          <div className="mb-7">
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-vibrant-orange">
-              Donation Notification
-            </p>
+  <div className="mb-7">
+    <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-vibrant-orange">
+      Donation Notification
+    </p>
 
-            <h2 className="text-2xl font-black text-primary sm:text-3xl">
-              Tell Us About Your Donation
-            </h2>
+    <h2 className="text-2xl font-black text-primary sm:text-3xl">
+      Tell Us About Your Donation
+    </h2>
 
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              Once you have completed your bank transfer, fill in the
-              form below. Your notification will be sent directly to
-              the USEC team.
-            </p>
-          </div>
+    <p className="mt-3 text-sm leading-6 text-slate-600">
+      Once you have completed your bank transfer, fill in the
+      form below. Your notification will be sent directly to
+      the USEC team.
+    </p>
+  </div>
 
-          <form
-            onSubmit={handleDonationNotification}
-            className="space-y-5"
-          >
+  <form
+    onSubmit={handleDonationNotification}
+    className="space-y-5"
+  >
 
-            {/* Donor Name */}
-            <div>
-              <label
-                htmlFor="donorName"
-                className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
-              >
-                Full Name
-              </label>
+    {/* Donor Name */}
+    <div>
+      <label
+        htmlFor="donorName"
+        className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
+      >
+        Full Name
+      </label>
 
-              <input
-                id="donorName"
-                name="donorName"
-                type="text"
-                required
-                placeholder="Enter your full name"
-                className="
-                  w-full
-                  rounded-lg
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  py-3
-                  text-sm
-                  text-primary
-                  outline-none
-                  transition
-                  focus:border-vibrant-orange
-                  focus:ring-2
-                  focus:ring-orange-100
-                "
-              />
-            </div>
+      <input
+        id="donorName"
+        name="donorName"
+        type="text"
+        required
+        autoComplete="name"
+        placeholder="Enter your full name"
+        className="
+          w-full
+          rounded-lg
+          border
+          border-slate-200
+          bg-white
+          px-4
+          py-3
+          text-sm
+          text-primary
+          outline-none
+          transition
+          focus:border-vibrant-orange
+          focus:ring-2
+          focus:ring-orange-100
+        "
+      />
+    </div>
 
-            {/* Email */}
-            <div>
-              <label
-                htmlFor="donorEmail"
-                className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
-              >
-                Email Address
-              </label>
+    {/* Email */}
+    <div>
+      <label
+        htmlFor="donorEmail"
+        className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
+      >
+        Email Address
+      </label>
 
-              <input
-                id="donorEmail"
-                name="donorEmail"
-                type="email"
-                required
-                placeholder="you@example.com"
-                className="
-                  w-full
-                  rounded-lg
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  py-3
-                  text-sm
-                  text-primary
-                  outline-none
-                  transition
-                  focus:border-vibrant-orange
-                  focus:ring-2
-                  focus:ring-orange-100
-                "
-              />
-            </div>
+      <input
+        id="donorEmail"
+        name="donorEmail"
+        type="email"
+        required
+        autoComplete="email"
+        placeholder="you@example.com"
+        className="
+          w-full
+          rounded-lg
+          border
+          border-slate-200
+          bg-white
+          px-4
+          py-3
+          text-sm
+          text-primary
+          outline-none
+          transition
+          focus:border-vibrant-orange
+          focus:ring-2
+          focus:ring-orange-100
+        "
+      />
+    </div>
 
-            {/* Amount */}
-            <div>
-              <label
-                htmlFor="donationAmount"
-                className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
-              >
-                Donation Amount
-              </label>
+    {/* Amount */}
+    <div>
+      <label
+        htmlFor="donationAmount"
+        className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
+      >
+        Donation Amount
+      </label>
 
-              <input
-                id="donationAmount"
-                name="donationAmount"
-                type="text"
-                required
-                placeholder="e.g. KES 5,000"
-                className="
-                  w-full
-                  rounded-lg
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  py-3
-                  text-sm
-                  text-primary
-                  outline-none
-                  transition
-                  focus:border-vibrant-orange
-                  focus:ring-2
-                  focus:ring-orange-100
-                "
-              />
-            </div>
+      <input
+        id="donationAmount"
+        name="donationAmount"
+        type="text"
+        required
+        placeholder="e.g. KES 5,000"
+        className="
+          w-full
+          rounded-lg
+          border
+          border-slate-200
+          bg-white
+          px-4
+          py-3
+          text-sm
+          text-primary
+          outline-none
+          transition
+          focus:border-vibrant-orange
+          focus:ring-2
+          focus:ring-orange-100
+        "
+      />
+    </div>
 
-            {/* Transaction Reference */}
-            <div>
-              <label
-                htmlFor="transactionReference"
-                className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
-              >
-                Transaction Reference
-              </label>
+    {/* Transaction Reference */}
+    <div>
+      <label
+        htmlFor="transactionReference"
+        className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
+      >
+        Transaction Reference
+      </label>
 
-              <input
-                id="transactionReference"
-                name="transactionReference"
-                type="text"
-                required
-                placeholder="Enter your transaction/reference number"
-                className="
-                  w-full
-                  rounded-lg
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  py-3
-                  text-sm
-                  text-primary
-                  outline-none
-                  transition
-                  focus:border-vibrant-orange
-                  focus:ring-2
-                  focus:ring-orange-100
-                "
-              />
-            </div>
+      <input
+        id="transactionReference"
+        name="transactionReference"
+        type="text"
+        required
+        placeholder="Enter your transaction/reference number"
+        className="
+          w-full
+          rounded-lg
+          border
+          border-slate-200
+          bg-white
+          px-4
+          py-3
+          text-sm
+          text-primary
+          outline-none
+          transition
+          focus:border-vibrant-orange
+          focus:ring-2
+          focus:ring-orange-100
+        "
+      />
+    </div>
 
-            {/* Optional Message */}
-            <div>
-              <label
-                htmlFor="donorMessage"
-                className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
-              >
-                Message <span className="normal-case">(optional)</span>
-              </label>
+    {/* Optional Message */}
+    <div>
+      <label
+        htmlFor="donorMessage"
+        className="mb-2 block text-xs font-bold uppercase tracking-[0.15em] text-slate-600"
+      >
+        Message <span className="normal-case">(optional)</span>
+      </label>
 
-              <textarea
-                id="donorMessage"
-                name="donorMessage"
-                rows="4"
-                placeholder="Any additional message..."
-                className="
-                  w-full
-                  resize-none
-                  rounded-lg
-                  border
-                  border-slate-200
-                  bg-white
-                  px-4
-                  py-3
-                  text-sm
-                  text-primary
-                  outline-none
-                  transition
-                  focus:border-vibrant-orange
-                  focus:ring-2
-                  focus:ring-orange-100
-                "
-              />
-            </div>
+      <textarea
+        id="donorMessage"
+        name="donorMessage"
+        rows="4"
+        placeholder="Any additional message..."
+        className="
+          w-full
+          resize-none
+          rounded-lg
+          border
+          border-slate-200
+          bg-white
+          px-4
+          py-3
+          text-sm
+          text-primary
+          outline-none
+          transition
+          focus:border-vibrant-orange
+          focus:ring-2
+          focus:ring-orange-100
+        "
+      />
+    </div>
 
-            {/* Status Message */}
-            {donationNotification.status && (
-              <div
-                className={`rounded-lg px-4 py-3 text-sm ${
-                  donationNotification.type === "success"
-                    ? "border border-green-200 bg-green-50 text-green-700"
-                    : "border border-red-200 bg-red-50 text-red-700"
-                }`}
-              >
-                {donationNotification.status}
-              </div>
-            )}
+    {/* Status Message */}
+    {donationNotification.status && (
+      <div
+        className={`rounded-lg px-4 py-3 text-sm ${
+          donationNotification.type === "success"
+            ? "border border-green-200 bg-green-50 text-green-700"
+            : "border border-red-200 bg-red-50 text-red-700"
+        }`}
+      >
+        {donationNotification.status}
+      </div>
+    )}
 
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={isSendingDonationNotification}
-              className="
-                inline-flex
-                w-full
-                items-center
-                justify-center
-                gap-2
-                rounded-lg
-                bg-vibrant-orange
-                px-5
-                py-3.5
-                text-sm
-                font-bold
-                text-white
-                transition-all
-                hover:bg-orange-600
-                disabled:cursor-not-allowed
-                disabled:opacity-60
-              "
-            >
-              <span className="material-symbols-outlined text-base">
-                {isSendingDonationNotification
-                  ? "progress_activity"
-                  : "send"}
-              </span>
+    {/* Submit */}
+    <button
+      type="submit"
+      disabled={isSendingDonationNotification}
+      className="
+        inline-flex
+        w-full
+        items-center
+        justify-center
+        gap-2
+        rounded-lg
+        bg-vibrant-orange
+        px-5
+        py-3.5
+        text-sm
+        font-bold
+        text-white
+        transition-all
+        hover:bg-orange-600
+        disabled:cursor-not-allowed
+        disabled:opacity-60
+      "
+    >
+      <span className="material-symbols-outlined text-base">
+        {isSendingDonationNotification
+          ? "progress_activity"
+          : "send"}
+      </span>
 
-              {isSendingDonationNotification
-                ? "Sending..."
-                : "Notify USEC Team"}
-            </button>
+      {isSendingDonationNotification
+        ? "Sending..."
+        : "Notify USEC Team"}
+    </button>
 
-          </form>
-        </div>
-
+  </form>
+</div>
       </div>
     </div>
   </div>

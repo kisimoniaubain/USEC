@@ -333,7 +333,8 @@ function HomePage() {
   <div className="absolute -top-40 left-[22%] w-[480px] h-[480px] rounded-full border-[80px] border-primary/10 pointer-events-none"></div>
 
   {/* Decorative Background Shape */}
-  <div className="absolute -bottom-32 right-[-5%] w-[500px] h-[300px] bg-primary/80 rotate-[-25deg] rounded-[40%] pointer-events-none"></div>
+  <div className="absolute -bottom-20 right-[-15%] w-[280px] h-[180px] bg-primary/80 rotate-[-25deg] rounded-[40%] pointer-events-none sm:-bottom-24 sm:right-[-8%] sm:w-[380px] sm:h-[230px] lg:-bottom-32 lg:right-[-5%] lg:w-[500px] lg:h-[300px]"></div>
+  {/* <div className="absolute -bottom-32 right-[-5%] w-[500px] h-[300px] bg-primary/80 rotate-[-25deg] rounded-[40%] pointer-events-none"></div> */}
 
   <div className="container relative z-10 mx-auto px-margin-mobile md:px-margin-desktop">
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
@@ -384,21 +385,21 @@ function HomePage() {
 
       </div>
 
-      {/* RIGHT - Image */}
-      <div className="lg:col-span-6 relative">
+        {/* RIGHT - Image */}
+        <div className="lg:col-span-6 relative">
 
-        {/* Image */}
-    <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl">
-      <img
-        src={whoHeroImage}
-        alt="USEC field teams collaborating with local communities"
-        className="object-right w-full h-[500px] md:h-[600px] lg:h-[680px] object-cover object-[95%_center] transition-transform duration-700 hover:scale-105"
-      />
-    </div>
-        {/* Orange Decorative Shape Behind Image */}
-        <div className="absolute -bottom-10 -right-10 w-72 h-72 border-[55px] border-vibrant-orange/80 rounded-full"></div>
+          {/* Image */}
+          <div className="relative z-10 overflow-hidden rounded-2xl shadow-2xl">
+            <img
+              src={whoHeroImage}
+              alt="USEC field teams collaborating with local communities"
+              className="object-right w-full h-[500px] md:h-[600px] lg:h-[680px] object-cover object-[95%_center] transition-transform duration-700 hover:scale-105"
+            />
+          </div>
 
-      </div>
+          {/* Orange Decorative Shape Over Image */}
+          <div className="absolute -bottom-6 -right-6 z-20 h-40 w-40 border-8 border-vibrant-orange sm:h-52 sm:w-52 lg:-bottom-10 lg:-right-10 lg:h-64 lg:w-64"></div>
+        </div>
 
     </div>
   </div>

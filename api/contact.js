@@ -4,11 +4,12 @@ const getEmailJsPublicKey = () =>
   process.env.EMAILJS_PUBLIC_KEY || process.env.EMAILJS_USER_ID;
 
 const getEmailJsPrivateKey = () =>
-  process.env.EMAILJS_PRIVATE_KEY;
+  process.env.EMAILJS_PRIVATE_KEY || process.env.EMAILJS_SECRET_KEY;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
+
     return res.status(405).json({
       error: 'Method not allowed',
     });
@@ -19,45 +20,22 @@ export default async function handler(req, res) {
 
     console.log('Contact form received:', body);
 
-    // Accept the exact field names from the form
-    const firstName = String(
-      body.firstName || body.first_name || ''
-    ).trim();
-
-    const lastName = String(
-      body.lastName || body.last_name || ''
-    ).trim();
-
-    const email = String(
-      body.email || body.emailAddress || ''
-    ).trim();
-
-    const message = String(
-      body.message || body.text || body.content || ''
-    ).trim();
-
-    const avatarUrl = String(
-      body.avatarUrl || ''
-    ).trim();
+    // Accept the exact field names from the Contact Us form
+    const name = String(body.name || '').trim();
+    const email = String(body.email || '').trim();
+    const message = String(body.message || '').trim();
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !message) {
+    if (!name || !email || !message) {
       console.error('Missing contact form fields:', {
-        firstName: !!firstName,
-        lastName: !!lastName,
+        name: !!name,
         email: !!email,
         message: !!message,
         receivedBody: body,
       });
 
       return res.status(400).json({
-        error: 'Missing required fields: firstName, lastName, email, message',
-        received: {
-          firstName: !!firstName,
-          lastName: !!lastName,
-          email: !!email,
-          message: !!message,
-        },
+        error: 'Missing required fields: name, email, message',
       });
     }
 
@@ -94,20 +72,18 @@ export default async function handler(req, res) {
       accessToken: privateKey,
 
       template_params: {
-        firstName,
-        lastName,
+        name,
         email,
         message,
-        avatarUrl,
         time: new Date().toLocaleString(),
       },
     };
 
-    console.log('Sending email through EmailJS...');
+    console.log('Sending Contact Us email through EmailJS...');
 
     await sendEmailViaEmailJS(emailJsPayload);
 
-    console.log('Email sent successfully');
+    console.log('Contact Us email sent successfully');
 
     return res.status(200).json({
       ok: true,
@@ -117,9 +93,10 @@ export default async function handler(req, res) {
     console.error('Contact form email error:', error);
 
     return res.status(500).json({
-      error: `Failed to send email: ${
-        error?.message || 'Unknown error'
-      }`,
+      error:
+        `Failed to send email: ${
+          error?.message || 'Unknown error'
+        }`,
     });
   }
 }
@@ -140,36 +117,39 @@ function sendEmailViaEmailJS(payload) {
       },
     };
 
-    const request = https.request(options, (response) => {
-      let data = '';
+    const request = https.request(
+      options,
+      (response) => {
+        let data = '';
 
-      response.on('data', (chunk) => {
-        data += chunk;
-      });
-
-      response.on('end', () => {
-        console.log('EmailJS response:', {
-          status: response.statusCode,
-          body: data,
+        response.on('data', (chunk) => {
+          data += chunk;
         });
 
-        if (
-          response.statusCode >= 200 &&
-          response.statusCode < 300
-        ) {
-          resolve({
-            ok: true,
+        response.on('end', () => {
+          console.log('EmailJS response:', {
             status: response.statusCode,
+            body: data,
           });
-        } else {
-          reject(
-            new Error(
-              `EmailJS API returned ${response.statusCode}: ${data}`
-            )
-          );
-        }
-      });
-    });
+
+          if (
+            response.statusCode >= 200 &&
+            response.statusCode < 300
+          ) {
+            resolve({
+              ok: true,
+              status: response.statusCode,
+            });
+          } else {
+            reject(
+              new Error(
+                `EmailJS API returned ${response.statusCode}: ${data}`
+              )
+            );
+          }
+        });
+      }
+    );
 
     request.on('error', (error) => {
       reject(error);

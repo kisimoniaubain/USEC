@@ -135,7 +135,7 @@ const activeProgramContent = programOptions[activeProgram];
 
     <section className="py-section-gap bg-white">
     <div className="absolute -top-40 left-[22%] w-[480px] h-[480px] rounded-full border-[80px] border-primary/10 pointer-events-none"></div>
-     <div className="absolute -bottom-32 right-[-5%] w-[500px] h-[300px] bg-primary/80 rotate-[-25deg] rounded-[40%] pointer-events-none"></div>
+       <div className="absolute -bottom-20 right-[-15%] w-[280px] h-[180px] bg-primary/80 rotate-[-25deg] rounded-[40%] pointer-events-none sm:-bottom-24 sm:right-[-8%] sm:w-[380px] sm:h-[230px] lg:-bottom-32 lg:right-[-5%] lg:w-[500px] lg:h-[300px]"></div>
      <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
 
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -426,7 +426,7 @@ const activeProgramContent = programOptions[activeProgram];
   {/* DECORATIVE BACKGROUND SHAPES */}
   <div className="absolute -top-40 left-[22%] w-[480px] h-[480px] rounded-full border-[80px] border-primary/10 pointer-events-none"></div>
 
-  <div className="absolute -bottom-32 right-[-5%] w-[500px] h-[300px] bg-primary/80 rotate-[-25deg] rounded-[40%] pointer-events-none"></div>
+  <div className="absolute -bottom-20 right-[-15%] w-[280px] h-[180px] bg-primary/80 rotate-[-25deg] rounded-[40%] pointer-events-none sm:-bottom-24 sm:right-[-8%] sm:w-[380px] sm:h-[230px] lg:-bottom-32 lg:right-[-5%] lg:w-[500px] lg:h-[300px]"></div>
 
 
   <div className="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
